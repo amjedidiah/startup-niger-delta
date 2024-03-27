@@ -1,5 +1,5 @@
 import { Fragment } from "react";
 
 export default function Home() {
-  return <Fragment>Welcome home</Fragment>;
+  return <Fragment>StartUp Niger Delta</Fragment>;
 }
