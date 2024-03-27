@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    * {
+        transition: all 0.15 ease-in-out;
+    }
+}
+
+@layer utilities {
+    .container {
+        @apply max-w-[1304px]
+    }
+
+    .bg-gradient-1 {
+background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) -11.25%, rgba(0, 0, 0, 0.00) 33.59%), #FF7D05;
+    }
+}

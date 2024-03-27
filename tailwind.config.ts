@@ -8,8 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["var(--font-inter)"],
+        poppins: ["var(--font-poppins)"],
       },
+      colors: {
+        gray: { 85: "#d9d9d9" },
+        "gable-green": "#153230",
+        tiber: "#184341",
+      },
+    },
+    container: {
+      padding: {
+        DEFAULT: "1rem",
+        lg: "2rem",
+      },
+      center: true,
     },
   },
   plugins: [],
