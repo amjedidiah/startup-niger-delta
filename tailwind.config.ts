@@ -9,11 +9,14 @@ const config: Config = {
     extend: {
       fontFamily: {
         poppins: ["var(--font-poppins)"],
+        inter: ["var(--font-inter)"],
       },
       colors: {
-        gray: { 85: "#d9d9d9" },
+        gray: { 66: "A8A8A8", 85: "#d9d9d9" },
         "gable-green": "#153230",
         tiber: "#184341",
+        "dark-red": "#252525",
+        "white-smoke": "#f3f3f3",
       },
     },
     container: {
