@@ -1,10 +1,14 @@
 import { SNDPlay } from "@/lib/icons";
 import homeHeroIllustration from "../../../../public/images/home-hero-illustration.svg";
 import Image from "next/image";
+import OrangeButton from "@/components/shared/orange-button";
 
 export default function HomeHero() {
   return (
-    <section className="pt-10 sm:pt-14 lg:h-[728px] lg:max-h-screen overflow-x-hidden">
+    <section
+      className="pt-10 sm:pt-14 lg:h-[728px] lg:max-h-screen overflow-x-hidden"
+      id="home"
+    >
       <div className="container flex max-lg:flex-col items-center h-full gap-8 sm:gap-12">
         <div className="flex-1 flex flex-col gap-6 sm:gap-8 lg:gap-10 max-lg:text-center max-lg:items-center">
           <hgroup className="font-inter flex flex-col gap-3">
@@ -22,13 +26,11 @@ export default function HomeHero() {
               id="subscribeEmail"
               aria-label="email"
               placeholder="username@domainname.com"
-              className="flex-1 p-2 sm:py-3 sm:px-8 h-auto rounded-l-[5px] bg-white-smoke placeholder:text-gray-66 font-medium"
+              className="flex-1 p-2 sm:py-3 sm:px-8 h-auto rounded-l-[5px] bg-white-smoke placeholder:text-gray-66"
             />
-            <button className="bg-gradient-2 rounded-r-[5px] py-[14px] px-8 text-white font-semibold">
-              Subscribe
-            </button>
+            <OrangeButton className="rounded-l-none">Subscribe</OrangeButton>
           </form>
-          <button className="mt-2 flex items-center justify-center gap-1 w-[157px] h-12 rounded-[22px] bg-gradient-3 text-white text-sm font-medium leading-[10px]">
+          <button className="mt-2 flex items-center justify-center gap-1 w-[157px] h-12 rounded-[22px] bg-gradient-3 text-white text-sm leading-[10px]">
             <span>How We Work</span>
             <span>
               <SNDPlay />
@@ -43,6 +45,7 @@ export default function HomeHero() {
                 alt="hero image"
                 fill
                 sizes="100%"
+                priority
               />
             </div>
           </div>

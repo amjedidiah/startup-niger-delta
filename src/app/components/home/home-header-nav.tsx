@@ -40,7 +40,7 @@ export default function HomeHeaderNav({ isOpen }: Props) {
           <li key={title}>
             <ScrollLink
               to={href}
-              className="font-medium text-gable-green cursor-pointer"
+              className="text-gable-green cursor-pointer"
               activeClass="text-tiber"
               smooth
               spy
@@ -51,7 +51,7 @@ export default function HomeHeaderNav({ isOpen }: Props) {
           </li>
         ))}
       </ul>
-      <div className="flex max-lg:flex-col lg:items-center gap-4 text-sm font-medium">
+      <div className="flex max-lg:flex-col lg:items-center gap-4 text-sm">
         <Link href="/login" className="text-gable-green underline text-right">
           Login
         </Link>

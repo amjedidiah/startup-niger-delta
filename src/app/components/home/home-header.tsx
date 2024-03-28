@@ -10,7 +10,7 @@ export default function HomeHeader() {
   const toggleMenu = useCallback(() => setIsMenuOpen((prev) => !prev), []);
 
   return (
-    <header className="border-b-[1.5px] border-gray-85 bg-white fixed left-0 top-0 w-full">
+    <header className="border-b-[1.5px] border-gray-85 bg-white fixed left-0 top-0 w-full z-[1]">
       <div className="container">
         <div className="flex items-center justify-between gap-10 lg:gap-12 xl:gap-[102px] py-3 h-[88px] ">
           <Link to="home" smooth offset={-88} className="cursor-pointer">

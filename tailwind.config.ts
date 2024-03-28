@@ -16,7 +16,12 @@ const config: Config = {
         "gable-green": "#153230",
         tiber: "#184341",
         "dark-red": "#252525",
-        "white-smoke": "#f3f3f3",
+        "white-smoke": {
+          DEFAULT: "#f3f3f3",
+          100: "#f9f9f9",
+        },
+        "shade-of-amber": "#FF7D05",
+        "laurel-green": "#BACFA5",
       },
     },
     container: {
