@@ -25,7 +25,7 @@ export default function OurEcosystem() {
         <h2 className="text-gable-green text-center relative after:absolute after:-bottom-[18px] after:w-[115px] after:h-[6px] after:bg-shade-of-amber after:left-1/2 after:transform after:-translate-x-1/2">
           Our Ecosystem.
         </h2>
-        <div className="flex max-lg:flex-wrap justify-center md:gap-10 lg:gap-14 xl:gap-[93px] items-stretch">
+        <div className="flex max-lg:flex-wrap justify-center gap-8 md:gap-10 lg:gap-14 xl:gap-[93px] items-stretch">
           {individuals.map((item) => (
             <EcosystemCard key={item.name} {...item} />
           ))}

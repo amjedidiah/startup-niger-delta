@@ -14,14 +14,14 @@ const config: Config = {
       colors: {
         gray: { 66: "A8A8A8", 85: "#d9d9d9" },
         "gable-green": "#153230",
-        tiber: "#184341",
+        tiber: { DEFAULT: "#184341", 100: "#183433" },
         "dark-red": "#252525",
         "white-smoke": {
           DEFAULT: "#f3f3f3",
           100: "#f9f9f9",
         },
         "shade-of-amber": "#FF7D05",
-        "laurel-green": "#BACFA5",
+        "laurel-green": { DEFAULT: "#BACFA5", 100: "#B8CEA2", 200: "#476864" },
       },
     },
     container: {
