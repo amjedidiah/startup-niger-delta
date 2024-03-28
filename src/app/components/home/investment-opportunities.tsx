@@ -31,10 +31,7 @@ const investmentOpportunities = [
 
 export default function InvestmentOpportunities() {
   return (
-    <section
-      className="pt-10 bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white"
-      id="funding"
-    >
+    <section className="pt-10 bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
       <div className="container grid lg:grid-cols-2 gap-10 lg:gap-32 xl:gap-[106px]">
         <div className="flex flex-col gap-[46px]">
           <h2 className="relative after:absolute after:left-0 after:-bottom-4 after:w-[115px] after:h-[6px] after:bg-laurel-green-100">

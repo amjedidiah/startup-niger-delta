@@ -2,6 +2,8 @@ import HomeHeader from "@/components/home/home-header";
 import HomeHero from "@/components/home/home-hero";
 import InvestmentOpportunities from "@/components/home/investment-opportunities";
 import OurEcosystem from "@/components/home/our-ecosystem";
+import Partners from "@/components/home/partners";
+import Resources from "@/components/home/resources";
 import { Fragment } from "react";
 
 export default function Home() {
@@ -12,6 +14,8 @@ export default function Home() {
         <HomeHero />
         <OurEcosystem />
         <InvestmentOpportunities />
+        <Partners />
+        <Resources />
       </main>
     </Fragment>
   );

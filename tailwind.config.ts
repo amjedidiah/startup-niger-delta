@@ -21,7 +21,12 @@ const config: Config = {
           100: "#f9f9f9",
         },
         "shade-of-amber": "#FF7D05",
-        "laurel-green": { DEFAULT: "#BACFA5", 100: "#B8CEA2", 200: "#476864" },
+        "laurel-green": {
+          DEFAULT: "#BACFA5",
+          100: "#B8CEA2",
+          200: "#476864",
+          300: "#C6D9B5",
+        },
       },
     },
     container: {

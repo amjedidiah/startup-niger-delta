@@ -41,7 +41,7 @@ export default function HomeHeaderNav({ isOpen }: Props) {
             <ScrollLink
               to={href}
               className="text-gable-green cursor-pointer"
-              activeClass="text-tiber"
+              activeClass="text-laurel-green"
               smooth
               spy
               offset={-88}
