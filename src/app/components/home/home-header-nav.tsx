@@ -52,11 +52,11 @@ export default function HomeHeaderNav({ isOpen }: Props) {
         ))}
       </ul>
       <div className="flex max-lg:flex-col lg:items-center gap-4 text-sm">
-        <Link href="/login" className="text-gable-green underline text-right">
-          Login
+        <Link href="/signin" className="text-gable-green underline text-right">
+          Sign in
         </Link>
         <Link
-          href="/register"
+          href="/signup"
           className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white"
         >
           Get Started

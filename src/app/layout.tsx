@@ -11,8 +11,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${inter.variable} font-poppins`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${inter.variable} font-poppins`}
+    >
+      <body className="h-full">{children}</body>
     </html>
   );
 }

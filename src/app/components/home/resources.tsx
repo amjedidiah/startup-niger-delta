@@ -7,6 +7,7 @@ import {
   SNDResources4,
   SNDResources5,
 } from "@/lib/icons";
+import Link from "next/link";
 
 const resources = [
   {
@@ -50,7 +51,11 @@ export default function Resources() {
             encompass our goal of turbo-charging investments towards
             sustainable, innovative and most importantly inclusive growth.
           </p>
-          <OrangeButton className="w-fit">Get Started</OrangeButton>
+          <div className="inline-flex">
+            <Link href="signup">
+              <OrangeButton className="w-fit">Get Started</OrangeButton>
+            </Link>
+          </div>
         </div>
         <div className="flex flex-col gap-[10px] lg:relative lg:top-20">
           {resources.map(({ title, Icon, description }) => (
