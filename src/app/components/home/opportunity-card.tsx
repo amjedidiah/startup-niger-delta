@@ -18,12 +18,14 @@ export default function OpportunityCard({ name, title, content }: Props) {
   );
 
   return (
-    <div className="px-4 xl:px-6 pt-14 pb-8 flex flex-col gap-8 bg-laurel-green-200 last:rounded-b-none lg:mt-[66px] lg:min-h-[225px] xl:min-h-[209px] cursor-pointer group lg:hover:-mt-[66px] lg:hover:pt-12 lg:hover:bg-shade-of-amber lg:hover:gap-4">
-      <Image src={imageSrc} alt={title} />
-      <p className="text-xl font-semibold leading-4">{title}</p>
+    <div className="max-w-[320px] max-lg:basis-[calc((100%-32px)/2)] px-4 xl:px-6 py-8 xl:pt-14 flex flex-col gap-6 md:gap-8 bg-laurel-green-200 last:rounded-b-none lg:mt-[96px] lg:min-h-[225px] xl:min-h-[250px] cursor-pointer group lg:hover:-mt-[66px] lg:hover:pt-12 lg:hover:bg-shade-of-amber max-lg:border-b-4 max-lg:border-shade-of-amber lg:hover:gap-4">
+      <Image src={imageSrc} alt={title} className="max-lg:w-9 lg:h-[60px]" />
+      <p className="text-lg lg:text-xl font-semibold leading-4 group-hover:min-h-fit">
+        {title}
+      </p>
       <div className="lg:hidden group-hover:lg:flex group-hover:lg:flex-col max-lg:flex max-lg:flex-col gap-5 -mt-2">
         <p className="text-xs leading-[18px]">{content}</p>
-        <button className="bg-white rounded-[5px] py-[11px] px-[22px] text-tiber-100 font-semibold">
+        <button className="bg-white rounded-[5px] p-2 lg:py-[11px] lg:px-[22px] text-tiber-100 font-semibold">
           Connect
         </button>
       </div>

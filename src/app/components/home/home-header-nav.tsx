@@ -22,7 +22,7 @@ export default function HomeHeaderNav({ isOpen }: Props) {
       className={cn(
         {
           "max-lg:hidden": !isOpen,
-          "max-lg:fixed right-0 left-0 top-[90px] max-lg:bg-white max-lg:py-4 max-lg:px-6 max-lg:flex-col max-lg:items-end max-lg:shadow-md":
+          "max-lg:fixed right-0 left-0 top-[89px] max-lg:bg-white max-lg:py-4 max-lg:px-6 max-lg:flex-col max-lg:items-end max-lg:shadow-lg":
             isOpen,
         },
         "flex items-center justify-between flex-1 gap-4 lg:gap-6 xl:gap-[42px]"
@@ -52,7 +52,10 @@ export default function HomeHeaderNav({ isOpen }: Props) {
         ))}
       </ul>
       <div className="flex max-lg:flex-col lg:items-center gap-4 text-sm">
-        <Link href="/signin" className="text-gable-green underline text-right">
+        <Link
+          href="/signin"
+          className="text-gable-green underline w-fit max-lg:ml-auto p-1"
+        >
           Sign in
         </Link>
         <Link
