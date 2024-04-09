@@ -1,4 +1,4 @@
-import EcosystemCard from "@/components/home/ecosystem-card";
+import EcosystemCard from "@/components/home/our-ecosystem/ecosystem-card";
 
 const individuals = [
   {

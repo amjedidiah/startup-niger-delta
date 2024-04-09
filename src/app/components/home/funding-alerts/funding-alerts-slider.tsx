@@ -4,7 +4,7 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { memo } from "react";
-import FundingAlertsSlide from "@/components/home/funding-alerts-slide";
+import FundingAlertsSlide from "@/components/home/funding-alerts/funding-alerts-slide";
 import { SNDSliderLeftArrow, SNDSliderRightArrow } from "@/lib/icons";
 
 export type FundingAlertType = {

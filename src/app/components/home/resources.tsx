@@ -61,12 +61,12 @@ export default function Resources() {
           {resources.map(({ title, Icon, description }) => (
             <div
               key={title}
-              className="bg-white rounded-xl flex items-center justify-between py-2 px-4 lg:py-4 gap-4 lg:gap-7"
+              className="sm:bg-white rounded-xl flex items-center justify-between py-2 px-4 lg:py-4 gap-4 lg:gap-7"
             >
               <span className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-laurel-green-300 inline-flex items-center justify-center">
                 <Icon />
               </span>
-              <div className="flex flex-col text-black font-inter flex-1">
+              <div className="flex flex-col sm:text-black font-inter flex-1">
                 <p className="text-lg lg:text-xl lg:leading-[30px]">{title}</p>
                 <p className="lg:text-lg font-normal lg:leading-[28px]">
                   {description}

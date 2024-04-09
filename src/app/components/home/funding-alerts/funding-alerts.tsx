@@ -1,4 +1,4 @@
-import FundingAlertsSlider from "@/components/home/funding-alerts-slider";
+import FundingAlertsSlider from "@/components/home/funding-alerts/funding-alerts-slider";
 
 export default function FundingAlerts() {
   return (

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { FundingAlertType } from "@/components/home/funding-alerts-slider";
+import { FundingAlertType } from "@/components/home/funding-alerts/funding-alerts-slider";
 import { currentYear } from "@/lib/constants";
 import { memo, useMemo } from "react";
 import OrangeButton from "@/components/shared/orange-button";
 import { cn } from "@/lib/utils";
 import { useSwiperSlide } from "swiper/react";
-import FundItem from "@/components/home/fund-item";
-import CompanyInfoItem from "@/components/home/company-info-item";
+import FundItem from "@/components/home/funding-alerts/fund-item";
+import CompanyInfoItem from "@/components/home/funding-alerts/company-info-item";
 
 function FundingAlertsSlide({
   company: { logo, name, geography, industry },

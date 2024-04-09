@@ -23,7 +23,7 @@ export default function HomeHero() {
             </p>
           </hgroup>
           <form className="w-4/5 max-w-[467px]">
-            <p>Subscribe to our newsletter</p>
+            <p className="font-light">Subscribe to our newsletter</p>
             <div className="flex">
               <input
                 type="email"

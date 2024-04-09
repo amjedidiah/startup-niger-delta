@@ -1,6 +1,6 @@
 import Image from "next/image";
-import investmentIllustration from "../../../../public/images/investment-illustration.png";
-import OpportunityCard from "@/components/home/opportunity-card";
+import investmentIllustration from "../../../../../public/images/investment-illustration.png";
+import OpportunityCard from "@/components/home/investment-opportunities/opportunity-card";
 
 const investmentOpportunities = [
   {

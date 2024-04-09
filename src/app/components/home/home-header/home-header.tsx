@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import HomeHeaderNav from "@/components/home/home-header-nav";
+import HomeHeaderNav from "@/components/home/home-header/home-header-nav";
 import { memo, useCallback, useState } from "react";
 import Link from "next/link";
 import { RiMenu3Line } from "react-icons/ri";

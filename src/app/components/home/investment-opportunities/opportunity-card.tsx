@@ -1,8 +1,8 @@
 import Image from "next/image";
-import startups from "../../../../public/images/startups.png";
-import money from "../../../../public/images/money.png";
-import briefcase from "../../../../public/images/briefcase.png";
-import hub from "../../../../public/images/hub.png";
+import startups from "../../../../../public/images/startups.png";
+import money from "../../../../../public/images/money.png";
+import briefcase from "../../../../../public/images/briefcase.png";
+import hub from "../../../../../public/images/hub.png";
 import { useMemo } from "react";
 
 type Props = {

@@ -1,8 +1,8 @@
-import FundingAlerts from "@/components/home/funding-alerts";
-import HomeHeader from "@/components/home/home-header";
+import FundingAlerts from "@/components/home/funding-alerts/funding-alerts";
+import HomeHeader from "@/components/home/home-header/home-header";
 import HomeHero from "@/components/home/home-hero";
-import InvestmentOpportunities from "@/components/home/investment-opportunities";
-import OurEcosystem from "@/components/home/our-ecosystem";
+import InvestmentOpportunities from "@/components/home/investment-opportunities/investment-opportunities";
+import OurEcosystem from "@/components/home/our-ecosystem/our-ecosystem";
 import Partners from "@/components/home/partners";
 import Resources from "@/components/home/resources";
 import { Fragment } from "react";
