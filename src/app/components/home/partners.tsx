@@ -9,7 +9,7 @@ const partnerImages = [fgn, dsg];
 
 const Partners = () => {
   return (
-    <section className="py-10 lg:py-[75px]">
+    <section className="py-4">
       <Marquee autoFill pauseOnClick pauseOnHover>
         {partnerImages.map((item, i) => (
           <Image src={item} key={i} alt="" className="mx-16" />

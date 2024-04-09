@@ -12,8 +12,13 @@ const config: Config = {
         inter: ["var(--font-inter)"],
       },
       colors: {
-        gray: { 66: "A8A8A8", 85: "#d9d9d9", 100: "#9595A0" },
-        "gable-green": "#153230",
+        gray: {
+          66: "A8A8A8",
+          85: "#d9d9d9",
+          100: "#9595A0",
+          200: "rgba(195, 195, 215, 0.50)",
+        },
+        "gable-green": { DEFAULT: "#153230", 400: "rgba(21, 50, 48, 0.4)" },
         tiber: {
           DEFAULT: "#184341",
           100: "#183433",
@@ -32,6 +37,7 @@ const config: Config = {
           200: "#476864",
           300: "#C6D9B5",
           400: "#E3ECDA",
+          500: "rgba(198, 217, 181, 0.50)",
         },
       },
     },

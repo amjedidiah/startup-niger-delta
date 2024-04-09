@@ -39,36 +39,36 @@ const resources = [
 
 export default function Resources() {
   return (
-    <section className="py-10 lg:pt-[71px] lg:pb-[197px] bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
+    <section className="py-10 lg:pt-12 lg:pb-[71px] bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
       <div className="container grid lg:grid-cols-2 gap-10 lg:gap-[50px]">
-        <div className="flex flex-col gap-[46px] lg:gap-[73px]">
-          <h2 className="relative after:absolute after:left-0 after:-bottom-4 after:w-[115px] after:h-[6px] after:bg-laurel-green-100">
+        <div className="flex flex-col gap-8 lg:gap-14">
+          <h2 className="after:left-0 after:-bottom-4 after:bg-laurel-green-100">
             Resources.
           </h2>
-          <p className="lg:max-w-[604px] text-lg lg:mt-[18px]">
-            SNG is proud to offer such a wide variety of technology assets
+          <p className="lg:max-w-[604px] lg:text-lg lg:mt-[18px]">
+            NDS is proud to offer such a wide variety of technology assets
             within the geographical locations on its platform. All these
             encompass our goal of turbo-charging investments towards
             sustainable, innovative and most importantly inclusive growth.
           </p>
           <div className="inline-flex">
-            <Link href="signup">
+            <Link href="/signup">
               <OrangeButton className="w-fit">Get Started</OrangeButton>
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-[10px] lg:relative lg:top-20">
+        <div className="flex flex-col gap-[10px]">
           {resources.map(({ title, Icon, description }) => (
             <div
               key={title}
-              className="bg-white rounded-xl flex items-center justify-between p-4 gap-7"
+              className="bg-white rounded-xl flex items-center justify-between py-2 px-4 lg:py-4 gap-4 lg:gap-7"
             >
-              <span className="w-16 h-16 rounded-full bg-laurel-green-300 inline-flex items-center justify-center">
+              <span className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-laurel-green-300 inline-flex items-center justify-center">
                 <Icon />
               </span>
               <div className="flex flex-col text-black font-inter flex-1">
-                <p className="text-xl leading-[30px]">{title}</p>
-                <p className="text-lg font-normal leading-[28px]">
+                <p className="text-lg lg:text-xl lg:leading-[30px]">{title}</p>
+                <p className="lg:text-lg font-normal lg:leading-[28px]">
                   {description}
                 </p>
               </div>

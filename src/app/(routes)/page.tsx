@@ -1,3 +1,4 @@
+import FundingAlerts from "@/components/home/funding-alerts";
 import HomeHeader from "@/components/home/home-header";
 import HomeHero from "@/components/home/home-hero";
 import InvestmentOpportunities from "@/components/home/investment-opportunities";
@@ -16,6 +17,7 @@ export default function Home() {
         <InvestmentOpportunities />
         <Partners />
         <Resources />
+        <FundingAlerts />
       </main>
     </Fragment>
   );

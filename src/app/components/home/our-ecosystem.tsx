@@ -22,7 +22,7 @@ export default function OurEcosystem() {
       id="explore"
     >
       <div className="container flex flex-col gap-12 lg:gap-16">
-        <h2 className="text-gable-green text-center relative after:absolute after:-bottom-[18px] after:w-[115px] after:h-[6px] after:bg-shade-of-amber after:left-1/2 after:transform after:-translate-x-1/2">
+        <h2 className="text-gable-green text-center after:-bottom-[18px] after:bg-shade-of-amber after:left-1/2 after:transform after:-translate-x-1/2">
           Our Ecosystem.
         </h2>
         <div className="flex max-lg:flex-wrap justify-center gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10 items-stretch">

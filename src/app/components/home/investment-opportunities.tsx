@@ -34,7 +34,7 @@ export default function InvestmentOpportunities() {
     <section className="py-10 lg:pb-0 bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
       <div className="container grid lg:grid-cols-2 gap-10 lg:gap-32 xl:gap-[106px]">
         <div className="flex flex-col gap-[46px]">
-          <h2 className="max-w-[371px] relative after:absolute after:left-0 after:-bottom-5 after:w-[115px] after:h-[6px] after:bg-laurel-green-100">
+          <h2 className="max-w-[371px] after:left-0 after:-bottom-5 after:bg-laurel-green-100">
             Investment & Opportunities.
           </h2>
           <p className="lg:max-w-[604px] lg:text-lg">

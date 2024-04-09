@@ -2459,3 +2459,54 @@ export const SNDAwaitingVerification = () => (
     />
   </svg>
 );
+
+export const SNDSliderLeftArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="35"
+    height="36"
+    viewBox="0 0 35 36"
+    fill="none"
+  >
+    <path
+      opacity="0.5"
+      d="M20.999 22.7058L13.999 18.2031L20.999 12.9058"
+      stroke="#231515"
+      strokeWidth="2.24264"
+    />
+    <circle
+      opacity="0.1"
+      cx="17.4999"
+      cy="17.8058"
+      r="16.6909"
+      stroke="black"
+      strokeWidth="1.61826"
+    />
+  </svg>
+);
+
+export const SNDSliderRightArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="35"
+    height="36"
+    viewBox="0 0 35 36"
+    fill="none"
+  >
+    <path
+      opacity="0.5"
+      d="M14.0001 22.7058L21.0001 18.2031L14.0001 12.9058"
+      stroke="#231515"
+      strokeWidth="2.24264"
+    />
+    <circle
+      opacity="0.1"
+      cx="17.5"
+      cy="17.5"
+      r="16.6909"
+      transform="matrix(-1 0 0 1 35.0001 0.305878)"
+      stroke="black"
+      strokeWidth="1.61826"
+    />
+  </svg>
+);
