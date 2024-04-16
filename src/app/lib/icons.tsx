@@ -2538,7 +2538,7 @@ export const SNDSliderLeftArrow2 = () => (
       opacity="0.5"
       d="M4.86658 6.61314L1.13351 4.21188L4.86658 1.38685"
       stroke="#231515"
-      stroke-width="1.19599"
+      strokeWidth="1.19599"
     />
   </svg>
 );
@@ -2557,5 +2557,32 @@ export const SNDSliderRightArrow2 = () => (
       stroke="#231515"
       strokeWidth="1.19599"
     />
+  </svg>
+);
+
+export const SNDTimer = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+  >
+    <g opacity="0.7">
+      <path
+        d="M8.82662 15.6183C12.3304 15.6183 15.1707 12.778 15.1707 9.27425C15.1707 5.77052 12.3304 2.93018 8.82662 2.93018C5.32288 2.93018 2.48254 5.77052 2.48254 9.27425C2.48254 12.778 5.32288 15.6183 8.82662 15.6183Z"
+        stroke="#153230"
+        strokeWidth="1.06877"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M8.82668 6.89563V10.0677H6.05115"
+        stroke="#153230"
+        strokeWidth="1.06877"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </g>
   </svg>
 );

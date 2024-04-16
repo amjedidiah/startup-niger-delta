@@ -39,6 +39,9 @@ const config: Config = {
           400: "#E3ECDA",
           500: "rgba(198, 217, 181, 0.50)",
         },
+        unknown: {
+          100: "#DE5F12",
+        },
       },
     },
     container: {
