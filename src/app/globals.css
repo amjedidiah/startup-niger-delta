@@ -57,6 +57,10 @@
         box-shadow: 0px 0px 14.998px 0px #153230;
     }
 
+    .shadow-event-card {
+        box-shadow: 0px 8.823px 35.29px 0px rgba(21, 50, 48, 0.25);
+    }
+
     .border-funding-alert-slide {
         border: 2.25px solid rgba(21, 50, 48, 0.60);
     }

@@ -2,7 +2,7 @@ import { RecentNews } from "@/components/home/recent-news/recent-news";
 import SafeHTML from "@/components/shared/safe-html";
 import { SNDTimer } from "@/lib/icons";
 import Image from "next/image";
-import truncateHtml from "truncate-html";
+import { truncateText } from "@/lib/utils";
 
 export default function RecentNewsCard({
   title,
@@ -12,9 +12,7 @@ export default function RecentNewsCard({
   readTime,
   excerpt,
 }: RecentNews) {
-  const processedExcerpt = truncateHtml(excerpt, 22, {
-    byWords: true,
-  });
+  const processedExcerpt = truncateText(excerpt);
 
   return (
     <div className="flex flex-col gap-[10px] text-gable-green">
@@ -25,6 +23,7 @@ export default function RecentNewsCard({
           alt={slug}
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
+          sizes="100%"
         />
       </div>
       <div className="flex items-center justify-between font-inter font-normal lg:leading-[20px] opacity-70">

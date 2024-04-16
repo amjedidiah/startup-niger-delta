@@ -1,3 +1,4 @@
+import Events from "@/components/home/events/events";
 import FundingAlerts from "@/components/home/funding-alerts/funding-alerts";
 import HomeHeader from "@/components/home/home-header/home-header";
 import HomeHero from "@/components/home/home-hero";
@@ -22,6 +23,7 @@ export default function Home() {
         <FundingAlerts />
         <Testimonies />
         <RecentNews />
+        <Events />
       </main>
     </Fragment>
   );

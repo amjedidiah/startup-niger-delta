@@ -41,6 +41,7 @@ const config: Config = {
         },
         unknown: {
           100: "#DE5F12",
+          200: "#044F5B",
         },
       },
     },

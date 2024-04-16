@@ -50,7 +50,7 @@ export default function RecentNews() {
       <div className="container flex flex-col gap-8 lg:gap-10">
         <header className="flex max-md:flex-col justify-between md:items-end gap-10">
           <h2 className="text-gable-green after:bg-shade-of-amber after:left-0 after:-bottom-3">
-            Recent News
+            Recent News.
           </h2>
 
           <RecentNewsNav />
