@@ -84,60 +84,55 @@ const fundingAlerts: FundingAlertType[] = [
 const FundingAlertsSlider = () => {
   return (
     <div className="relative w-full">
-      <div className="absolute flex justify-between left-[15%] right-[15%] min-[320px]:max-md:left-[20%] min-[320px]:max-md:right-[20%] lg:left-[10%] lg:right-[10%] xl:left-[12%] xl:right-[12%] -bottom-10 z-10">
-        <span className="prev-el bg-white rounded-full">
+      <div className="absolute flex justify-between left-[15%] right-[15%] min-[320px]:max-md:left-[20%] min-[320px]:max-md:right-[20%] lg:left-[10%] lg:right-[10%] xl:left-[12%] xl:right-[12%] -bottom-10">
+        <span className="prev-el bg-white rounded-full cursor-pointer z-[11]">
           <SNDSliderLeftArrow />
         </span>
-        <span className="next-el bg-white rounded-full">
+        <span className="next-el bg-white rounded-full cursor-pointer z-[11]">
           <SNDSliderRightArrow />
         </span>
       </div>
-      <div className="w-full overflow-x-hidden">
-        <div className="flex items-center z-0 [&>.swiper]:static w-fit max-w-full mx-auto">
-          <Swiper
-            modules={[Autoplay, Pagination, Navigation]}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: true,
-            }}
-            pagination={{
-              dynamicBullets: true,
-              clickable: true,
-            }}
-            scrollbar={{ draggable: true }}
-            spaceBetween={0}
-            slidesPerView={1}
-            breakpoints={{
-              640: {
-                slidesPerView: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-              },
-            }}
-            centeredSlides
-            loop
-            navigation={{
-              prevEl: ".prev-el",
-              nextEl: ".next-el",
-            }}
-            className="[&_.swiper-wrapper]:flex [&_.swiper-wrapper]:py-5 [&_.swiper-wrapper]:items-center [&_.swiper-wrapper_.swiper-slide]:flex [&_.swiper-wrapper_.swiper-slide-prev]:justify-end [&_.swiper-wrapper_.swiper-slide-active]:justify-center [&_.swiper-wrapper]:w-full [&_.swiper-button-prev]:absolute [&_.swiper-button-prev]:z-[3] [&_.swiper-button-prev]:top-1/2 [&_.swiper-button-prev]:h-10 [&_.swiper-button-prev]:w-10 [&_.swiper-button-next]:absolute [&_.swiper-button-next]:z-[3] [&_.swiper-button-next]:right-0 [&_.swiper-button-next]:top-1/2 [&_.swiper-button-next]:h-10 [&_.swiper-button-next]:w-10 [&_.swiper-pagination-bullets.swiper-pagination-horizontal]:mt-5 [&_.swiper-pagination-bullets.swiper-pagination-horizontal]:bottom-auto [&_.swiper-pagination-bullet]:w-10 md:[&_.swiper-pagination-bullet]:w-20 lg:[&_.swiper-pagination-bullet]:w-[147px] [&_.swiper-pagination-bullet]:h-[2px] [&_.swiper-pagination-bullet]:rounded [&_.swiper-pagination-bullet]:opacity-50 [&_.swiper-pagination-bullet]:bg-black [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:opacity-90 [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:bg-shade-of-amber"
-          >
-            {fundingAlerts.map(
-              ({ company, fundNumber, fundManager, amount, reference }) => (
-                <SwiperSlide key={company.name}>
-                  <FundingAlertsSlide
-                    company={company}
-                    fundNumber={fundNumber}
-                    fundManager={fundManager}
-                    amount={amount}
-                    reference={reference}
-                  />
-                </SwiperSlide>
-              )
-            )}
-          </Swiper>
-        </div>
+      <div className="[&>.swiper]:static">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: true,
+          }}
+          pagination={{
+            dynamicBullets: true,
+            clickable: true,
+          }}
+          scrollbar={{ draggable: true }}
+          spaceBetween={0}
+          slidesPerView={1}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+          }}
+          centeredSlides
+          loop
+          navigation={{
+            prevEl: ".prev-el",
+            nextEl: ".next-el",
+          }}
+          className="[&_.swiper-wrapper]:flex [&_.swiper-wrapper]:py-5 [&_.swiper-wrapper]:items-center [&_.swiper-wrapper_.swiper-slide]:flex [&_.swiper-wrapper_.swiper-slide-prev]:justify-end [&_.swiper-wrapper_.swiper-slide-active]:justify-center [&_.swiper-pagination-bullets.swiper-pagination-horizontal]:mt-5 [&_.swiper-pagination-bullets.swiper-pagination-horizontal]:bottom-auto [&_.swiper-pagination-bullet]:w-10 md:[&_.swiper-pagination-bullet]:w-20 lg:[&_.swiper-pagination-bullet]:w-[147px] [&_.swiper-pagination-bullet]:h-[2px] [&_.swiper-pagination-bullet]:rounded [&_.swiper-pagination-bullet]:opacity-50 [&_.swiper-pagination-bullet]:bg-black [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:opacity-90 [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:bg-shade-of-amber"
+        >
+          {fundingAlerts.map(
+            ({ company, fundNumber, fundManager, amount, reference }) => (
+              <SwiperSlide key={company.name}>
+                <FundingAlertsSlide
+                  company={company}
+                  fundNumber={fundNumber}
+                  fundManager={fundManager}
+                  amount={amount}
+                  reference={reference}
+                />
+              </SwiperSlide>
+            )
+          )}
+        </Swiper>
       </div>
     </div>
   );

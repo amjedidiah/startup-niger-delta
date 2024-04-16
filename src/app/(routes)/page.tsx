@@ -5,6 +5,7 @@ import InvestmentOpportunities from "@/components/home/investment-opportunities/
 import OurEcosystem from "@/components/home/our-ecosystem/our-ecosystem";
 import Partners from "@/components/home/partners";
 import Resources from "@/components/home/resources";
+import Testimonies from "@/components/home/testimonies/testimonies";
 import { Fragment } from "react";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Partners />
         <Resources />
         <FundingAlerts />
+        <Testimonies />
       </main>
     </Fragment>
   );

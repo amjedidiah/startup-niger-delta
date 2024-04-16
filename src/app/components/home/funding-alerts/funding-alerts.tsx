@@ -2,7 +2,7 @@ import FundingAlertsSlider from "@/components/home/funding-alerts/funding-alerts
 
 export default function FundingAlerts() {
   return (
-    <section className="py-10 lg:pt-16 lg:pb-28">
+    <section className="pt-10 pb-20 lg:pt-16 lg:pb-28">
       <div className="container flex flex-col gap-[37px]">
         <h2 className="text-gable-green text-center after:-bottom-[18px] after:bg-laurel-green after:left-1/2 after:transform after:-translate-x-1/2">
           Funding Alerts.

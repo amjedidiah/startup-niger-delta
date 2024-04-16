@@ -31,7 +31,7 @@ const investmentOpportunities = [
 
 export default function InvestmentOpportunities() {
   return (
-    <section className="py-10 lg:pb-0 bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
+    <section className="py-10 lg:pb-0 bg-green-pattern">
       <div className="container grid lg:grid-cols-2 gap-10 lg:gap-32 xl:gap-[106px]">
         <div className="flex flex-col gap-[46px]">
           <h2 className="max-w-[371px] after:left-0 after:-bottom-5 after:bg-laurel-green-100">

@@ -41,6 +41,10 @@
         background: linear-gradient(0deg, #184341 -13.33%, rgba(24, 67, 65, 0.00) 66.67%), #0D726F;
     }
 
+    .bg-green-pattern {
+        @apply bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white
+    }
+
     .text-serif {
         font-family: 'Times New Roman', Times, serif;
     }

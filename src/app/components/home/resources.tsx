@@ -39,7 +39,7 @@ const resources = [
 
 export default function Resources() {
   return (
-    <section className="py-10 lg:pt-12 lg:pb-[71px] bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white">
+    <section className="py-10 lg:pt-12 lg:pb-[71px] bg-green-pattern">
       <div className="container grid lg:grid-cols-2 gap-10 lg:gap-[50px]">
         <div className="flex flex-col gap-8 lg:gap-14">
           <h2 className="after:left-0 after:-bottom-4 after:bg-laurel-green-100">

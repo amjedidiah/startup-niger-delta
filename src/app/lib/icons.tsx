@@ -2510,3 +2510,52 @@ export const SNDSliderRightArrow = () => (
     />
   </svg>
 );
+
+export const SNDStar = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="21"
+    height="21"
+    viewBox="0 0 21 21"
+    fill="none"
+  >
+    <path
+      d="M10 0.423096L12.2451 7.33293H19.5106L13.6327 11.6034L15.8779 18.5133L10 14.2428L4.12215 18.5133L6.36729 11.6034L0.489435 7.33293H7.75486L10 0.423096Z"
+      fill="#FF7D05"
+    />
+  </svg>
+);
+
+export const SNDSliderLeftArrow2 = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="6"
+    height="8"
+    viewBox="0 0 6 8"
+    fill="none"
+  >
+    <path
+      opacity="0.5"
+      d="M4.86658 6.61314L1.13351 4.21188L4.86658 1.38685"
+      stroke="#231515"
+      stroke-width="1.19599"
+    />
+  </svg>
+);
+
+export const SNDSliderRightArrow2 = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="6"
+    height="8"
+    viewBox="0 0 6 8"
+    fill="none"
+  >
+    <path
+      opacity="0.5"
+      d="M1.13348 6.61314L4.86655 4.21188L1.13348 1.38685"
+      stroke="#231515"
+      strokeWidth="1.19599"
+    />
+  </svg>
+);
