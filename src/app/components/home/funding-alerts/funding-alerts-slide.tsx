@@ -51,14 +51,13 @@ function FundingAlertsSlide({
         }
       )}
     >
-      <div className="relative w-[154px] h-[34px] lg:mt-[7px] mx-auto">
+      <div className="relative w-[154px] h-[45px] lg:mt-[7px] mx-auto">
         <Image
           src={logo}
           alt={name}
           fill
           sizes="100%"
-          className="overflow-visible"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "contain", objectPosition: "center" }}
         />
       </div>
       <p className="text-center font-semibold">{name}</p>

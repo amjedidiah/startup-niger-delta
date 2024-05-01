@@ -1,7 +1,5 @@
-"use client";
-
 import EventListNavItem from "@/components/home/events/event-list-nav-item";
-import { eventNavItems } from "@/contexts/event.context";
+import { eventNavItems } from "@/lib/constants";
 
 export default function EventListNav() {
   return (

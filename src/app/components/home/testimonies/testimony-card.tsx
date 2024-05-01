@@ -2,16 +2,20 @@ import { SNDStar } from "@/lib/icons";
 import Image from "next/image";
 
 type Props = {
-  person: {
-    name: string;
-    title: string;
-    avatar: string;
+  testimony: {
+    person: {
+      name: string;
+      title: string;
+      avatar: string;
+    };
+    rating: number;
+    content: string;
   };
-  rating: number;
-  content: string;
 };
 
-export default function TestimonyCard({ person, rating, content }: Props) {
+export default function TestimonyCard({
+  testimony: { person, rating, content },
+}: Props) {
   return (
     <div className="bg-white relative p-6 sm:p-10 md:flex-1">
       <Image

@@ -57,7 +57,7 @@ export default function RecentNews() {
         </header>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-9 [&>div:nth-child(n+4)]:hidden sm:max-lg:[&>div:nth-child(n+4)]:block">
           {recentNews.map((item) => (
-            <RecentNewsCard key={item.slug} {...item} />
+            <RecentNewsCard key={item.slug} recentNews={item} />
           ))}
         </div>
         <Link href="/recent-news" className="mx-auto rounded-[5px]">

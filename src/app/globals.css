@@ -65,3 +65,9 @@
         border: 2.25px solid rgba(21, 50, 48, 0.60);
     }
 }
+
+@layer components {
+    .event-slide-height {
+        height: 100% !important
+    }
+}

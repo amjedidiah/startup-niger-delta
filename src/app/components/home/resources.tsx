@@ -11,26 +11,31 @@ import Link from "next/link";
 
 const resources = [
   {
+    slug: "startup-development-1",
     Icon: SNDResources1,
     title: "Startup Development",
     description: "Alert you are my greatest deal",
   },
   {
+    slug: "startup-development-2",
     Icon: SNDResources2,
     title: "Registration of Startups",
     description: "Alert you are my greatest deal",
   },
   {
+    slug: "startup-development-3",
     Icon: SNDResources3,
     title: "Startup Development",
     description: "Alert you are my greatest deal",
   },
   {
+    slug: "startup-development-4",
     Icon: SNDResources4,
     title: "Startup Development",
     description: "Alert you are my greatest deal",
   },
   {
+    slug: "startup-development-5",
     Icon: SNDResources5,
     title: "Startup Development",
     description: "Alert you are my greatest deal",
@@ -58,9 +63,9 @@ export default function Resources() {
           </div>
         </div>
         <div className="flex flex-col gap-[10px]">
-          {resources.map(({ title, Icon, description }) => (
+          {resources.map(({ slug, title, Icon, description }) => (
             <div
-              key={title}
+              key={slug}
               className="sm:bg-white rounded-xl flex items-center justify-between py-2 px-4 lg:py-4 gap-4 lg:gap-7"
             >
               <span className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-laurel-green-300 inline-flex items-center justify-center">

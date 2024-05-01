@@ -4,14 +4,13 @@ import { SNDTimer } from "@/lib/icons";
 import Image from "next/image";
 import { truncateText } from "@/lib/utils";
 
+type Props = {
+  recentNews: RecentNews;
+};
+
 export default function RecentNewsCard({
-  title,
-  src,
-  slug,
-  publishDate,
-  readTime,
-  excerpt,
-}: RecentNews) {
+  recentNews: { title, src, slug, publishDate, readTime, excerpt },
+}: Props) {
   const processedExcerpt = truncateText(excerpt);
 
   return (

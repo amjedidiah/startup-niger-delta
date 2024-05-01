@@ -3,12 +3,16 @@ import OrangeButton from "@/components/shared/orange-button";
 import Image from "next/image";
 
 type Props = {
-  name: string;
-  title: string;
-  content: string;
+  ecosystem: {
+    name: string;
+    title: string;
+    content: string;
+  };
 };
 
-export default function EcosystemCard({ name, title, content }: Props) {
+export default function EcosystemCard({
+  ecosystem: { name, title, content },
+}: Props) {
   const isFacilitator = name === "facilitators";
 
   return (

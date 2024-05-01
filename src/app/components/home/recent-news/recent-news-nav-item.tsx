@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useMemo } from "react";
 
 type Props = {
   item: string;
@@ -12,7 +12,7 @@ export default function RecentNewsNavItem({
   onClick,
   activeItem,
 }: Props) {
-  const isActive = activeItem === item;
+  const isActive = useMemo(() => activeItem === item, [activeItem, item]);
 
   return (
     <li>

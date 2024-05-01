@@ -52,7 +52,7 @@ export default function InvestmentOpportunities() {
         </div>
         <div className="max-lg:flex flex-wrap max-lg:justify-center gap-4 md:gap-6 xl:gap-11 lg:grid lg:grid-cols-4 lg:col-span-2 lg:items-end lg:-mt-[66px] [&>div]:rounded-t-[24px] max-[390px]:[&>div:nth-last-child(n+3)_p:nth-child(2)]:min-h-[32px] max-[431px]:[&>div:nth-child(n+3)_p:nth-child(2)]:min-h-[80px] min-[432px]:max-[466px]:[&>div:nth-child(n+3)_p:nth-child(2)]:min-h-[64px] min-[467px]:max-[560px]:[&>div:nth-child(n+3)_p:nth-child(2)]:min-h-[48px] min-[577px]:max-lg:[&>div:nth-child(n+3)_p:nth-child(2)]:min-h-[32px] lg:[&>div_p:nth-child(2)]:min-h-[84px] sm:[&>div:nth-child(n+3)]:rounded-b-none lg:[&>div:nth-child(n)]:rounded-b-none">
           {investmentOpportunities.map((item) => (
-            <OpportunityCard key={item.name} {...item} />
+            <OpportunityCard key={item.name} opportunity={item} />
           ))}
         </div>
       </div>

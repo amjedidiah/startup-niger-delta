@@ -6,12 +6,16 @@ import hub from "../../../../../public/images/hub.png";
 import { useMemo } from "react";
 
 type Props = {
-  name: string;
-  title: string;
-  content: string;
+  opportunity: {
+    name: string;
+    title: string;
+    content: string;
+  };
 };
 
-export default function OpportunityCard({ name, title, content }: Props) {
+export default function OpportunityCard({
+  opportunity: { name, title, content },
+}: Props) {
   const imageSrc = useMemo(
     () => ({ startups, money, briefcase }[name] || hub),
     [name]

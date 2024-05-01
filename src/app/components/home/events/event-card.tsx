@@ -1,17 +1,15 @@
-import { Event } from "@/components/home/events/event-list";
+import { Event } from "@/components/home/events/event-slider";
 import OrangeButton from "@/components/shared/orange-button";
 import { truncateText } from "@/lib/utils";
 import Image from "next/image";
 
+type Props = {
+  event: Event;
+};
+
 export default function EventCard({
-  startTime,
-  endTime,
-  src,
-  slug,
-  name,
-  excerpt,
-  registrationLink,
-}: Event) {
+  event: { startTime, endTime, src, slug, name, excerpt, registrationLink },
+}: Props) {
   const processedExcerpt = truncateText(excerpt);
 
   return (

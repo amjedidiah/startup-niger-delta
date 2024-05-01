@@ -1,21 +1,22 @@
 "use client";
 
 import RecentNewsNavItem from "@/components/home/recent-news/recent-news-nav-item";
-import { MouseEventHandler, useState } from "react";
+import { MouseEventHandler, memo, useCallback, useState } from "react";
 
 const newsCategories = ["latest", "news", "funding"];
 
-export default function RecentNewsNav() {
+function RecentNewsNav() {
   const [activeItem, setActiveItem] = useState(newsCategories[0]);
 
-  const handleOnClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault();
+  const handleOnClick: MouseEventHandler<HTMLAnchorElement> = useCallback(
+    (e) => {
+      e.preventDefault();
+      const newActiveItem = e.currentTarget.dataset.item as string;
 
-    const newActiveItem = e.currentTarget.dataset.item;
-
-    if (!newActiveItem || newActiveItem === activeItem) return;
-    setActiveItem(newActiveItem);
-  };
+      if (newActiveItem !== activeItem) setActiveItem(newActiveItem);
+    },
+    [activeItem]
+  );
 
   return (
     <ul className="flex gap-4 lg:gap-7">
@@ -30,3 +31,5 @@ export default function RecentNewsNav() {
     </ul>
   );
 }
+
+export default memo(RecentNewsNav);

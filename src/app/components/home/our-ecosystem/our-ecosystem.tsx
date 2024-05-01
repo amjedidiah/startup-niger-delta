@@ -27,7 +27,7 @@ export default function OurEcosystem() {
         </h2>
         <div className="flex max-lg:flex-wrap justify-center gap-4 sm:gap-6 md:gap-7 lg:gap-8 xl:gap-10 items-stretch">
           {individuals.map((item) => (
-            <EcosystemCard key={item.name} {...item} />
+            <EcosystemCard key={item.name} ecosystem={item} />
           ))}
         </div>
       </div>

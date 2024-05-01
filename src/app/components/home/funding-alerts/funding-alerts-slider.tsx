@@ -96,7 +96,7 @@ const FundingAlertsSlider = () => {
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           autoplay={{
-            delay: 2500,
+            delay: 2000,
             disableOnInteraction: true,
           }}
           pagination={{

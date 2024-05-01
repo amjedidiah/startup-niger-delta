@@ -1,7 +1,7 @@
 "use client";
+import { eventNavItems } from "@/lib/constants";
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 
-export const eventNavItems = ["upcoming", "past"];
 
 type EventContextType = {
   activeNavItem: string;
