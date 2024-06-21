@@ -17,7 +17,7 @@ export default function AwaitingVerification({ email }: Props) {
           <SNDAwaitingVerification />
         </span>
       </p>
-      <div className="flex flex-col gap-1  font-normal text-black text-[13px] leading-[20px]">
+      <div className="flex flex-col gap-1 font-normal text-black text-[13px] leading-[20px]">
         <p>
           Click on the email we sent to{" "}
           <span className="font-semibold">{email}</span>

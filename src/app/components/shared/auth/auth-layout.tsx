@@ -40,7 +40,7 @@ export default function AuthLayout({
       <div className="h-screen max-h-full grid xl:grid-cols-2 text-center">
         <div className="h-full overflow-y-scroll flex flex-col items-center px-4 py-16 sm:p-16 xl:pt-20 sm:max-xl:justify-center relative">
           <AuthCloseButton />
-          <div className="lg:max-xl:mt-28 xl:w-[350px] xl:min-h-full xl:flex xl:flex-col">
+          <div className="lg:max-xl:mt-28 xl:w-96 xl:min-h-full xl:flex xl:flex-col">
             <div className="flex-1">
               <div className="inline-flex mb-4 p-2">
                 <Link href="/">

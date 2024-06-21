@@ -2,11 +2,13 @@
 
 ## ChangeLog
 
-## Later
+- [x] Make Home Events section responsive
+- [x] Make Home Events `Upcoming` and `Past` selected based on the slider scroll event
+
+## Pending
 
 - [ ] Configure `howWeWorkVideoLink`
 
 ## Current
 
-- [ ] Make Home Events section responsive
-- [ ] Make Home Events `Upcoming` and `Past` selected based on the slider scroll event
+- [ ] Complete landing page
