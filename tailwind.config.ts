@@ -42,13 +42,16 @@ const config: Config = {
         unknown: {
           100: "#DE5F12",
           200: "#044F5B",
+          300: "#78D8D1",
         },
       },
     },
     container: {
       padding: {
         DEFAULT: "1rem",
-        lg: "2rem",
+        sm: "2rem",
+        md: "3rem",
+        lg: "4rem",
       },
       center: true,
     },

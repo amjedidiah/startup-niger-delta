@@ -45,6 +45,10 @@
         @apply bg-[url('/images/bg-investment.png')] bg-no-repeat bg-cover bg-center text-white
     }
 
+    .bg-green-pattern-question-mark {
+        @apply bg-[url('/images/bg-green-pattern-question-mark.png')] bg-no-repeat bg-cover bg-right-bottom text-white
+    }
+
     .text-serif {
         font-family: 'Times New Roman', Times, serif;
     }
@@ -59,6 +63,15 @@
 
     .shadow-event-card {
         box-shadow: 0px 8.823px 35.29px 0px rgba(21, 50, 48, 0.25);
+    }
+
+    .shadow-faq-action-card {
+        box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .shadow-faq-card {
+        border-radius: 5px;
+        box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.25);
     }
 
     .border-funding-alert-slide {

@@ -1,4 +1,5 @@
 import Events from "@/components/home/events/events";
+import FAQ from "@/components/home/faq/faq";
 import FundingAlerts from "@/components/home/funding-alerts/funding-alerts";
 import HomeHeader from "@/components/home/home-header/home-header";
 import HomeHero from "@/components/home/home-hero";
@@ -24,6 +25,7 @@ export default function Home() {
         <Testimonies />
         <RecentNews />
         <Events />
+        <FAQ />
       </main>
     </Fragment>
   );
