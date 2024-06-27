@@ -15,8 +15,12 @@
         @apply text-2xl md:text-3xl lg:text-4xl relative after:absolute after:w-[115px] after:h-[6px];
     }
 
-    h4 {
+    h3 {
         @apply text-xl md:text-2xl lg:text-3xl;
+    }
+
+    h5 {
+        @apply md:text-lg lg:text-xl;
     }
 }
 

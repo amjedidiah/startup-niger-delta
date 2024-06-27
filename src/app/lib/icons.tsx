@@ -2704,3 +2704,24 @@ export const SNDPlusCircle = () => (
     <path d="M9.49939 6.2981V13.2981M5.99939 9.7981H12.9994" stroke="#184341" />
   </svg>
 );
+
+export const SNDDoubleCaretRight = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="11"
+    height="12"
+    viewBox="0 0 11 12"
+    fill="none"
+  >
+    <path
+      d="M1 10.2861L7.81815 5.36191L1 1.57405"
+      stroke="white"
+      strokeWidth="0.757573"
+    />
+    <path
+      d="M2.89423 11.043L10.2806 5.36117L2.89423 0.815738"
+      stroke="white"
+      strokeWidth="0.757573"
+    />
+  </svg>
+);

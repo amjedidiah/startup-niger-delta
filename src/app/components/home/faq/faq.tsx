@@ -18,13 +18,13 @@ export default function FAQ() {
               FAQ.
             </h2>
             <div className="flex flex-col gap-4">
-              <h4 className="flex flex-col">
+              <h3 className="flex flex-col">
                 <span className="text-white">Do You Have Questions?</span>
 
                 <span className="text-unknown-300 text-[1.44em]">
                   Get in Touch.
                 </span>
-              </h4>
+              </h3>
               <div className="flex gap-6 md:gap-8 lg:gap-10 xl:gap-[50px]">
                 {faqActions.map(({ icon: Icon, text }) => (
                   <div

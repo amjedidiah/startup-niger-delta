@@ -73,10 +73,10 @@ export default function AuthLayout({
           </div>
         </div>
         <div className="h-full max-xl:hidden flex flex-col pt-20 pb-[67px] justify-between items-center bg-laurel-green-400">
-          <h4 className="max-w-[473px] text-[32px] leading-[38px] text-black">
+          <h3 className="max-w-[473px] text-[32px] leading-[38px] text-black">
             <span className="text-tiber-200">{greeting.title}</span>{" "}
             {greeting.content}
-          </h4>
+          </h3>
           <Image
             src={illustration}
             alt="signup illustration"

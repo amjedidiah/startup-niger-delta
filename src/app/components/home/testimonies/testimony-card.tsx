@@ -43,9 +43,9 @@ export default function TestimonyCard({
                 ))}
             </span>
             <hgroup>
-              <h4 className="text-gable-green text-lg lg:text-xl font-semibold">
+              <h3 className="text-gable-green text-lg lg:text-xl font-semibold">
                 {person.name}
-              </h4>
+              </h3>
               <h5 className="text-shade-of-amber text-sm ">{person.title}</h5>
             </hgroup>
           </div>

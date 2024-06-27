@@ -33,7 +33,7 @@ export default function EcosystemCard({
           "bg-gable-green": isFacilitator,
         })}
       />
-      <h4 className="text-serif font-bold mb-2 lg:mb-4">{title}</h4>
+      <h3 className="text-serif font-bold mb-2 lg:mb-4">{title}</h3>
       <p className="text-sm lg:mb-2">{content}</p>
       <div className="flex max-lg:flex-col lg:items-end lg:justify-between gap-1 mt-3">
         <OrangeButton className="px-6 max-lg:py-2 relative lg:-top-12 w-[150px] min-w-[150px]">
