@@ -1,5 +1,5 @@
 import AuthForm from "@/components/shared/auth/auth-form";
-import signupIllustration from "../../../../public/images/signup-illustration.png";
+import signupIllustration from "../../../../../public/images/signup-illustration.png";
 import AuthLayout from "@/components/shared/auth/auth-layout";
 
 const greeting = {

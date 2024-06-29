@@ -2,8 +2,7 @@
 
 ## ChangeLog
 
-- [x] Make Home Events section responsive
-- [x] Make Home Events `Upcoming` and `Past` selected based on the slider scroll event
+- Completed design for landing page
 
 ## Pending
 
@@ -11,4 +10,6 @@
 
 ## Current
 
-- [ ] Complete landing page
+- [ ] Completed design for onboarding page
+- [ ] Remove comments in `types.ts`
+- [ ] Replace images with `webp` format in online content store
