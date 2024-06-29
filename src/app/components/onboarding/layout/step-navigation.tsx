@@ -1,4 +1,4 @@
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import StepNavigationItem from "@/components/onboarding/layout/step-navigation-item";
 import { memo } from "react";
 

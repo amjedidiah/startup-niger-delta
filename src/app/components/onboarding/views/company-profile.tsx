@@ -1,4 +1,4 @@
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { ProfileData, UserTypes } from "@/lib/types";
 import { memo, useEffect, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -33,9 +33,6 @@ function CompanyProfile() {
     return () => setProfileData(getValues());
   }, [getValues, setProfileData]);
 
-  // TODO: Optimize
-  // All inputs are registered on load, optimize this function
-  // to only check for the ones that relate to the current userType
   useEffect(
     () => setCanGoToContactInfo(!isDisabled),
     [isDisabled, setCanGoToContactInfo]

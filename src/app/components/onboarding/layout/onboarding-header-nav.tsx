@@ -1,7 +1,7 @@
 "use client";
 import { SNDTick } from "@/lib/icons";
 import OnboardingWrapper from "@/components/onboarding/shared/onboarding-wrapper";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";

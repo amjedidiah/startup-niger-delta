@@ -1,3 +1,23 @@
+import { Dispatch, SetStateAction } from "react";
+
+export type OnboardingContextType = {
+  userType: UserTypes;
+  setUserType: Dispatch<SetStateAction<UserTypes>>;
+
+  activeStepIndex: number;
+  setActiveStepIndex: Dispatch<SetStateAction<number>>;
+  stepTitles: string[];
+
+  profileData?: ProfileData;
+  setProfileData: Dispatch<SetStateAction<ProfileData | undefined>>;
+
+  contactData?: ContactData;
+  setContactData: Dispatch<SetStateAction<ContactData | undefined>>;
+
+  canGoNext: boolean;
+  setCanGoToContactInfo: Dispatch<SetStateAction<boolean>>;
+};
+
 export enum UserTypes {
   StartUp = "startup",
   AngelInvestor = "angel investor",
@@ -75,7 +95,7 @@ export enum UserTypes {
 //   companyDescription: string; // textArea
 
 //   companyEmail: string;
-//   companyWebsite: string; // textArea
+//   companyWebsite: string; // url
 //   companyAddress: string; // address
 //   companyPhoneNumber: string; // tel
 
@@ -117,3 +137,10 @@ export type ProfileData =
       rcNumber: string;
       companyDescription: string; // textArea
     };
+
+export type ContactData = {
+  companyEmail: string; // email
+  companyWebsite: string; // url
+  companyAddress: string; // address
+  companyPhoneNumber: string; // tel
+};

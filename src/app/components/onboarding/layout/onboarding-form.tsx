@@ -1,7 +1,7 @@
 import { UserTypes } from "@/lib/types";
 import { FormEventHandler, memo, useCallback, useMemo } from "react";
 import OnboardingFormSelector from "@/components/onboarding/layout/onboarding-view-selector";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";
 import CompanyProfile from "@/components/onboarding/views/company-profile";
 import CompanyContact from "@/components/onboarding/views/company-contact";

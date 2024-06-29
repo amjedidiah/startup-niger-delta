@@ -1,5 +1,5 @@
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { AngelInvestorProfileData } from "@/lib/types";
 import { memo, useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";

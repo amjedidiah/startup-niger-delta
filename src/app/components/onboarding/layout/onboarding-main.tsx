@@ -1,5 +1,5 @@
 "use client";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo } from "react";
 import OnboardingWrapper from "@/components/onboarding/shared/onboarding-wrapper";
 import StepNavigation from "@/components/onboarding/layout/step-navigation";

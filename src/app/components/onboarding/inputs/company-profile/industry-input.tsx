@@ -1,6 +1,6 @@
 import { CompanyProfileData } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import SelectInput from "@/components/shared/select-input";

@@ -1,6 +1,6 @@
 import { CompanyProfileData } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useEffect } from "react";
 import { useController } from "react-hook-form";
 
@@ -16,7 +16,7 @@ function RCNumberInput() {
     rules: {
       required: true,
     },
-    defaultValue: (profileData as CompanyProfileData)?.[name],
+    defaultValue: (profileData as CompanyProfileData)?.[name] || "",
     shouldUnregister: true,
   });
 

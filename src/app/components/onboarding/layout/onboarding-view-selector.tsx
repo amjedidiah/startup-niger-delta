@@ -1,4 +1,4 @@
-import { useOnboardingContext } from "@/contexts/onboarding.context";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";
 import { UserTypes } from "@/lib/types";
 import { cn } from "@/lib/utils";
