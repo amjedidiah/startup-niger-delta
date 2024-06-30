@@ -1,4 +1,4 @@
-import { CompanyProfileData, UserTypes } from "@/lib/types";
+import { StartUpProfileData, UserTypes } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useMemo } from "react";
@@ -21,7 +21,7 @@ function CompanyDescriptionInput() {
         message: "Company description must be at least 50 characters long",
       },
     },
-    defaultValue: (profileData as CompanyProfileData)?.[name] || "",
+    defaultValue: (profileData as StartUpProfileData)?.[name] || "",
   });
 
   return (

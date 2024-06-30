@@ -1,6 +1,6 @@
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { CompanyProfileData } from "@/lib/types";
+import { StartUpProfileData } from "@/lib/types";
 import { memo, useEffect } from "react";
 import { useController } from "react-hook-form";
 
@@ -22,7 +22,7 @@ function YearsOfIncInput() {
       required: true,
       validate,
     },
-    defaultValue: (profileData as CompanyProfileData)?.[name] || "",
+    defaultValue: (profileData as StartUpProfileData)?.[name] || "",
     shouldUnregister: true,
   });
 
@@ -33,7 +33,7 @@ function YearsOfIncInput() {
           ({
             ...prev,
             [name]: field.value,
-          } as CompanyProfileData)
+          } as StartUpProfileData)
       );
   }, [field.value, setProfileData]);
 

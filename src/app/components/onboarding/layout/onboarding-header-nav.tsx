@@ -10,7 +10,7 @@ function OnboardingHeaderNav() {
   const { activeStepIndex, stepTitles } = useOnboardingContext();
 
   const completionLevel = useMemo(
-    () => (activeStepIndex / (stepTitles.length + 1)) * 100,
+    () => Math.round((activeStepIndex / (stepTitles.length + 1)) * 100),
     [activeStepIndex, stepTitles.length]
   );
 

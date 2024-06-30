@@ -2,7 +2,7 @@ import { INIT_ONBOARDING_STEP_INDEX, userSteps } from "@/lib/constants";
 import { OnboardingContextType, UserTypes } from "@/lib/types";
 import { useMemo, useState } from "react";
 
-export default function useOnboardingProvider() {
+export default function useOnboardingProvider(): OnboardingContextType {
   const [userType, setUserType] = useState(UserTypes.StartUp);
   const [activeStepIndex, setActiveStepIndex] = useState(
     INIT_ONBOARDING_STEP_INDEX
@@ -11,22 +11,40 @@ export default function useOnboardingProvider() {
     useState<OnboardingContextType["profileData"]>();
   const [contactData, setContactData] =
     useState<OnboardingContextType["contactData"]>();
-  const [canGoToContactInfo, setCanGoToContactInfo] = useState(false);
+  const [personData, setPersonData] =
+    useState<OnboardingContextType["personData"]>();
+  const [identificationData, setIdentificationData] =
+    useState<OnboardingContextType["identificationData"]>();
+  const [canGoToCompanyContact, setCanGoToCompanyContact] = useState(false);
+  const [canGoToPersonProfile, setCanGoToPersonProfile] = useState(false);
+  const [canGoToIdentification, setCanGoToIdentification] = useState(false);
+  const [canGoToReview, setCanGoToReview] = useState(false);
 
-  const steps = useMemo(
+  const stepTitles = useMemo(
     () => userSteps[userType as keyof typeof userSteps],
     [userType]
   );
-  const stepTitles = useMemo(() => steps.map((item) => item.title), [steps]);
 
   const canGoNext = useMemo(() => {
     switch (activeStepIndex) {
       case INIT_ONBOARDING_STEP_INDEX:
-        return canGoToContactInfo;
+        return canGoToCompanyContact;
+      case INIT_ONBOARDING_STEP_INDEX + 1:
+        return canGoToPersonProfile;
+      case INIT_ONBOARDING_STEP_INDEX + 2:
+        return canGoToIdentification;
+      case INIT_ONBOARDING_STEP_INDEX + 3:
+        return canGoToReview;
       default:
         return false;
     }
-  }, [canGoToContactInfo, activeStepIndex]);
+  }, [
+    activeStepIndex,
+    canGoToCompanyContact,
+    canGoToIdentification,
+    canGoToPersonProfile,
+    canGoToReview,
+  ]);
 
   return {
     userType,
@@ -42,7 +60,16 @@ export default function useOnboardingProvider() {
     contactData,
     setContactData,
 
+    personData,
+    setPersonData,
+
+    identificationData,
+    setIdentificationData,
+
     canGoNext,
-    setCanGoToContactInfo,
+    setCanGoToCompanyContact,
+    setCanGoToPersonProfile,
+    setCanGoToIdentification,
+    setCanGoToReview,
   };
 }

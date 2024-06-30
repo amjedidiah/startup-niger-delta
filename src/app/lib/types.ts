@@ -14,8 +14,19 @@ export type OnboardingContextType = {
   contactData?: ContactData;
   setContactData: Dispatch<SetStateAction<ContactData | undefined>>;
 
+  personData?: PersonData;
+  setPersonData: Dispatch<SetStateAction<PersonData | undefined>>;
+
+  identificationData?: IdentificationData;
+  setIdentificationData: Dispatch<
+    SetStateAction<IdentificationData | undefined>
+  >;
+
   canGoNext: boolean;
-  setCanGoToContactInfo: Dispatch<SetStateAction<boolean>>;
+  setCanGoToCompanyContact: Dispatch<SetStateAction<boolean>>;
+  setCanGoToPersonProfile: Dispatch<SetStateAction<boolean>>;
+  setCanGoToIdentification: Dispatch<SetStateAction<boolean>>;
+  setCanGoToReview: Dispatch<SetStateAction<boolean>>;
 };
 
 export enum UserTypes {
@@ -48,7 +59,7 @@ export enum UserTypes {
 // };
 
 // type AngelInvestorData = {
-//   companyOrIndividualName: string;
+//   companyOrPersonName: string;
 //   nationality: string;
 //   companyDescription: string; // textArea
 
@@ -114,7 +125,7 @@ type CountryData = {
   label: string;
 };
 
-export type CompanyProfileData = {
+export type StartUpProfileData = {
   companyName: string;
   yearsOfInc: string; // date
   rcNumber: string;
@@ -123,13 +134,13 @@ export type CompanyProfileData = {
 };
 
 export type AngelInvestorProfileData = {
-  companyOrIndividualName: string;
+  companyOrPersonName: string;
   nationality: CountryData;
   companyDescription: string; // textArea
 };
 
 export type ProfileData =
-  | CompanyProfileData
+  | StartUpProfileData
   | AngelInvestorProfileData
   | {
       companyName: string;
@@ -144,3 +155,35 @@ export type ContactData = {
   companyAddress: string; // address
   companyPhoneNumber: string; // tel
 };
+
+export type StartUpPersonData = {
+  personName: string;
+  founderEmail: string; // email
+  founderAddress: string; // text
+  founderPhoneNumber: string; // tel
+  noOfCoFounders: number; // select
+};
+
+export type OtherPersonData = {
+  personName: string;
+  investmentExperience: string; // select
+  investmentProof: string; // url
+  investmentSize: string; // select
+};
+
+export type PersonData = StartUpPersonData | OtherPersonData;
+
+export type CompanyIdentificationData = {
+  cacCertificate: File;
+  companyProfile: File;
+};
+
+export type OtherIdentificationData = {
+  meansOfIdentificationType: string; // select
+  meansOfIdentificationFile: File;
+  message: string; // textArea
+};
+
+export type IdentificationData =
+  | CompanyIdentificationData
+  | OtherIdentificationData;

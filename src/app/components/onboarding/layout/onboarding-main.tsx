@@ -15,7 +15,8 @@ function OnboardingMain() {
         "bg-onboarding-1": activeStepIndex % stepTitles.length === 1,
         "bg-onboarding-2": activeStepIndex % stepTitles.length === 2,
         "bg-onboarding-3": activeStepIndex % stepTitles.length === 3,
-        "bg-onboarding-4": activeStepIndex % stepTitles.length === 0,
+        "bg-onboarding-4": activeStepIndex % stepTitles.length === 4,
+        "bg-onboarding-5": activeStepIndex % stepTitles.length === 0,
       })}
     >
       <OnboardingWrapper>

@@ -7,12 +7,14 @@ import CompanyProfile from "@/components/onboarding/views/company-profile";
 import CompanyContact from "@/components/onboarding/views/company-contact";
 import PersonProfile from "@/components/onboarding/views/person-profile";
 import OnboardingIdentification from "@/components/onboarding/views/onboarding-identification";
+import OnboardingReview from "@/components/onboarding/views/onboarding-review";
 
 const getActiveComponent = (index: number) =>
   ({
     2: CompanyContact,
     3: PersonProfile,
     4: OnboardingIdentification,
+    5: OnboardingReview,
   }[index] || CompanyProfile);
 
 function OnboardingForm() {

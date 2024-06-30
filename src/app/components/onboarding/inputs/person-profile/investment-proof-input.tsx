@@ -1,40 +1,40 @@
-import { StartUpProfileData } from "@/lib/types";
+import { OtherPersonData } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useEffect } from "react";
 import { useController } from "react-hook-form";
 
-const name = "rcNumber";
-const label = "RC Number";
-const placeholder = "Registration number";
+const name = "investmentProof";
+const label = "Investment Proof";
+const placeholder = "Eg: https://docs.googl/lo8yz123";
 
-function RCNumberInput() {
-  const { profileData, setProfileData } = useOnboardingContext();
+function InvestmentProofInput() {
+  const { personData, setPersonData } = useOnboardingContext();
 
   const { field } = useController({
     name,
     rules: {
       required: true,
     },
-    defaultValue: (profileData as StartUpProfileData)?.[name] || "",
+    defaultValue: (personData as OtherPersonData)?.[name] || "",
     shouldUnregister: true,
   });
 
   useEffect(() => {
     return () =>
-      setProfileData(
+      setPersonData(
         (prev) =>
           ({
             ...prev,
             [name]: field.value,
-          } as StartUpProfileData)
+          } as OtherPersonData)
       );
-  }, [field.value, setProfileData]);
+  }, [field.value, setPersonData]);
 
   return (
     <OnboardingInputContainer label={label} name={name}>
       <input
-        type="text"
+        type="url"
         id={name}
         placeholder={placeholder}
         aria-label={label}
@@ -44,4 +44,4 @@ function RCNumberInput() {
   );
 }
 
-export default memo(RCNumberInput);
+export default memo(InvestmentProofInput);

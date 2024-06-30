@@ -1,4 +1,4 @@
-import { CompanyProfileData, UserTypes } from "@/lib/types";
+import { StartUpProfileData, UserTypes } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useMemo } from "react";
@@ -25,7 +25,7 @@ function CompanyNameInput() {
         value: 2,
       },
     },
-    defaultValue: (profileData as CompanyProfileData)?.[name] || "",
+    defaultValue: (profileData as StartUpProfileData)?.[name] || "",
   });
 
   return (
@@ -38,6 +38,7 @@ function CompanyNameInput() {
         id={name}
         placeholder={placeholder}
         aria-label={label}
+        autoComplete="name"
         {...field}
       />
     </OnboardingInputContainer>

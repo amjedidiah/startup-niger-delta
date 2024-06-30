@@ -11,7 +11,7 @@ import CompanyDescriptionInput from "@/components/onboarding/inputs/company-prof
 import ShouldRender from "@/components/shared/should-render";
 
 function CompanyProfile() {
-  const { profileData, setProfileData, setCanGoToContactInfo, userType } =
+  const { profileData, setProfileData, setCanGoToCompanyContact, userType } =
     useOnboardingContext();
   const isStartUp = useMemo(() => userType === UserTypes.StartUp, [userType]);
   const isAngelInvestor = useMemo(
@@ -34,8 +34,8 @@ function CompanyProfile() {
   }, [getValues, setProfileData]);
 
   useEffect(
-    () => setCanGoToContactInfo(!isDisabled),
-    [isDisabled, setCanGoToContactInfo]
+    () => setCanGoToCompanyContact(!isDisabled),
+    [isDisabled, setCanGoToCompanyContact]
   );
 
   return (

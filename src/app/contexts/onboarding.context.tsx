@@ -13,7 +13,12 @@ export default createContext({
 
   setProfileData: () => {},
   setContactData: () => {},
+  setPersonData: () => {},
+  setIdentificationData: () => {},
 
   canGoNext: false,
-  setCanGoToContactInfo: () => {},
+  setCanGoToCompanyContact: () => {},
+  setCanGoToPersonProfile: () => {},
+  setCanGoToIdentification: () => {},
+  setCanGoToReview: () => {},
 } as OnboardingContextType);

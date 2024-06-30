@@ -6,28 +6,32 @@ export const eventNavItems = ["upcoming", "past"];
 
 export const userSteps = {
   [UserTypes.StartUp]: [
-    { title: "Company Profile", Component: () => null },
-    { title: "Contact Info", Component: () => null },
-    { title: "Founder/Co-founder Profile", Component: () => null },
-    { title: "Founder's Identification", Component: () => null },
+    "Company Profile",
+    "Contact Info",
+    "Founder/Co-founder Profile",
+    "Founder's Identification",
+    "Review",
   ],
   [UserTypes.AngelInvestor]: [
-    { title: "Company Profile", Component: () => null },
-    { title: "Contact Info", Component: () => null },
-    { title: "Investment Info", Component: () => null },
-    { title: "Identification", Component: () => null },
+    "Company Profile",
+    "Contact Info",
+    "Investment Info",
+    "Identification",
+    "Review",
   ],
   [UserTypes.VentureCapitalist]: [
-    { title: "Company Profile", Component: () => null },
-    { title: "Contact Info", Component: () => null },
-    { title: "Investment Info", Component: () => null },
-    { title: "Identification", Component: () => null },
+    "Company Profile",
+    "Contact Info",
+    "Investment Info",
+    "Identification",
+    "Review",
   ],
   [UserTypes.Others]: [
-    { title: "Company Profile", Component: () => null },
-    { title: "Contact Info", Component: () => null },
-    { title: "Incubator's Info", Component: () => null },
-    { title: "Identification", Component: () => null },
+    "Company Profile",
+    "Contact Info",
+    "Incubator's Info",
+    "Identification",
+    "Review",
   ],
 };
 

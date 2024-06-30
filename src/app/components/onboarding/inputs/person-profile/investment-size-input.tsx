@@ -1,44 +1,38 @@
-import { StartUpProfileData } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
+import { OtherPersonData } from "@/lib/types";
 import { memo, useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import SelectInput from "@/components/shared/select-input";
 
-const name = "industry";
-const label = "Industry";
-const placeholder = "Select your industry";
+const name = "investmentSize";
+const label = "Investment Size";
+const placeholder = "Choose investment size";
 
-// TODO: Get the correct industry values
+// TODO: Get correct values for this
 const options = [
-  {
-    value: "it",
-    label: "IT",
-  },
-  {
-    value: "health",
-    label: "Health",
-  },
+  { value: "investment-1", label: "Investment 1" },
+  { value: "investment-2", label: "Investment 2" },
 ];
 
-function IndustryInput() {
-  const { profileData, setProfileData } = useOnboardingContext();
+function InvestmentSizeInput() {
+  const { personData, setPersonData } = useOnboardingContext();
   const { control, getValues } = useFormContext();
 
   useEffect(() => {
     return () => {
       const value = getValues(name);
 
-      setProfileData((prev) => {
-        if ((prev as StartUpProfileData)?.[name]) return prev;
+      setPersonData((prev) => {
+        if ((prev as OtherPersonData)?.[name]) return prev;
 
         return {
           ...prev,
           [name]: value,
-        } as StartUpProfileData;
+        } as OtherPersonData;
       });
     };
-  }, [getValues, setProfileData]);
+  }, [getValues, setPersonData]);
 
   return (
     <OnboardingInputContainer label={label} name={name}>
@@ -51,11 +45,11 @@ function IndustryInput() {
         render={(props) => (
           <SelectInput placeholder={placeholder} options={options} {...props} />
         )}
-        defaultValue={(profileData as StartUpProfileData)?.[name]}
+        defaultValue={(personData as OtherPersonData)?.[name]}
         shouldUnregister
       />
     </OnboardingInputContainer>
   );
 }
 
-export default memo(IndustryInput);
+export default memo(InvestmentSizeInput);

@@ -1,44 +1,35 @@
-import { StartUpProfileData } from "@/lib/types";
+import { StartUpPersonData } from "@/lib/types";
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { memo, useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import SelectInput from "@/components/shared/select-input";
 
-const name = "industry";
-const label = "Industry";
-const placeholder = "Select your industry";
+const name = "noOfCoFounders";
+const label = "No of Co-founders";
+const placeholder = "Choose Number of CoFounders";
+const options = Array(10)
+  .fill(0)
+  .map((_item, i) => ({ label: i + 1 + "", value: i + 1 + "" }));
 
-// TODO: Get the correct industry values
-const options = [
-  {
-    value: "it",
-    label: "IT",
-  },
-  {
-    value: "health",
-    label: "Health",
-  },
-];
-
-function IndustryInput() {
-  const { profileData, setProfileData } = useOnboardingContext();
+function CoFoundersInput() {
+  const { personData, setPersonData } = useOnboardingContext();
   const { control, getValues } = useFormContext();
 
   useEffect(() => {
     return () => {
       const value = getValues(name);
 
-      setProfileData((prev) => {
-        if ((prev as StartUpProfileData)?.[name]) return prev;
+      setPersonData((prev) => {
+        if ((prev as StartUpPersonData)?.[name]) return prev;
 
         return {
           ...prev,
           [name]: value,
-        } as StartUpProfileData;
+        } as StartUpPersonData;
       });
     };
-  }, [getValues, setProfileData]);
+  }, [getValues, setPersonData]);
 
   return (
     <OnboardingInputContainer label={label} name={name}>
@@ -51,11 +42,11 @@ function IndustryInput() {
         render={(props) => (
           <SelectInput placeholder={placeholder} options={options} {...props} />
         )}
-        defaultValue={(profileData as StartUpProfileData)?.[name]}
+        defaultValue={(personData as StartUpPersonData)?.[name]}
         shouldUnregister
       />
     </OnboardingInputContainer>
   );
 }
 
-export default memo(IndustryInput);
+export default memo(CoFoundersInput);
