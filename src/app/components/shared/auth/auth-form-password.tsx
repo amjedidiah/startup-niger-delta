@@ -1,10 +1,13 @@
 "use client";
 import { SNDEye } from "@/lib/icons";
 import { memo, useCallback, useMemo, useRef, useState } from "react";
+import { UseFormRegisterReturn } from "react-hook-form";
 import { IoEyeOff } from "react-icons/io5";
 import { useDebouncedCallback } from "use-debounce";
 
-const AuthFormPassword = () => {
+type Props = UseFormRegisterReturn;
+
+const AuthFormPassword = (props: Props) => {
   const [inputType, setInputType] = useState("password");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -26,10 +29,10 @@ const AuthFormPassword = () => {
   return (
     <div className="flex items-center rounded-[5px] border border-tiber-300 py-2 px-[17px] gap-4">
       <input
+        {...props}
         ref={inputRef}
         type={inputType}
         onFocus={handleFocus}
-        name="password"
         id="password"
         className="flex-1 h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
         placeholder="Enter password"

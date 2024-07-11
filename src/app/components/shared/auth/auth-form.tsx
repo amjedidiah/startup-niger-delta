@@ -3,27 +3,76 @@ import AuthFormPassword from "@/components/shared/auth/auth-form-password";
 import { SNDAppleIcon, SNDGoogleIcon } from "@/lib/icons";
 import AwaitingVerification from "@/components/shared/auth/awaiting-verification";
 import { FormEventHandler, memo, useState } from "react";
+import { signIn } from "next-auth/react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 type Props = {
   isSignupForm?: boolean;
+};
+
+type FormValues = {
+  name?: string;
+  email: string;
+  password: string;
 };
 
 const AuthForm = ({ isSignupForm = false }: Props) => {
   const [isAwaitingVerification, setIsAwaitingVerification] = useState(false);
   const [email, setEmail] = useState("someone@address.com");
   const buttonText = !isSignupForm ? "Sign in" : "Sign up with email";
+  const [loading, setLoading] = useState(false);
+  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const router = useRouter();
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<FormValues> = (values) => {
+    console.log(values)
+    setLoading(true);
 
-    if (isSignupForm) setIsAwaitingVerification(true);
+    if (isSignupForm) {
+      setLoading(true);
+      axios
+        .post("/api/auth/register", values)
+        .then(() => {
+          reset();
+          setIsAwaitingVerification(true);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      const { name, ...rest } = values;
+
+      signIn("credentials", {
+        ...rest,
+        redirect: false,
+      }).then((callback) => {
+        setLoading(false);
+
+        if (callback?.ok) {
+          console.log("Login sucessful");
+          router.push("/onboarding");
+        }
+
+        if (callback?.error) {
+          console.log("Login error");
+        }
+      });
+    }
   };
 
   if (isAwaitingVerification) return <AwaitingVerification email={email} />;
 
   return (
     <div>
-      <form className="flex flex-col gap-[18px]" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-col gap-[18px]"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {isSignupForm && (
           <div className="flex flex-col gap-2">
             <label
@@ -33,8 +82,8 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
               Name
             </label>
             <input
+              {...register("name", { required: true })}
               type="text"
-              name="name"
               id="name"
               className="rounded-[5px] border border-tiber-300 py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
               placeholder="Enter your names"
@@ -49,6 +98,7 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
             Email Address
           </label>
           <input
+            {...register("email")}
             type="email"
             name="email"
             id="email"
@@ -63,7 +113,13 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
           >
             Password
           </label>
-          <AuthFormPassword />
+          <input
+            {...register("password")}
+            type="password"
+            className="rounded-[5px] border border-tiber-300 py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+            placeholder="Enter password"
+          />
+          {/* <AuthFormPassword {...register("password")} /> */}
         </div>
 
         <button className="mt-1 py-2 bg-gradient-4 border border-tiber-200 text-white rounded-[5px]">
@@ -81,7 +137,10 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
           </span>
           <span>Continue with Apple</span>
         </button>
-        <button className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300 ">
+        <button
+          className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300"
+          onClick={() => signIn("google")}
+        >
           <span>
             <SNDGoogleIcon />
           </span>
