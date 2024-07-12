@@ -2,11 +2,14 @@
 import AuthFormPassword from "@/components/shared/auth/auth-form-password";
 import { SNDAppleIcon, SNDGoogleIcon } from "@/lib/icons";
 import AwaitingVerification from "@/components/shared/auth/awaiting-verification";
-import { FormEventHandler, memo, useState } from "react";
-import { signIn } from "next-auth/react";
+import { memo, useState } from "react";
+import { signIn, signOut } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 type Props = {
   isSignupForm?: boolean;
@@ -23,11 +26,32 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
   const [email, setEmail] = useState("someone@address.com");
   const buttonText = !isSignupForm ? "Sign in" : "Sign up with email";
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+
+  const schema = yup
+    .object({
+      name: yup.string().required("Please enter your fullname"),
+      email: yup
+        .string()
+        .email("Please enter valid email")
+        .required("Valid email is required"),
+      password: yup
+        .string()
+        .min(8, "Password should be more than ${min} characters")
+        .required(),
+    })
+    .required();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(isSignupForm ? schema : schema.omit(["name"])),
+  });
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = (values) => {
-    console.log(values)
     setLoading(true);
 
     if (isSignupForm) {
@@ -65,6 +89,18 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
     }
   };
 
+  const signinProvider = async (provider: string) => {
+    try {
+      setLoading(true);
+      await signIn(provider);
+
+      router.push("/onboarding");
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   if (isAwaitingVerification) return <AwaitingVerification email={email} />;
 
   return (
@@ -82,12 +118,20 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
               Name
             </label>
             <input
-              {...register("name", { required: true })}
+              {...register("name")}
               type="text"
               id="name"
-              className="rounded-[5px] border border-tiber-300 py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+              className={cn(
+                errors.name ? "border-red-500" : "border-tiber-300",
+                "rounded-[5px] border  py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+              )}
               placeholder="Enter your names"
             />
+            {errors.name && (
+              <p className="text-xs self-start text-red-500">
+                {errors.name.message}
+              </p>
+            )}
           </div>
         )}
         <div className="flex flex-col gap-2">
@@ -102,9 +146,18 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
             type="email"
             name="email"
             id="email"
-            className="rounded-[5px] border border-tiber-300 py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+            className={cn(
+              errors.email ? "border-red-500" : "border-tiber-300",
+              "rounded-[5px] border  py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+            )}
             placeholder="Enter email address"
           />
+
+          {errors.email && (
+            <p className="text-xs self-start text-red-500">
+              {errors.email.message}
+            </p>
+          )}
         </div>
         <div className="flex flex-col gap-2">
           <label
@@ -115,10 +168,19 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
           </label>
           <input
             {...register("password")}
+            disabled={loading}
             type="password"
-            className="rounded-[5px] border border-tiber-300 py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+            className={cn(
+              errors.password ? "border-red-500" : "border-tiber-300",
+              "rounded-[5px] border  py-2 px-[17px] h-auto placeholder:text-gray-100 text-[15px] outline-none shadow-none"
+            )}
             placeholder="Enter password"
           />
+          {errors.password && (
+            <p className="text-xs self-start text-red-500">
+              {errors.password.message}
+            </p>
+          )}
           {/* <AuthFormPassword {...register("password")} /> */}
         </div>
 
@@ -139,12 +201,21 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
         </button>
         <button
           className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300"
-          onClick={() => signIn("google")}
+          onClick={() => signinProvider("google")}
         >
           <span>
             <SNDGoogleIcon />
           </span>
           <span>Continue with Google</span>
+        </button>
+        <button
+          className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300"
+          onClick={() => signOut()}
+        >
+          <span>
+            <SNDGoogleIcon />
+          </span>
+          <span>Out</span>
         </button>
         <p className="text-gray-100 text-[13px] leading-[20px] text-center max-w-[289px] mx-auto">
           By clicking the button above, you agree to our Terms of Use and

@@ -5,8 +5,6 @@ export interface User extends mongoose.Document {
   email: string;
   password: string;
   name: string;
-  provider: string;
-  googleId: string;
 }
 
 interface UserMethods {
@@ -17,11 +15,9 @@ type UserModel = Model<User, {}, UserMethods>;
 
 const userSchema = new mongoose.Schema<User, UserModel, UserMethods>(
   {
+    name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String },
-    name: { type: String, required: true },
-    provider: { type: String },
-    googleId: { type: String },
   },
   {
     timestamps: true,

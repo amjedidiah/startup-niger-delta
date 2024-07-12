@@ -4,6 +4,7 @@ import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import GoogleProvider from "next-auth/providers/google";
 
+
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -42,6 +43,34 @@ const handler = NextAuth({
   pages: {
     signIn: '/auth/signin',
     signOut: '/',
+  },
+  callbacks: {
+    async signIn({ profile, account }) {
+
+      if (account?.provider == "google") {
+        try {
+          await connectDb()
+
+          const userExist = await UserModel.findOne({ email: profile?.email })
+
+          if (!userExist) {
+            await UserModel.create({
+              name: profile?.name,
+              email: profile?.email
+            })
+          }
+
+          return true
+        } catch (error) {
+          console.log(error)
+          return false;
+
+        }
+
+      }
+
+      return true
+    }
   },
   session: {
     strategy: 'jwt',
