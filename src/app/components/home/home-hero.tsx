@@ -3,7 +3,7 @@ import homeHeroIllustration from "../../../../public/images/home-hero-illustrati
 import Image from "next/image";
 import OrangeButton from "@/components/shared/orange-button";
 
-const howWeWorkVideoLink = "";
+const howWeWorkVideoLink = "https://www.youtube.com/watch?v=bEusrD8g-dM";
 
 export default function HomeHero() {
   return (
@@ -65,7 +65,7 @@ export default function HomeHero() {
           <Image
             src={homeHeroIllustration}
             alt="hero image"
-            className="max-lg:my-6 max-lg:w-4/5 max-lg:max-w-[467px] max-lg:mx-auto"
+            className="max-lg:my-6 max-lg:w-4/5 max-lg:max-w-[467px] max-lg:mx-auto animate-bounce"
           />
         </div>
       </div>

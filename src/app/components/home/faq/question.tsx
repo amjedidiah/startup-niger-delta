@@ -1,5 +1,12 @@
 import { cn } from "@/lib/utils";
-import { MouseEventHandler, memo, useMemo } from "react";
+import {
+  MouseEventHandler,
+  ReactNode,
+  memo,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { QuestionType } from "@/components/home/faq/questions";
 import { SNDCaretUp, SNDPlusCircle } from "@/lib/icons";
 
@@ -10,28 +17,30 @@ type Props = QuestionType & {
 };
 
 function Question({ q, a, index, isActive, handleSetActiveQAIndex }: Props) {
-  const Icon = useMemo(
-    () => (isActive ? SNDCaretUp : SNDPlusCircle),
-    [isActive]
-  );
+  const [Icon, setIcon] = useState<ReactNode | null>(null);
+  const ref = useRef<HTMLParagraphElement | null>(null);
+
+  useEffect(() => {
+    if (ref.current)
+      ref.current.style.height = isActive
+        ? `${ref.current.scrollHeight}px`
+        : "0px";
+    setTimeout(
+      () => setIcon(isActive ? <SNDCaretUp /> : <SNDPlusCircle />),
+      500
+    );
+  }, [isActive]);
 
   return (
     <div
       className={cn(
-        "py-[10px] rounded-[5px] bg-white shadow-faq-card pl-4 pr-2 flex items-center gap-3",
-        {
-          "items-end": isActive,
-        }
+        "items-end py-[10px] rounded-[5px] bg-white shadow-faq-card pl-4 pr-2 flex gap-3"
       )}
     >
       <div className="flex-1 flex flex-col gap-1 text-black text-sm">
-        <p>Q: {q}</p>
-        <p
-          className={cn("mb-[10px]", {
-            hidden: !isActive,
-          })}
-        >
-          A: {a}
+        <p>{q}</p>
+        <p className="duration-[0.75s] overflow-hidden h-0" ref={ref}>
+          {a}
         </p>
       </div>
       <span
@@ -39,7 +48,7 @@ function Question({ q, a, index, isActive, handleSetActiveQAIndex }: Props) {
         data-index={index}
         onClick={handleSetActiveQAIndex}
       >
-        <Icon />
+        {Icon}
       </span>
     </div>
   );

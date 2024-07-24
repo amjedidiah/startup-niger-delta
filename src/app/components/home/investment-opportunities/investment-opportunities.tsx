@@ -1,5 +1,5 @@
 import Image from "next/image";
-import investmentIllustration from "../../../../../public/images/investment-illustration.png";
+import investmentIllustration from "../../../../../public/images/investment-illustration.gif";
 import OpportunityCard from "@/components/home/investment-opportunities/opportunity-card";
 
 const investmentOpportunities = [

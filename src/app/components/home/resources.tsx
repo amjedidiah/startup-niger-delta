@@ -1,46 +1,7 @@
 import OrangeButton from "@/components/shared/orange-button";
-import {
-  SNDHelp,
-  SNDResources1,
-  SNDResources2,
-  SNDResources3,
-  SNDResources4,
-  SNDResources5,
-} from "@/lib/icons";
 import Link from "next/link";
-
-const resources = [
-  {
-    slug: "startup-development-1",
-    Icon: SNDResources1,
-    title: "Startup Development",
-    description: "Alert you are my greatest deal",
-  },
-  {
-    slug: "startup-development-2",
-    Icon: SNDResources2,
-    title: "Registration of Startups",
-    description: "Alert you are my greatest deal",
-  },
-  {
-    slug: "startup-development-3",
-    Icon: SNDResources3,
-    title: "Startup Development",
-    description: "Alert you are my greatest deal",
-  },
-  {
-    slug: "startup-development-4",
-    Icon: SNDResources4,
-    title: "Startup Development",
-    description: "Alert you are my greatest deal",
-  },
-  {
-    slug: "startup-development-5",
-    Icon: SNDResources5,
-    title: "Startup Development",
-    description: "Alert you are my greatest deal",
-  },
-];
+import Resource from "@/components/home/resource";
+import { resources } from "@/lib/constants";
 
 export default function Resources() {
   return (
@@ -62,25 +23,9 @@ export default function Resources() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col gap-[10px]">
-          {resources.map(({ slug, title, Icon, description }) => (
-            <div
-              key={slug}
-              className="sm:bg-white rounded-xl flex items-center justify-between py-2 px-4 lg:py-4 gap-4 lg:gap-7"
-            >
-              <span className="w-12 h-12 lg:w-16 lg:h-16 rounded-full bg-laurel-green-300 inline-flex items-center justify-center">
-                <Icon />
-              </span>
-              <div className="flex flex-col sm:text-black font-inter flex-1">
-                <p className="text-lg lg:text-xl lg:leading-[30px]">{title}</p>
-                <p className="lg:text-lg font-normal lg:leading-[28px]">
-                  {description}
-                </p>
-              </div>
-              <span>
-                <SNDHelp />
-              </span>
-            </div>
+        <div className="flex flex-col gap-[10px] xl:gap-4">
+          {resources.map((item, i) => (
+            <Resource key={i} {...item} />
           ))}
         </div>
       </div>

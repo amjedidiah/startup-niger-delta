@@ -24,7 +24,7 @@ export default function EcosystemCard({
           "text-gable-green bg-[url('/images/bg-facilitators.png')]":
             isFacilitator,
         },
-        "flex-1 basis-[280px] max-w-[320px] lg:max-w-[420px] px-4 sm:px-6 lg:px-8 xl:px-10 flex flex-col justify-between bg-cover bg-no-repeat bg-center rounded-[30px] overflow-hidden"
+        "flex-1 basis-[280px] max-w-[320px] lg:max-w-[420px] px-6 lg:px-8 xl:px-10 flex flex-col justify-between bg-cover bg-no-repeat bg-center rounded-[30px] overflow-hidden"
       )}
     >
       <div

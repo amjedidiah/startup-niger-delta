@@ -24,7 +24,7 @@ export default function FooterTop() {
           </p>
           <Link
             href="/signup"
-            className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white w-fit"
+            className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white w-fit hover:bg-unknown-100"
           >
             Get Started
           </Link>

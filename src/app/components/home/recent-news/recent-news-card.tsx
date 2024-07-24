@@ -14,8 +14,10 @@ export default function RecentNewsCard({
   const processedExcerpt = truncateText(excerpt);
 
   return (
-    <div className="flex flex-col gap-[10px] text-gable-green">
-      <p className="text-lg lg:text-xl">{title}</p>
+    <div className="flex flex-col gap-[10px] text-gable-green group hover:cursor-pointer">
+      <p className="text-lg lg:text-xl group-hover:text-shade-of-amber">
+        {title}
+      </p>
       <div className="w-full relative h-[248px] overflow-hidden rounded-[10px]">
         <Image
           src={src}
@@ -24,6 +26,7 @@ export default function RecentNewsCard({
           style={{ objectFit: "cover", objectPosition: "center" }}
           sizes="100%"
         />
+        <div className="absolute w-full h-full group-hover:bg-gable-green-400" />
       </div>
       <div className="flex items-center justify-between font-inter font-normal lg:leading-[20px] opacity-70">
         <p>
@@ -38,12 +41,13 @@ export default function RecentNewsCard({
           </span>
         </p>
       </div>
-      <div className="font-inter font-normal lg:leading-[20px] opacity-80 [&_a]:italic [&_a]:text-unknown-100">
-        <SafeHTML
+      <div className="font-inter font-normal lg:leading-[20px] opacity-80 [&_a]:italic [&_a]:text-unknown-100 group-hover:underline">
+        {/* <SafeHTML
           htmlContent={
             processedExcerpt + `<a href="/recent-news/${slug}"> Read more</a>`
           }
-        />
+        /> */}
+        <SafeHTML htmlContent={processedExcerpt} />
       </div>
     </div>
   );
