@@ -10,7 +10,7 @@ export default function FundingAlerts() {
         <div className="flex flex-col items-center gap-[52px] lg:gap-[76px] w-full max-w-[1084px] mx-auto">
           <div className="flex items-center w-full max-w-[603px] rounded-[4px] bg-white shadow-funding-alerts-tab">
             <p className="flex-1 text-black text-center text-xs font-semibold lg:leading-[18px] underline py-5">
-              TEXT
+              TYPE
             </p>
             <p className="flex-1 text-black text-center text-xs font-semibold lg:leading-[18px] underline py-5">
               CATEGORY

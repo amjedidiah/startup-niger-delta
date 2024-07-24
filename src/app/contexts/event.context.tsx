@@ -9,12 +9,19 @@ import {
   useMemo,
   useState,
 } from "react";
+import Swiper from "swiper";
 
 type EventContextType = {
   activeNavItemIndex: number;
   setActiveNavItemIndex: Dispatch<SetStateAction<number>>;
 
   activeNavItem: string;
+
+  swiperInstance?: Swiper;
+  setSwiperInstance: Dispatch<SetStateAction<Swiper | undefined>>;
+
+  firstPastEventIndex?: number;
+  setFirstPastEventIndex: Dispatch<SetStateAction<number | undefined>>;
 };
 
 const EventContext = createContext({} as EventContextType);
@@ -26,10 +33,20 @@ export function EventContextProvider({ children }: PropsWithChildren) {
     () => eventNavItems[activeNavItemIndex],
     [activeNavItemIndex]
   );
+  const [swiperInstance, setSwiperInstance] = useState<Swiper>();
+  const [firstPastEventIndex, setFirstPastEventIndex] = useState<number>();
 
   return (
     <EventContext.Provider
-      value={{ activeNavItemIndex, setActiveNavItemIndex, activeNavItem }}
+      value={{
+        activeNavItemIndex,
+        setActiveNavItemIndex,
+        activeNavItem,
+        swiperInstance,
+        setSwiperInstance,
+        firstPastEventIndex,
+        setFirstPastEventIndex,
+      }}
     >
       {children}
     </EventContext.Provider>

@@ -65,7 +65,7 @@ export default function HomeHero() {
           <Image
             src={homeHeroIllustration}
             alt="hero image"
-            className="max-lg:my-6 max-lg:w-4/5 max-lg:max-w-[467px] max-lg:mx-auto"
+            className="max-lg:my-6 max-lg:w-4/5 max-lg:max-w-[467px] max-lg:mx-auto animate-bounce"
           />
         </div>
       </div>

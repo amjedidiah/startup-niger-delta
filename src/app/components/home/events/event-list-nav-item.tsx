@@ -2,19 +2,29 @@
 
 import { useEventContext } from "@/contexts/event.context";
 import { cn } from "@/lib/utils";
-import { memo } from "react";
+import { memo, useCallback } from "react";
 
 type Props = {
   item: string;
 };
 
 function EventListNavItem({ item }: Props) {
-  const { activeNavItem: activeItem } = useEventContext();
+  const {
+    activeNavItem: activeItem,
+    swiperInstance,
+    firstPastEventIndex,
+  } = useEventContext();
   const isActive = activeItem === item;
   const isUpcoming = item === "upcoming";
 
+  const handleClick = useCallback(() => {
+    if (!firstPastEventIndex) return;
+
+    swiperInstance?.slideTo(isUpcoming ? 0 : firstPastEventIndex);
+  }, [firstPastEventIndex, isUpcoming, swiperInstance]);
+
   return (
-    <a
+    <button
       className={cn(
         "text-unknown-200 md:text-lg lg:text-xl xl:text-2xl font-black cursor-pointer after:left-0 capitalize",
         {
@@ -25,9 +35,10 @@ function EventListNavItem({ item }: Props) {
           "after:right-0": !isUpcoming,
         }
       )}
+      onClick={handleClick}
     >
       {item}
-    </a>
+    </button>
   );
 }
 
