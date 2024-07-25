@@ -5,7 +5,7 @@ import { memo } from "react";
 function StepNavigation() {
   const { stepTitles, activeStepIndex } = useOnboardingContext();
   return (
-    <ul className="flex flex-col lg:absolute top-0 left-0 transform translate-y-1/2">
+    <ul className="flex flex-col lg:mt-20">
       {stepTitles.map((item, i) => (
         <StepNavigationItem
           key={item}

@@ -69,3 +69,5 @@ export const resources = [
     info: "Engage with a dynamic community of digital visionaries, collaborate on groundbreaking projects, and drive forward the future of technology together.",
   },
 ];
+
+export const defaultOnboardingInputRules = { required: true };

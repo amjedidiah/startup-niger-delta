@@ -1,59 +1,125 @@
-import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { ProfileData, UserTypes } from "@/lib/types";
-import { memo, useEffect, useMemo } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import CompanyNameInput from "@/components/onboarding/inputs/company-profile/company-name-input";
-import YearsOfIncInput from "@/components/onboarding/inputs/company-profile/years-of-inc-input";
-import NationalityInput from "@/components/onboarding/inputs/company-profile/nationality-input";
-import RcNumberInput from "@/components/onboarding/inputs/company-profile/rc-number-input";
-import IndustryInput from "@/components/onboarding/inputs/company-profile/industry-input";
-import CompanyDescriptionInput from "@/components/onboarding/inputs/company-profile/company-description-input";
+import { memo } from "react";
+import { FormProvider } from "react-hook-form";
 import ShouldRender from "@/components/shared/should-render";
+import Input from "@/components/shared/form-fields/input";
+import TextArea from "@/components/shared/form-fields/text-area";
+import Select from "@/components/shared/form-fields/select";
+import countryList from "react-select-country-list";
+import useCompanyProfile from "@/hooks/use-company-profile";
+import { defaultOnboardingInputRules } from "@/lib/constants";
+
+const companyNameRules = {
+  ...defaultOnboardingInputRules,
+  minLength: {
+    message: "Invalid company name",
+    value: 2,
+  },
+};
+
+const yearsOfIncRules = {
+  ...defaultOnboardingInputRules,
+  validate: (value: string) => {
+    const now = Math.floor(new Date().getTime() / 1000 / 3600 / 24);
+    const incDate = Math.floor(new Date(value).getTime() / 1000 / 3600 / 24);
+
+    return now > incDate || "Invalid year of incorporation";
+  },
+};
+
+const nationalityOptions = countryList().getData();
+
+const industryOptions = [
+  {
+    value: "it",
+    label: "IT",
+  },
+  {
+    value: "health",
+    label: "Health",
+  },
+];
+
+const companyDescriptionRules = {
+  required: true,
+  minLength: {
+    value: 50,
+    message: "Company description must be at least 50 characters long",
+  },
+};
 
 function CompanyProfile() {
-  const { profileData, setProfileData, setCanGoToCompanyContact, userType } =
-    useOnboardingContext();
-  const isStartUp = useMemo(() => userType === UserTypes.StartUp, [userType]);
-  const isAngelInvestor = useMemo(
-    () => userType === UserTypes.AngelInvestor,
-    [userType]
-  );
-  const formValues = useForm<ProfileData>({
-    mode: "onChange",
-    shouldFocusError: true,
-    defaultValues: profileData,
-  });
   const {
-    formState: { isValid, isDirty },
-    getValues,
-  } = formValues;
-  const isDisabled = !isValid || (!isDirty && !profileData);
-
-  useEffect(() => {
-    return () => setProfileData(getValues());
-  }, [getValues, setProfileData]);
-
-  useEffect(
-    () => setCanGoToCompanyContact(!isDisabled),
-    [isDisabled, setCanGoToCompanyContact]
-  );
+    formValues,
+    profileData,
+    isStartUp,
+    setProfileData,
+    isAngelInvestor,
+  } = useCompanyProfile();
 
   return (
     <FormProvider {...formValues}>
-      <CompanyNameInput />
+      <Input
+        dataStore={profileData}
+        name="companyName"
+        rules={companyNameRules}
+        aria-label={`Company ${isAngelInvestor ? "/ Individual" : ""} Name`}
+        placeholder="Registered name"
+        autoComplete=""
+      />
       <ShouldRender condition={isStartUp}>
-        <YearsOfIncInput />
+        <Input
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="yearsOfInc"
+          rules={yearsOfIncRules}
+          aria-label="Year of Incorporation"
+          type="date"
+          autoComplete="bday-day"
+          shouldUnregister
+        />
       </ShouldRender>
       <ShouldRender condition={!isStartUp}>
-        <NationalityInput />
+        <Select
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="nationality"
+          rules={defaultOnboardingInputRules}
+          aria-label="Nationality"
+          placeholder="Country of Origin"
+          options={nationalityOptions}
+          shouldUnregister
+        />
       </ShouldRender>
       <ShouldRender condition={!isAngelInvestor}>
-        <RcNumberInput />
+        <Input
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="rcNumber"
+          rules={defaultOnboardingInputRules}
+          aria-label="RC Number"
+          placeholder="Registration number"
+          shouldUnregister
+        />
       </ShouldRender>
       <ShouldRender condition={isStartUp}>
-        <IndustryInput />
+        <Select
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="industry"
+          rules={defaultOnboardingInputRules}
+          aria-label="Industry"
+          placeholder="Select your industry"
+          options={industryOptions}
+          shouldUnregister
+        />
       </ShouldRender>
-      <CompanyDescriptionInput />
+      <TextArea
+        dataStore={profileData}
+        name="companyDescription"
+        rules={companyDescriptionRules}
+        aria-label={`${isStartUp ? "Startup" : "Business"} Description`}
+        placeholder="Solution"
+      />
     </FormProvider>
   );
 }
