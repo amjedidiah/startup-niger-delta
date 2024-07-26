@@ -1,43 +1,43 @@
 import { useEffect, useMemo } from "react";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { ProfileData, UserTypes } from "@/lib/types";
+import { IdentificationData, UserTypes } from "@/lib/types";
 import { useForm } from "react-hook-form";
 
-export default function useCompanyProfile() {
+export default function useOnboardingIdentification() {
   const {
-    profileData,
-    setProfileData,
-    setCanGoToCompanyContact,
     userType,
+    identificationData,
+    setIdentificationData,
+    setCanGoToReview,
     keyLabels,
   } = useOnboardingContext();
   const isStartup = useMemo(() => userType === UserTypes.StartUp, [userType]);
-  const formValues = useForm<ProfileData>({
+  const formValues = useForm<IdentificationData>({
     mode: "onChange",
     shouldFocusError: true,
-    defaultValues: profileData,
+    defaultValues: identificationData,
     shouldUnregister: true,
   });
   const {
     formState: { isValid, isDirty },
     getValues,
   } = formValues;
-  const isDisabled = !isValid || (!isDirty && !profileData);
+  const isDisabled = !isValid || (!isDirty && !identificationData);
 
   useEffect(() => {
-    return () => setProfileData(getValues());
-  }, [getValues, setProfileData]);
+    return () => setIdentificationData(getValues());
+  }, [getValues, setIdentificationData]);
 
   useEffect(
-    () => setCanGoToCompanyContact(!isDisabled),
-    [isDisabled, setCanGoToCompanyContact]
+    () => setCanGoToReview(!isDisabled),
+    [isDisabled, setCanGoToReview]
   );
 
   return {
     formValues,
-    profileData,
+    identificationData,
+    setIdentificationData,
     isStartup,
-    setProfileData,
     keyLabels,
   };
 }

@@ -4,7 +4,6 @@ import ShouldRender from "@/components/shared/should-render";
 import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import Select from "@/components/shared/form-fields/select";
-import countryList from "react-select-country-list";
 import useCompanyProfile from "@/hooks/use-company-profile";
 import { defaultOnboardingInputRules } from "@/lib/constants";
 
@@ -26,8 +25,6 @@ const yearsOfIncRules = {
   },
 };
 
-const nationalityOptions = countryList().getData();
-
 const industryOptions = [
   {
     value: "it",
@@ -48,13 +45,8 @@ const companyDescriptionRules = {
 };
 
 function CompanyProfile() {
-  const {
-    formValues,
-    profileData,
-    isStartUp,
-    setProfileData,
-    isAngelInvestor,
-  } = useCompanyProfile();
+  const { formValues, profileData, isStartup, setProfileData, keyLabels } =
+    useCompanyProfile();
 
   return (
     <FormProvider {...formValues}>
@@ -62,63 +54,52 @@ function CompanyProfile() {
         dataStore={profileData}
         name="companyName"
         rules={companyNameRules}
-        aria-label={`Company ${isAngelInvestor ? "/ Individual" : ""} Name`}
+        aria-label={keyLabels["companyName"]}
         placeholder="Registered name"
-        autoComplete=""
+        autoComplete="additional-name"
       />
-      <ShouldRender condition={isStartUp}>
+      <ShouldRender condition={isStartup}>
         <Input
           dataStore={profileData}
           dataStoreSetter={setProfileData}
           name="yearsOfInc"
           rules={yearsOfIncRules}
-          aria-label="Year of Incorporation"
+          aria-label={keyLabels["yearsOfInc"]}
           type="date"
           autoComplete="bday-day"
-          shouldUnregister
         />
       </ShouldRender>
-      <ShouldRender condition={!isStartUp}>
-        <Select
-          dataStore={profileData}
-          dataStoreSetter={setProfileData}
-          name="nationality"
-          rules={defaultOnboardingInputRules}
-          aria-label="Nationality"
-          placeholder="Country of Origin"
-          options={nationalityOptions}
-          shouldUnregister
-        />
-      </ShouldRender>
-      <ShouldRender condition={!isAngelInvestor}>
+      <ShouldRender condition={isStartup}>
         <Input
           dataStore={profileData}
           dataStoreSetter={setProfileData}
           name="rcNumber"
           rules={defaultOnboardingInputRules}
-          aria-label="RC Number"
+          aria-label={keyLabels["rcNumber"]}
           placeholder="Registration number"
-          shouldUnregister
         />
       </ShouldRender>
-      <ShouldRender condition={isStartUp}>
-        <Select
-          dataStore={profileData}
-          dataStoreSetter={setProfileData}
-          name="industry"
-          rules={defaultOnboardingInputRules}
-          aria-label="Industry"
-          placeholder="Select your industry"
-          options={industryOptions}
-          shouldUnregister
-        />
-      </ShouldRender>
+      <Select
+        dataStore={profileData}
+        name="industry"
+        rules={defaultOnboardingInputRules}
+        aria-label={keyLabels["industry"]}
+        placeholder="Select your industry"
+        options={industryOptions}
+      />
       <TextArea
         dataStore={profileData}
         name="companyDescription"
         rules={companyDescriptionRules}
-        aria-label={`${isStartUp ? "Startup" : "Business"} Description`}
-        placeholder="Solution"
+        aria-label={keyLabels["companyDescription"]}
+        placeholder="Your solution in one sentence"
+      />
+      <Input
+        dataStore={profileData}
+        name="fundingInterest"
+        rules={defaultOnboardingInputRules}
+        aria-label={keyLabels["fundingInterest"]}
+        placeholder="Investment Interest"
       />
     </FormProvider>
   );

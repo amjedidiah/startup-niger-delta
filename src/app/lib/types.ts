@@ -22,11 +22,16 @@ export type OnboardingContextType = {
     SetStateAction<IdentificationData | undefined>
   >;
 
+  keyLabels: Record<string, string>;
+
   canGoNext: boolean;
   setCanGoToCompanyContact: Dispatch<SetStateAction<boolean>>;
   setCanGoToPersonProfile: Dispatch<SetStateAction<boolean>>;
   setCanGoToIdentification: Dispatch<SetStateAction<boolean>>;
   setCanGoToReview: Dispatch<SetStateAction<boolean>>;
+
+  hasAgreed: boolean;
+  setHasAgreed: Dispatch<SetStateAction<boolean>>;
 };
 
 export enum UserTypes {
@@ -36,118 +41,30 @@ export enum UserTypes {
   Others = "accelerators, innovation hubs & incubators",
 }
 
-// type StartUpData = {
-//   companyName: string;
-//   yearsOfInc: string; // date
-//   rcNumber: string;
-//   industry: string;
-//   companyDescription: string; // textArea
-
-//   companyEmail: string; // email
-//   companyWebsite: string; // url
-//   companyAddress: string; // address
-//   companyPhoneNumber: string; // tel
-
-//   founderName: string;
-//   founderEmail: string; // email
-//   founderAddress: string; // address
-//   founderPhoneNumber: string; // tel
-//   noOfCoFounders: number; // number
-
-//   cacCertificate: File;
-//   companyProfile: File;
-// };
-
-// type AngelInvestorData = {
-//   companyOrPersonName: string;
-//   nationality: string;
-//   companyDescription: string; // textArea
-
-//   companyEmail: string;
-//   companyWebsite: string; // textArea
-//   companyAddress: string; // address
-//   companyPhoneNumber: string; // tel
-
-//   angel: string;
-//   investmentExperience: string; // select
-//   investmentProof: string; // url
-//   investmentSize: string; // select
-
-//   meansOfIdentificationType: string; // select
-//   meansOfIdentificationFile: File;
-//   message: string; // textArea
-// };
-
-// type VentureCapitalistData = {
-//   companyName: string;
-//   nationality: string;
-//   rcNumber: string;
-//   companyDescription: string; // textArea
-
-//   companyEmail: string;
-//   companyWebsite: string; // textArea
-//   companyAddress: string; // address
-//   companyPhoneNumber: string; // tel
-
-//   generalPartner: string;
-//   investmentExperience: string; // select
-//   investmentProof: string; // url
-//   investmentSize: string; // select
-
-//   meansOfIdentificationType: string; // select
-//   meansOfIdentificationFile: File;
-//   message: string; // textArea
-// };
-
-// type OtherData = {
-//   companyName: string;
-//   nationality: string;
-//   rcNumber: string;
-//   companyDescription: string; // textArea
-
-//   companyEmail: string;
-//   companyWebsite: string; // url
-//   companyAddress: string; // address
-//   companyPhoneNumber: string; // tel
-
-//   principalPromoter: string;
-//   investmentExperience: string; // select
-//   investmentProof: string; // url
-//   investmentSize: string; // select
-
-//   meansOfIdentificationType: string; // select
-//   meansOfIdentificationFile: File;
-//   message: string; // textArea
-// };
-
 type CountryData = {
   value: string;
   label: string;
+};
+
+type CommonProfileData = {
+  companyDescription: string; // textArea
+  industry: string;
+  fundingInterest: string;
 };
 
 export type StartUpProfileData = {
   companyName: string;
   yearsOfInc: string; // date
   rcNumber: string;
-  industry: string;
-  companyDescription: string; // textArea
 };
 
-export type AngelInvestorProfileData = {
-  companyOrPersonName: string;
-  nationality: CountryData;
-  companyDescription: string; // textArea
-};
-
-export type ProfileData =
-  | StartUpProfileData
-  | AngelInvestorProfileData
-  | {
-      companyName: string;
-      nationality: CountryData;
-      rcNumber: string;
-      companyDescription: string; // textArea
-    };
+export type ProfileData = CommonProfileData &
+  (
+    | StartUpProfileData
+    | {
+        companyName: string;
+      }
+  );
 
 export type ContactData = {
   companyEmail: string; // email
@@ -161,7 +78,7 @@ export type StartUpPersonData = {
   founderEmail: string; // email
   founderAddress: string; // text
   founderPhoneNumber: string; // tel
-  noOfCoFounders: number; // select
+  noOfFounders: number; // select
 };
 
 export type OtherPersonData = {
@@ -174,16 +91,20 @@ export type OtherPersonData = {
 export type PersonData = StartUpPersonData | OtherPersonData;
 
 export type CompanyIdentificationData = {
-  cacCertificate: File;
-  companyProfile: File;
+  cacCertificate: string; // cldupload
+  companyLogo: string; // cldupload
 };
 
 export type OtherIdentificationData = {
-  meansOfIdentificationType: string; // select
-  meansOfIdentificationFile: File;
-  message: string; // textArea
+  identificationMeans: string; // select
+  nationality: CountryData;
+  identificationMessage: string; // textArea
 };
 
 export type IdentificationData =
   | CompanyIdentificationData
   | OtherIdentificationData;
+
+export enum ErrorProcess {
+  Cloudinary = "cloudinary",
+}

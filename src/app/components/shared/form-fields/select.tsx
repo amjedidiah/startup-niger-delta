@@ -7,7 +7,7 @@ import {
   useFormContext,
 } from "react-hook-form";
 import ReactSelect, { Props as SelectProps } from "react-select";
-import SelectInput from "./select-input";
+import SelectInput from "@/components/shared/form-fields/select-input";
 
 type Props = Omit<SelectProps, "onChange" | "onBlur" | "value" | "isDisabled"> &
   Omit<
@@ -40,7 +40,6 @@ export default memo(
   ) {
     const { control, getValues } = useFormContext();
 
-    // useImperativeHandle(fieldRef, () => ref);
     useEffect(() => {
       return () => {
         const value = getValues(name);

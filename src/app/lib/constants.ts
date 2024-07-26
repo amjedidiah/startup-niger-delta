@@ -71,3 +71,7 @@ export const resources = [
 ];
 
 export const defaultOnboardingInputRules = { required: true };
+
+export const DEFAULT_ERROR_STATUS_CODE = 500;
+
+export const maxFileSize = 1024 * 1024 * 1;

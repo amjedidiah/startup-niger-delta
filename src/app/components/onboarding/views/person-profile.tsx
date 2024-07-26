@@ -8,7 +8,7 @@ import TextArea from "@/components/shared/form-fields/text-area";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import Select from "@/components/shared/form-fields/select";
 
-const noOfCoFoundersOptions = Array(10)
+const noOfFoundersOptions = Array(10)
   .fill(0)
   .map((_item, i) => ({ label: i + 1 + "", value: i + 1 + "" }));
 const personNameRules = (label: string) => ({
@@ -20,13 +20,14 @@ const personNameRules = (label: string) => ({
 });
 
 const investmentExperienceOptions = [
-  { value: "experience-1", label: "Experience 1" },
-  { value: "experience-2", label: "Experience 2" },
+  { value: "experience-1", label: "0 - 1 year" },
+  { value: "experience-2", label: "2 - 5 years" },
+  { value: "experience-3", label: "5+ years" },
 ];
 
 const investmentSizeOptions = [
-  { value: "investment-1", label: "Investment 1" },
-  { value: "investment-2", label: "Investment 2" },
+  { value: "investment-1", label: "Less than $100k" },
+  { value: "investment-2", label: "$100k and more" },
 ];
 
 const founderEmailRules = {
@@ -48,7 +49,7 @@ const founderPhoneRules = {
 };
 
 function PersonProfile() {
-  const { formValues, personData, setPersonData, isStartUp, personNameLabel } =
+  const { formValues, personData, setPersonData, isStartup, keyLabels } =
     usePersonProfile();
 
   return (
@@ -56,85 +57,78 @@ function PersonProfile() {
       <Input
         dataStore={personData}
         name="personName"
-        rules={personNameRules(personNameLabel)}
-        aria-label={personNameLabel}
-        autoComplete="name"
+        rules={personNameRules(keyLabels["personName"])}
+        aria-label={keyLabels["personName"]}
+        autoComplete="billing name"
         placeholder="Full name"
       />
-      <ShouldRender condition={isStartUp}>
+      <ShouldRender condition={isStartup}>
         <Input
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="founderEmail"
           type="email"
           placeholder="username@domain.com"
-          aria-label="Founder's Email"
-          autoComplete="work email"
+          aria-label={keyLabels["founderEmail"]}
+          autoComplete="home email"
           rules={founderEmailRules}
-          shouldUnregister
         />
         <TextArea
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="founderAddress"
           rules={defaultOnboardingInputRules}
-          shouldUnregister
           placeholder="Address Information"
-          aria-label="Founder's Address"
+          aria-label={keyLabels["founderAddress"]}
         />
         <Input
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="founderPhoneNumber"
           type="tel"
-          aria-label="Founder's Phone Number"
+          aria-label={keyLabels["founderPhoneNumber"]}
           rules={founderPhoneRules}
           defaultCountry="NG"
           international
-          shouldUnregister
         />
         <Select
           dataStore={personData}
           dataStoreSetter={setPersonData}
-          name="noOfCoFounders"
+          name="noOfFounders"
           rules={defaultOnboardingInputRules}
-          aria-label="No of Co-founders"
+          aria-label={keyLabels["noOfFounders"]}
           placeholder="Choose Number of CoFounders"
-          options={noOfCoFoundersOptions}
-          shouldUnregister
+          options={noOfFoundersOptions}
         />
       </ShouldRender>
 
-      <ShouldRender condition={!isStartUp}>
+      <ShouldRender condition={!isStartup}>
         <Select
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="investmentExperience"
           rules={defaultOnboardingInputRules}
-          aria-label="Investment Experience"
+          aria-label={keyLabels["investmentExperience"]}
           placeholder="Choose investment experience"
           options={investmentExperienceOptions}
-          shouldUnregister
         />
         <Input
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="investmentProof"
           type="url"
-          aria-label="Investment Proof"
+          aria-label={keyLabels["investmentProof"]}
           placeholder="Eg: https://docs.googl/lo8yz123"
           rules={defaultOnboardingInputRules}
-          shouldUnregister
         />
         <Select
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="investmentSize"
           rules={defaultOnboardingInputRules}
-          aria-label="Investment Size"
+          aria-label={keyLabels["investmentSize"]}
           placeholder="Choose investment size"
           options={investmentSizeOptions}
-          shouldUnregister
         />
       </ShouldRender>
     </FormProvider>

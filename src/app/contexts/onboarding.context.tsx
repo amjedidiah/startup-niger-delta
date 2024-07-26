@@ -16,9 +16,14 @@ export default createContext({
   setPersonData: () => {},
   setIdentificationData: () => {},
 
+  keyLabels: {},
+
   canGoNext: false,
   setCanGoToCompanyContact: () => {},
   setCanGoToPersonProfile: () => {},
   setCanGoToIdentification: () => {},
   setCanGoToReview: () => {},
+
+  hasAgreed: false,
+  setHasAgreed: () => {},
 } as OnboardingContextType);
