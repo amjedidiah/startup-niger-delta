@@ -60,7 +60,7 @@ export default function HomeHeaderNav({ isOpen }: Props) {
         </Link>
         <Link
           href="/signup"
-          className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white"
+          className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white hover:bg-unknown-100"
         >
           Get Started
         </Link>

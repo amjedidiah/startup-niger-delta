@@ -8,7 +8,7 @@
     }
 
     body {
-        @apply font-medium;
+        /* @apply font-medium; */
     }
 
     h2 {
@@ -25,6 +25,22 @@
 }
 
 @layer utilities {
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: none;
+        }
+
+        50% {
+            transform: translateY(-8%);
+        }
+    }
+
+    .animate-bounce {
+        animation-duration: 4s;
+    }
+
     .container {
         @apply max-w-[1304px]
     }
@@ -136,8 +152,8 @@
     }
 
     .onboarding-form-container {
-        @apply grid gap-8 lg:grid-cols-2;
-        
+        @apply grid gap-4 xl:gap-8 sm:grid-cols-2;
+
         fieldset {
             @apply border-2 border-tiber-200 rounded-[5px] px-4 h-fit;
 
@@ -154,7 +170,10 @@
             }
         }
 
-        input, select, textarea, .value-container {
+        input,
+        select,
+        textarea,
+        .value-container {
             @apply pt-2 pb-3 w-full text-sm font-light h-auto placeholder:text-gray-100 outline-none border-none bg-none;
         }
 

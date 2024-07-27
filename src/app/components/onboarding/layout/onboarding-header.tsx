@@ -4,7 +4,7 @@ import OnboardingHeaderNav from "@/components/onboarding/layout/onboarding-heade
 
 function OnboardingHeader() {
   return (
-    <header className="fixed left-0 -right-1 top-0">
+    <header className="fixed left-0 -right-1 top-0 z-[1]">
       <OnboardingHeaderTop />
       <OnboardingHeaderNav />
     </header>

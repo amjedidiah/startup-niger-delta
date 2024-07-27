@@ -8,7 +8,7 @@ export default function OrangeButton({
   return (
     <button
       className={cn(
-        "bg-gradient-2 rounded-[5px] py-[14px] px-[31px] font-semibold text-white",
+        "bg-gradient-2 rounded-[5px] py-[14px] px-[31px] font-semibold text-white hover:bg-unknown-100",
         className
       )}
     >

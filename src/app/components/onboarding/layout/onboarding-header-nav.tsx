@@ -16,7 +16,7 @@ function OnboardingHeaderNav() {
 
   return (
     <nav className="bg-green-pattern-3 py-3">
-      <OnboardingWrapper>
+      <OnboardingWrapper className="md:grid-cols-[320px,1fr]">
         <div>
           <p className="text-gable-green font-semibold">
             Status of your application
@@ -26,15 +26,15 @@ function OnboardingHeaderNav() {
             <span className="font-semibold">{completionLevel}%</span>
           </p>
         </div>
-        <div className="flex items-center gap-28">
+        <div className="flex gap-14 sm:max-md:gap-[115px] lg:gap-24 items-center md:max-xl:justify-end xl:justify-between">
           {stepTitles.map((step, i) => {
             const index = i + 1;
             return (
               <div
                 className={cn(
-                  "rounded-full text-black w-[30px] h-[30px] border-2 border-laurel-green-400",
+                  "rounded-full text-black w-6 h-6 lg:w-7 lg:h-7 xl:w-[30px] xl:h-[30px] border-2 border-laurel-green-400",
                   {
-                    "relative before:absolute before:-left-[114px] before:w-[114px] before:h-[3px] before:top-3 before:bg-laurel-green-400 before:z-[1]":
+                    "relative before:absolute before:h-[3px] before:-left-[58px] before:w-[58px] before:top-2 sm:max-md:before:-left-[116px] sm:max-md:before:w-[116px] lg:before:-left-[98px] lg:before:w-[98px] lg:before:top-[10px] xl:before:-left-[570%] xl:before:w-[570%] xl:before:top-3 before:bg-laurel-green-400 before:z-[1]":
                       index > INIT_ONBOARDING_STEP_INDEX,
                     "before:bg-shade-of-amber  border-shade-of-amber":
                       index <= activeStepIndex,
