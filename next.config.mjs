@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.cloudinary.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.devtunnels.ms",
+      },
     ],
   },
 };

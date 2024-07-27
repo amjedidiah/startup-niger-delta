@@ -12,7 +12,7 @@ export default function HomeHero() {
       id="home"
     >
       <div className="container flex max-lg:flex-col items-center h-full gap-8 sm:gap-12">
-        <div className="flex-1 flex flex-col gap-6 sm:gap-7 lg:gap-9 max-lg:text-center max-lg:items-center">
+        <div className="flex-1 flex flex-col gap-6 sm:gap-7 lg:gap-9 max-lg:text-center max-lg:items-center lg:min-w-[603px]">
           <hgroup className="font-inter flex flex-col gap-3 md:gap-4">
             <h1 className="max-w-[636px] text-tiber text-3xl md:text-[44px] lg:text-5xl font-bold md:leading-tight">
               Niger Delta Innovation Ecosystem
@@ -40,7 +40,7 @@ export default function HomeHero() {
           </form>
 
           {howWeWorkVideoLink && (
-            <a href={howWeWorkVideoLink} className="w-4/5 max-w-[467px] h-12">
+            <a href={howWeWorkVideoLink} className="w-4/5 max-w-[157px] h-12">
               <button className="flex items-center justify-center gap-3 h-full w-full rounded-[22px] bg-gradient-3 text-white text-sm leading-[10px]">
                 <span>How We Work</span>
                 <span>
@@ -65,6 +65,8 @@ export default function HomeHero() {
           <Image
             src={homeHeroIllustration}
             alt="hero image"
+            quality={100}
+            sizes="100%"
             className="max-lg:my-6 max-lg:w-4/5 max-lg:max-w-[467px] max-lg:mx-auto animate-bounce"
           />
         </div>

@@ -3,7 +3,7 @@ import FooterBottom from "@/components/home/footer/footer-bottom";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="border-t-4 border-shade-of-amber">
       <FooterTop />
       <FooterBottom />
     </footer>
