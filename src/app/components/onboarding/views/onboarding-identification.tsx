@@ -10,7 +10,11 @@ import countryList from "react-select-country-list";
 
 const nationalityOptions = countryList().getData();
 
-const identificationMeansOptions = [{ value: "nin", label: "NIN" }];
+const identificationMeansOptions = [
+  { value: "nin", label: "NIN" },
+  { value: "bvn", label: "BVN" },
+  { value: "ipn", label: "International Passport number" },
+];
 
 const fileOptions = {
   maxFiles: 1,

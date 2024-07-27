@@ -24,7 +24,7 @@ import useFileComponent from "@/hooks/use-file-component";
 import ShouldRender from "@/components/shared/should-render";
 import { maxFileSize } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
+import ImagePreview from "@/components/shared/image-preview";
 
 type Props = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -91,21 +91,7 @@ const FileComponent = memo(
                     {hasError ? (
                       uploadMessageText
                     ) : (
-                      <div className="relative w-16 h-16 shadow-lg">
-                        <Image
-                          src={uploadMessageData}
-                          fill
-                          style={{
-                            objectFit: "cover",
-                            objectPosition: "center",
-                          }}
-                          alt={uploadMessageData}
-                          quality={100}
-                          placeholder="blur"
-                          sizes="100%"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4DwABAQEASQEYiK3/4gAAAABJRU5ErkJggg=="
-                        />
-                      </div>
+                      <ImagePreview src={uploadMessageData} />
                     )}
                   </ShouldRender>
                 </div>

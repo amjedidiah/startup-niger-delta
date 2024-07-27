@@ -27,12 +27,68 @@ const yearsOfIncRules = {
 
 const industryOptions = [
   {
-    value: "it",
-    label: "IT",
+    value: "fintech",
+    label: "fintech",
   },
   {
-    value: "health",
-    label: "Health",
+    value: "ai",
+    label: "Artificial Intelligence (AI)",
+  },
+  {
+    value: "saas",
+    label: "Software as a Service (SaaS)",
+  },
+  {
+    value: "health-tech",
+    label: "Health Tech",
+  },
+  {
+    value: "e-commerce",
+    label: "E-commerce",
+  },
+  {
+    value: "cybersecurity",
+    label: "cybersecurity",
+  },
+  {
+    value: "blockchain",
+    label: "blockchain",
+  },
+  {
+    value: "iot",
+    label: "Internet of Things (IoT)",
+  },
+  {
+    value: "ed-tech",
+    label: "EdTech",
+  },
+  {
+    value: "clean-tech",
+    label: "CleanTech",
+  },
+  {
+    value: "biotech",
+    label: "Biotech",
+  },
+  {
+    value: "ar-vr",
+    label: "Augmented Reality (AR) / Virtual Reality (VR)",
+  },
+  {
+    value: "agri-tech",
+    label: "AgriTech",
+  },
+  {
+    value: "robotics",
+    label: "Robotics",
+  },
+  {
+    value: "gaming",
+    label: "Gaming",
+  },
+  {
+    value: "others",
+    label: "others",
   },
 ];
 

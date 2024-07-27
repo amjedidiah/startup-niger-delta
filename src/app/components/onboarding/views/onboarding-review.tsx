@@ -1,3 +1,5 @@
+import ImagePreview from "@/components/shared/image-preview";
+import ShouldRender from "@/components/shared/should-render";
 import useOnboardingReview from "@/hooks/use-onboarding-review";
 import { memo } from "react";
 
@@ -15,14 +17,30 @@ function OnboardingReview() {
             </h4>
             {Object.entries(content).map(([key, value], i) => (
               <div
-                className="grid grid-cols-2 py-2 px-[14px] even:bg-[#f5f5f5]"
+                className="grid grid-cols-2 items-center py-2 px-[14px] even:bg-[#f5f5f5]"
                 key={i}
               >
                 <p className="text-black text-xs font-light">
                   {keyLabels[key as keyof typeof keyLabels]}
                 </p>
                 <p className="text-black text-xs font-light">
-                  {typeof value === "string" ? value : value?.label}
+                  <ShouldRender condition={typeof value !== "string"}>
+                    {value?.label}
+                  </ShouldRender>
+                  <ShouldRender
+                    condition={
+                      typeof value === "string" && value.includes("https")
+                    }
+                  >
+                    <ImagePreview src={value} />
+                  </ShouldRender>
+                  <ShouldRender
+                    condition={
+                      typeof value === "string" && !value.includes("https")
+                    }
+                  >
+                    {value}
+                  </ShouldRender>
                 </p>
               </div>
             ))}
