@@ -45,7 +45,7 @@ function TestimonySlider() {
         className="[&_.swiper-pagination-bullets.swiper-pagination-horizontal]:relative [&_.swiper-pagination-bullets.swiper-pagination-horizontal]:mt-8 lg:[&_.swiper-pagination-bullets.swiper-pagination-horizontal]:mt-5 [&_.swiper-pagination-bullet]:w-[9px] [&_.swiper-pagination-bullet]:h-[9px] [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet]:bg-gray-85 [&_.swiper-pagination-bullet-active.swiper-pagination-bullet-active-main]:bg-shade-of-amber"
       >
         {testimonies.map((item) => (
-          <SwiperSlide key={item.slug}>
+          <SwiperSlide key={item.slug} className="p-2">
             <TestimonyCard testimony={item} />
           </SwiperSlide>
         ))}

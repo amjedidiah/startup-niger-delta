@@ -17,7 +17,7 @@ export default function TestimonyCard({
   testimony: { person, rating, content },
 }: Props) {
   return (
-    <div className="bg-white relative p-6 sm:p-10 md:flex-1">
+    <div className="bg-white relative p-6 sm:p-10 md:flex-1 shadow-testimonial-card">
       <Image
         src="/images/quote.png"
         alt="quote"
