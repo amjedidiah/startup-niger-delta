@@ -5,7 +5,7 @@ function OnboardingReview() {
   const { onboardingData, keyLabels } = useOnboardingReview();
 
   return (
-    <div className="h-[265px] overflow-y-auto max-w-full rounded-[5px] col-span-2 break-words">
+    <div className="h-[265px] overflow-y-auto max-w-full rounded-[5px] sm:col-span-2 break-words">
       {onboardingData.map(({ title, content }, i) => {
         if (!content) return null;
         return (

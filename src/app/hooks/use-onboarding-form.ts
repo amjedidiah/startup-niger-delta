@@ -50,5 +50,7 @@ export default function useOnboardingForm() {
     handleBack,
     handleNext,
     setHasAgreed,
+    stepTitles,
+    activeStepIndex,
   };
 }

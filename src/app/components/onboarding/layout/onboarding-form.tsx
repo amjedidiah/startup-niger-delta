@@ -15,32 +15,38 @@ function OnboardingForm() {
     handleBack,
     handleNext,
     setHasAgreed,
+    stepTitles,
+    activeStepIndex,
   } = useOnboardingForm();
 
   return (
     <div>
-      <form className="bg-white w-full max-w-[710px] rounded-[10px] shadow-onboarding-form p-9 pt-0 mt-7 flex flex-col gap-[42px]">
-        <div className="border-b border-laurel-green-300 py-[18px] flex items-center gap-3 mx-5">
+      <form className="bg-white w-full rounded-[10px] shadow-onboarding-form p-9 pt-0 mt-2 lg:mt-7 flex flex-col gap-6 xl:gap-[42px]">
+        <div className="border-b border-laurel-green-300 py-[18px] flex max-sm:flex-col sm:items-center gap-3 lg:mx-5">
           {userTypes.map((item) => (
             <OnboardingFormSelector key={item} value={item} />
           ))}
         </div>
-
         <div className="onboarding-form-container">
+          <h3 className="lg:hidden sm:col-span-2">
+            {stepTitles[activeStepIndex - 1]}
+          </h3>
           <OnboardingActiveComponent />
           <ShouldRender condition={shouldSubmit}>
-            <p className="text-black text-sm col-span-2 break-words">
+            <p className="text-black text-sm sm:col-span-2 break-words">
               By submitting this application, you agree to abide by the terms
               and conditions of the program, including attendance, code of
               conduct, and other program-specific requirements.
             </p>
           </ShouldRender>
         </div>
-
         <div
-          className={cn("mt-8 flex items-end justify-between gap-5", {
-            "mt-0": shouldSubmit,
-          })}
+          className={cn(
+            "mt-8 flex max-sm:flex-col sm:items-end justify-between gap-5",
+            {
+              "mt-0": shouldSubmit,
+            }
+          )}
         >
           <ShouldRender condition={!shouldSubmit}>
             <p className="text-unknown-100 text-sm font-normal">
@@ -67,14 +73,14 @@ function OnboardingForm() {
               disabled={!canGoBack}
               onClick={handleBack}
               type="button"
-              className="bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600"
+              className="max-sm:flex-1 bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600"
             >
               Back
             </button>
             <button
               disabled={!canGoNext}
               onClick={handleNext}
-              className="bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600"
+              className="max-sm:flex-1 bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600"
             >
               {shouldSubmit ? "Submit" : "Next"}
             </button>

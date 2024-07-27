@@ -17,12 +17,12 @@ function StepNavigationItem({
   return (
     <li
       className={cn(
-        "border-l-[3px] border-laurel-green-400 py-[10px] px-8 text-laurel-green-400 font-normal",
+        "max-lg:border-b-[2px] lg:border-l-[3px] border-laurel-green-400 lg:py-[10px] lg:px-8 text-laurel-green-400 font-normal",
         {
           "text-gable-green border-shade-of-amber": isPassed,
-          "text-gable-green border-unknown-100 md:text-lg lg:text-xl font-bold":
+          "text-gable-green border-unknown-100 lg:text-lg xl:text-xl font-bold":
             isActive,
-          "py-9": !isFirst,
+          "lg:py-9": !isFirst,
         }
       )}
     >
