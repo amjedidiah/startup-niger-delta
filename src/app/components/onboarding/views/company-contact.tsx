@@ -1,25 +1,13 @@
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import { defaultInputRules, emailRules } from "@/lib/constants";
 import useCompanyContact from "@/hooks/use-company-contact";
 import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
-const companyEmailRules = {
-  ...defaultOnboardingInputRules,
-  validate: (value: string) =>
-    Boolean(
-      String(value)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) || "Invalid email address",
-};
-
 const companyWebsiteRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   validate: (value: string) =>
     Boolean(
       String(value)
@@ -29,7 +17,7 @@ const companyWebsiteRules = {
 };
 
 const companyPhoneRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   validate: (value: string) =>
     isPossiblePhoneNumber(value) || "Invalid phone number",
 };
@@ -42,7 +30,7 @@ function CompanyContact() {
       <Input
         dataStore={contactData}
         name="companyEmail"
-        rules={companyEmailRules}
+        rules={emailRules}
         aria-label={keyLabels["companyEmail"]}
         type="email"
         autoComplete="work email"
@@ -60,7 +48,7 @@ function CompanyContact() {
       <TextArea
         dataStore={contactData}
         name="companyAddress"
-        rules={defaultOnboardingInputRules}
+        rules={defaultInputRules}
         aria-label={keyLabels["companyAddress"]}
         placeholder="Address Information"
       />

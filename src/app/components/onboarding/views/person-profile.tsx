@@ -3,7 +3,7 @@ import { FormProvider } from "react-hook-form";
 import ShouldRender from "@/components/shared/should-render";
 import usePersonProfile from "@/hooks/use-person-profile";
 import Input from "@/components/shared/form-fields/input";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import { defaultInputRules, emailRules } from "@/lib/constants";
 import TextArea from "@/components/shared/form-fields/text-area";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import Select from "@/components/shared/form-fields/select";
@@ -12,7 +12,7 @@ const noOfFoundersOptions = Array(10)
   .fill(0)
   .map((_item, i) => ({ label: i + 1 + "", value: i + 1 + "" }));
 const personNameRules = (label: string) => ({
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   minLength: {
     message: `Invalid ${label.toLowerCase()}`,
     value: 5,
@@ -30,20 +30,8 @@ const investmentSizeOptions = [
   { value: "investment-2", label: "$100k and more" },
 ];
 
-const founderEmailRules = {
-  ...defaultOnboardingInputRules,
-  validate: (value: string) =>
-    Boolean(
-      String(value)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) || "Invalid email address",
-};
-
 const founderPhoneRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   validate: (value: string) =>
     isPossiblePhoneNumber(value) || "Invalid phone number",
 };
@@ -71,13 +59,13 @@ function PersonProfile() {
           placeholder="username@domain.com"
           aria-label={keyLabels["founderEmail"]}
           autoComplete="home email"
-          rules={founderEmailRules}
+          rules={emailRules}
         />
         <TextArea
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="founderAddress"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           placeholder="Address Information"
           aria-label={keyLabels["founderAddress"]}
         />
@@ -95,7 +83,7 @@ function PersonProfile() {
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="noOfFounders"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["noOfFounders"]}
           placeholder="Choose Number of CoFounders"
           options={noOfFoundersOptions}
@@ -107,7 +95,7 @@ function PersonProfile() {
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="investmentExperience"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["investmentExperience"]}
           placeholder="Choose investment experience"
           options={investmentExperienceOptions}
@@ -119,13 +107,13 @@ function PersonProfile() {
           type="url"
           aria-label={keyLabels["investmentProof"]}
           placeholder="Eg: https://docs.googl/lo8yz123"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
         />
         <Select
           dataStore={personData}
           dataStoreSetter={setPersonData}
           name="investmentSize"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["investmentSize"]}
           placeholder="Choose investment size"
           options={investmentSizeOptions}

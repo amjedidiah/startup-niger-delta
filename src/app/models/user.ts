@@ -1,42 +1,64 @@
-import mongoose, { Model } from 'mongoose';
-import bcrypt from 'bcryptjs';
+import { model, models, Schema, UserDocument, Document, Model } from "mongoose";
+import bcrypt from "bcrypt";
+import crypto from "crypto";
 
-export interface User extends mongoose.Document {
-  email: string;
-  password: string;
-  name: string;
-}
-
-interface UserMethods {
-  matchPassword(password: string): Promise<boolean>;
-}
-
-type UserModel = Model<User, {}, UserMethods>;
-
-const userSchema = new mongoose.Schema<User, UserModel, UserMethods>(
+const UserSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    password: { type: String },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: { type: String, required: true, index: true },
+
+    password: { type: String, select: false },
+    image: String,
+
+    emailVerified: { type: Boolean, default: false },
+    isOnboarded: { type: Boolean, default: false },
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
   },
   {
     timestamps: true,
   }
 );
 
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    next();
-  }
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password") || !this.password) return next();
 
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
+
+  next();
 });
 
-userSchema.methods.matchPassword = async function (password: string): Promise<boolean> {
-  return await bcrypt.compare(password, this.password);
+// Compare password with hashed version
+UserSchema.methods.comparePassword = async function (
+  candidatePassword: string
+) {
+  const user = this; // Access the current user document
+  const populatedUser = await User.findById(user._id).select("password"); // Explicitly select password
+  return await bcrypt.compare(candidatePassword, populatedUser?.password || "");
 };
 
-const UserModel = mongoose.models.User ?? mongoose.model<User, UserModel>('User', userSchema);
+// Generate password reset token
+UserSchema.methods.generatePasswordReset = function () {
+  this.resetPasswordToken = crypto.randomBytes(32).toString("hex");
+  this.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+  return this.resetPasswordToken;
+};
 
-export default UserModel;
+const User: Model<
+  UserDocument,
+  {},
+  {},
+  {},
+  Document<unknown, {}, UserDocument> &
+    UserDocument &
+    Required<{
+      _id: unknown;
+    }>,
+  any
+> = models.users || model<UserDocument>("users", UserSchema);
+
+export default User;

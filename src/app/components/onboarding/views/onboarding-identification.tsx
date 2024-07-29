@@ -3,7 +3,7 @@ import Select from "@/components/shared/form-fields/select";
 import TextArea from "@/components/shared/form-fields/text-area";
 import ShouldRender from "@/components/shared/should-render";
 import useOnboardingIdentification from "@/hooks/use-onboarding-identification";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import { defaultInputRules } from "@/lib/constants";
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
 import countryList from "react-select-country-list";
@@ -38,7 +38,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="cacCertificate"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["cacCertificate"]}
           type="file"
           fileOptions={fileOptions}
@@ -47,7 +47,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="companyLogo"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["companyLogo"]}
           type="file"
           fileOptions={fileOptions}
@@ -58,7 +58,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="identificationMeans"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["identificationMeans"]}
           placeholder="Choose verification method"
           options={identificationMeansOptions}
@@ -67,7 +67,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="nationality"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["nationality"]}
           placeholder="Country"
           options={nationalityOptions}
@@ -76,7 +76,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="identificationMessage"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["identificationMessage"]}
           placeholder="Body"
         />
