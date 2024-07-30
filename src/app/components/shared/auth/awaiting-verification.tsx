@@ -1,3 +1,4 @@
+"use client";
 import { SNDAwaitingVerification } from "@/lib/icons";
 
 type Props = {

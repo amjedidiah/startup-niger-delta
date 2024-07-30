@@ -1,6 +1,8 @@
 import AuthForm from "@/components/shared/auth/auth-form";
 import signinIllustration from "../../../../../public/images/signin-illustration.png";
 import AuthLayout from "@/components/shared/auth/auth-layout";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 const greeting = {
   title: "Welcome back!",
@@ -20,7 +22,10 @@ const alternateAction = {
   },
 };
 
-export default function Signin() {
+export default async function Signin() {
+  const session = await getServerSession();
+  if (session) redirect("/verify-email");
+
   return (
     <AuthLayout
       illustration={signinIllustration}

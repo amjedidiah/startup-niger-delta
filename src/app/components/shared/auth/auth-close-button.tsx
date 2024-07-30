@@ -5,7 +5,7 @@ import { memo } from "react";
 
 const AuthCloseButton = () => {
   const router = useRouter();
-  const handleClose = () => router.push("/");
+  const handleClose = () => router.push("/", { scroll: false });
 
   return (
     <span

@@ -1,4 +1,5 @@
-import { SNDQuestionMarkCircle } from "@/lib/icons";
+"use client";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
@@ -17,12 +18,15 @@ function OnboardingHeaderTop() {
           />
         </Link>
 
-        <a href="/" className="text-black inline-flex items-center gap-[10px]">
-          <span className="text-black font-semibold">Need help</span>
-          <span>
+        <button
+          onClick={() => signOut()}
+          className="text-black inline-flex items-center gap-[10px]"
+        >
+          <span className="text-black font-semibold">Signout</span>
+          {/* <span>
             <SNDQuestionMarkCircle />
-          </span>
-        </a>
+          </span> */}
+        </button>
       </div>
     </div>
   );

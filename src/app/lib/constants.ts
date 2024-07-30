@@ -70,8 +70,24 @@ export const resources = [
   },
 ];
 
-export const defaultOnboardingInputRules = { required: true };
+export const defaultInputRules = { required: true };
+
+export const emailRules = {
+  ...defaultInputRules,
+  validate: (value: string) =>
+    Boolean(
+      String(value)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) || "Invalid email address",
+};
 
 export const DEFAULT_ERROR_STATUS_CODE = 500;
 
 export const maxFileSize = 1024 * 1024 * 1;
+
+const isProd = process.env.NODE_ENV === "production";
+
+export const isDev = !isProd;

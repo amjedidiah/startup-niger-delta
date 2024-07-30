@@ -108,3 +108,15 @@ export type IdentificationData =
 export enum ErrorProcess {
   Cloudinary = "cloudinary",
 }
+
+export type AuthFormValues = {
+  name?: string;
+  email: string;
+  password: string;
+};
+
+export enum Providers {
+  Google = "google",
+  Apple = "apple",
+  Credentials = "credentials",
+}

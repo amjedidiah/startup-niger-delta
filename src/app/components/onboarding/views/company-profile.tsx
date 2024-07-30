@@ -5,10 +5,10 @@ import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import Select from "@/components/shared/form-fields/select";
 import useCompanyProfile from "@/hooks/use-company-profile";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import { defaultInputRules } from "@/lib/constants";
 
 const companyNameRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   minLength: {
     message: "Invalid company name",
     value: 2,
@@ -16,7 +16,7 @@ const companyNameRules = {
 };
 
 const yearsOfIncRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   validate: (value: string) => {
     const now = Math.floor(new Date().getTime() / 1000 / 3600 / 24);
     const incDate = Math.floor(new Date(value).getTime() / 1000 / 3600 / 24);
@@ -130,7 +130,7 @@ function CompanyProfile() {
           dataStore={profileData}
           dataStoreSetter={setProfileData}
           name="rcNumber"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["rcNumber"]}
           placeholder="Registration number"
         />
@@ -138,7 +138,7 @@ function CompanyProfile() {
       <Select
         dataStore={profileData}
         name="industry"
-        rules={defaultOnboardingInputRules}
+        rules={defaultInputRules}
         aria-label={keyLabels["industry"]}
         placeholder="Select your industry"
         options={industryOptions}
@@ -153,7 +153,7 @@ function CompanyProfile() {
       <Input
         dataStore={profileData}
         name="fundingInterest"
-        rules={defaultOnboardingInputRules}
+        rules={defaultInputRules}
         aria-label={keyLabels["fundingInterest"]}
         placeholder="Investment Interest"
       />

@@ -25,7 +25,7 @@ type Props = {
   illustration: StaticImageData;
   greeting: Greeting;
   heading: Heading;
-  alternateAction: AlternateAction;
+  alternateAction?: AlternateAction;
 };
 
 export default function AuthLayout({
@@ -64,12 +64,17 @@ export default function AuthLayout({
               {children}
             </div>
 
-            <p className="mt-[53px] lg:max-xl:mt-4 text-[13px] leading-[20px]">
-              {alternateAction.question}{" "}
-              <Link href={alternateAction.link.href} className="text-tiber-200">
-                {alternateAction.link.text}
-              </Link>
-            </p>
+            {alternateAction && (
+              <p className="mt-[53px] lg:max-xl:mt-4 text-[13px] leading-[20px]">
+                {alternateAction.question}{" "}
+                <Link
+                  href={alternateAction.link.href}
+                  className="text-tiber-200"
+                >
+                  {alternateAction.link.text}
+                </Link>
+              </p>
+            )}
           </div>
         </div>
         <div className="h-full max-xl:hidden flex flex-col pt-20 pb-[67px] justify-between items-center bg-laurel-green-400">
