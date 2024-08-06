@@ -1,4 +1,4 @@
-import { Providers } from "@/lib/types";
+import { AccountTypes, Providers } from "@/lib/types";
 import {
   Schema,
   models,
@@ -10,9 +10,9 @@ import {
 
 const AccountSchema = new Schema({
   provider: { type: String, required: true, enum: Object.values(Providers) },
-  type: { type: String, required: true },
+  type: { type: String, required: true, enum: Object.values(AccountTypes) },
   providerAccountId: { type: String, required: true },
-  userId: { type: Schema.ObjectId, ref: "User", required: true },
+  userId: { type: Schema.ObjectId, ref: "users", required: true },
 
   access_token: String,
   id_token: String,

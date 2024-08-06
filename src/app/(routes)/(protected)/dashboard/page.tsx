@@ -1,4 +1,4 @@
-import { dbGetIsOnboarded } from "@/lib/action/db";
+import { dbGetIsOnboarded } from "@/lib/actions/db";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard() {

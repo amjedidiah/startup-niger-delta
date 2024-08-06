@@ -8,7 +8,7 @@ function OnboardingHeaderTop() {
   return (
     <div className="bg-green-pattern-2 py-3">
       <div className="container flex items-center justify-between">
-        <Link href="" className="w-fit">
+        <Link href="/" className="w-fit">
           <Image
             src="/images/logo-white.png"
             alt="Startup Niger Delta"

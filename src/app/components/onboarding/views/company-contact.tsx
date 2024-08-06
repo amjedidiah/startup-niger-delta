@@ -6,7 +6,7 @@ import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
-const companyWebsiteRules = {
+const websiteRules = {
   ...defaultInputRules,
   validate: (value: string) =>
     Boolean(
@@ -29,34 +29,34 @@ function CompanyContact() {
     <FormProvider {...formValues}>
       <Input
         dataStore={contactData}
-        name="companyEmail"
+        name="email"
         rules={emailRules}
-        aria-label={keyLabels["companyEmail"]}
+        aria-label={keyLabels["email"]}
         type="email"
         autoComplete="work email"
         placeholder="username@domain.com"
       />
       <Input
         dataStore={contactData}
-        aria-label={keyLabels["companyPhoneNumber"]}
+        aria-label={keyLabels["phoneNumber"]}
         type="tel"
-        name="companyPhoneNumber"
+        name="phoneNumber"
         rules={companyPhoneRules}
         defaultCountry="NG"
         international
       />
       <TextArea
         dataStore={contactData}
-        name="companyAddress"
+        name="address"
         rules={defaultInputRules}
-        aria-label={keyLabels["companyAddress"]}
+        aria-label={keyLabels["address"]}
         placeholder="Address Information"
       />
       <Input
         dataStore={contactData}
-        name="companyWebsite"
-        rules={companyWebsiteRules}
-        aria-label={keyLabels["companyWebsite"]}
+        name="website"
+        rules={websiteRules}
+        aria-label={keyLabels["website"]}
         type="url"
         placeholder="www.website.com"
       />

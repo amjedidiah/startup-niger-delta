@@ -22,7 +22,7 @@ function StepNavigationItem({
           "text-gable-green border-shade-of-amber": isPassed,
           "text-gable-green border-unknown-100 lg:text-lg xl:text-xl font-bold":
             isActive,
-          "lg:py-9": !isFirst,
+          "lg:py-6": !isFirst,
         }
       )}
     >

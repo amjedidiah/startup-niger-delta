@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { defaultInputRules, emailRules } from "@/lib/constants";
 import { AuthFormValues, Providers } from "@/lib/types";
-import { dbGetUserExists } from "@/lib/action/db";
+import { dbGetUserExists } from "@/lib/actions/db";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 

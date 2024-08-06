@@ -1,9 +1,14 @@
-import { FormEventHandler, useCallback, useMemo } from "react";
+import { FormEventHandler, useCallback, useMemo, useState } from "react";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";
-import { UserTypes } from "@/lib/types";
+import { CompanyTypes } from "@/lib/types";
+import { handleOnboardingData } from "@/lib/actions/db";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function useOnboardingForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     activeStepIndex,
     setActiveStepIndex,
@@ -11,8 +16,10 @@ export default function useOnboardingForm() {
     canGoNext,
     hasAgreed,
     setHasAgreed,
+    companyType,
+    onboardingData,
   } = useOnboardingContext();
-  const userTypes = useMemo(() => Object.values(UserTypes), []);
+  const companyTypes = useMemo(() => Object.values(CompanyTypes), []);
 
   const canGoBack = useMemo(
     () => activeStepIndex > INIT_ONBOARDING_STEP_INDEX,
@@ -26,23 +33,42 @@ export default function useOnboardingForm() {
   const handleBack = useCallback(() => {
     if (canGoBack) setActiveStepIndex((prev) => prev - 1);
   }, [canGoBack, setActiveStepIndex]);
+
   const handleNext: FormEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
+    async (e) => {
+      try {
+        const isStartUp = companyType === CompanyTypes.StartUp;
+        e.preventDefault();
 
-      if (!canGoNext) return;
-      if (!shouldSubmit) return setActiveStepIndex((prev) => prev + 1);
+        if (!canGoNext) return;
+        if (!shouldSubmit) return setActiveStepIndex((prev) => prev + 1);
 
-      if (!hasAgreed) return;
+        if (!hasAgreed) return;
 
-      // Submit data to BE
-      console.info("Submitting...");
+        // Submit data to BE
+        setIsLoading(true);
+        await handleOnboardingData(onboardingData, isStartUp);
+        router.push("/dashboard");
+      } catch (error) {
+        console.error(error);
+        if (error instanceof Error)
+          toast.error("Error saving onboarding data!");
+        setIsLoading(false);
+      }
     },
-    [canGoNext, hasAgreed, setActiveStepIndex, shouldSubmit]
+    [
+      canGoNext,
+      companyType,
+      hasAgreed,
+      onboardingData,
+      router,
+      setActiveStepIndex,
+      shouldSubmit,
+    ]
   );
 
   return {
-    userTypes,
+    companyTypes,
     shouldSubmit,
     hasAgreed,
     canGoBack,
@@ -52,5 +78,6 @@ export default function useOnboardingForm() {
     setHasAgreed,
     stepTitles,
     activeStepIndex,
+    isLoading,
   };
 }

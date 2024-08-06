@@ -5,7 +5,10 @@ import GoogleProvider from "next-auth/providers/google";
 import { isDev } from "@/lib/constants";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import { Providers } from "@/lib/types";
-import { dbAuthorizeCredentials, dbUpdateEmailVerified } from "@/lib/action/db";
+import {
+  dbAuthorizeCredentials,
+  dbUpdateEmailVerified,
+} from "@/lib/actions/db";
 
 const authOptions: NextAuthOptions = {
   session: {

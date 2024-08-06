@@ -7,7 +7,7 @@ import OnboardingActiveComponent from "@/components/onboarding/layout/onboarding
 
 function OnboardingForm() {
   const {
-    userTypes,
+    companyTypes,
     shouldSubmit,
     hasAgreed,
     canGoBack,
@@ -17,13 +17,14 @@ function OnboardingForm() {
     setHasAgreed,
     stepTitles,
     activeStepIndex,
+    isLoading,
   } = useOnboardingForm();
 
   return (
     <div>
       <form className="bg-white w-full rounded-[10px] shadow-onboarding-form p-9 pt-0 mt-2 lg:mt-7 flex flex-col gap-6 xl:gap-[42px]">
         <div className="border-b border-laurel-green-300 py-[18px] flex max-sm:flex-col sm:items-center gap-3 lg:mx-5">
-          {userTypes.map((item) => (
+          {companyTypes.map((item) => (
             <OnboardingFormSelector key={item} value={item} />
           ))}
         </div>
@@ -78,9 +79,14 @@ function OnboardingForm() {
               Back
             </button>
             <button
-              disabled={!canGoNext}
+              disabled={!canGoNext || isLoading}
               onClick={handleNext}
-              className="max-sm:flex-1 bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600"
+              className={cn(
+                "max-sm:flex-1 bg-onboarding-button shadow-onboarding-button py-[5px] px-[21px] rounded-[5px] text-white font-normal disabled:text-unknown-600",
+                {
+                  "animate-pulse": isLoading,
+                }
+              )}
             >
               {shouldSubmit ? "Submit" : "Next"}
             </button>

@@ -1,14 +1,15 @@
 import ImagePreview from "@/components/shared/image-preview";
 import ShouldRender from "@/components/shared/should-render";
 import useOnboardingReview from "@/hooks/use-onboarding-review";
+import { SelectData } from "@/lib/types";
 import { memo } from "react";
 
 function OnboardingReview() {
-  const { onboardingData, keyLabels } = useOnboardingReview();
+  const { reviewData, keyLabels } = useOnboardingReview();
 
   return (
     <div className="h-[265px] overflow-y-auto max-w-full rounded-[5px] sm:col-span-2 break-words">
-      {onboardingData.map(({ title, content }, i) => {
+      {reviewData.map(({ title, content }, i) => {
         if (!content) return null;
         return (
           <div key={i}>
@@ -25,21 +26,21 @@ function OnboardingReview() {
                 </p>
                 <p className="text-black text-xs font-light">
                   <ShouldRender condition={typeof value !== "string"}>
-                    {value?.label}
+                    {(value as SelectData)?.label}
                   </ShouldRender>
                   <ShouldRender
                     condition={
                       typeof value === "string" && value.includes("https")
                     }
                   >
-                    <ImagePreview src={value} />
+                    <ImagePreview src={value as string} />
                   </ShouldRender>
                   <ShouldRender
                     condition={
                       typeof value === "string" && !value.includes("https")
                     }
                   >
-                    {value}
+                    {value as string}
                   </ShouldRender>
                 </p>
               </div>

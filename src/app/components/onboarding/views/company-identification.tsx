@@ -2,7 +2,7 @@ import Input from "@/components/shared/form-fields/input";
 import Select from "@/components/shared/form-fields/select";
 import TextArea from "@/components/shared/form-fields/text-area";
 import ShouldRender from "@/components/shared/should-render";
-import useOnboardingIdentification from "@/hooks/use-onboarding-identification";
+import useCompanyIdentification from "@/hooks/use-company-identification";
 import { defaultInputRules } from "@/lib/constants";
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
@@ -22,14 +22,14 @@ const fileOptions = {
   clientAllowedFormats: ["png"],
 };
 
-function OnboardingIdentification() {
+function CompanyIdentification() {
   const {
     formValues,
     identificationData,
     setIdentificationData,
     isStartup,
     keyLabels,
-  } = useOnboardingIdentification();
+  } = useCompanyIdentification();
 
   return (
     <FormProvider {...formValues}>
@@ -37,18 +37,18 @@ function OnboardingIdentification() {
         <Input
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
-          name="cacCertificate"
+          name="cacCertificateUrl"
           rules={defaultInputRules}
-          aria-label={keyLabels["cacCertificate"]}
+          aria-label={keyLabels["cacCertificateUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
         <Input
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
-          name="companyLogo"
+          name="companyLogoUrl"
           rules={defaultInputRules}
-          aria-label={keyLabels["companyLogo"]}
+          aria-label={keyLabels["companyLogoUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
@@ -85,4 +85,4 @@ function OnboardingIdentification() {
   );
 }
 
-export default memo(OnboardingIdentification);
+export default memo(CompanyIdentification);

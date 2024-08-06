@@ -5,9 +5,9 @@ import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import Select from "@/components/shared/form-fields/select";
 import useCompanyProfile from "@/hooks/use-company-profile";
-import { defaultInputRules } from "@/lib/constants";
+import { defaultInputRules, industryOptions } from "@/lib/constants";
 
-const companyNameRules = {
+const nameRules = {
   ...defaultInputRules,
   minLength: {
     message: "Invalid company name",
@@ -15,7 +15,7 @@ const companyNameRules = {
   },
 };
 
-const yearsOfIncRules = {
+const yearOfIncRules = {
   ...defaultInputRules,
   validate: (value: string) => {
     const now = Math.floor(new Date().getTime() / 1000 / 3600 / 24);
@@ -25,74 +25,7 @@ const yearsOfIncRules = {
   },
 };
 
-const industryOptions = [
-  {
-    value: "fintech",
-    label: "fintech",
-  },
-  {
-    value: "ai",
-    label: "Artificial Intelligence (AI)",
-  },
-  {
-    value: "saas",
-    label: "Software as a Service (SaaS)",
-  },
-  {
-    value: "health-tech",
-    label: "Health Tech",
-  },
-  {
-    value: "e-commerce",
-    label: "E-commerce",
-  },
-  {
-    value: "cybersecurity",
-    label: "cybersecurity",
-  },
-  {
-    value: "blockchain",
-    label: "blockchain",
-  },
-  {
-    value: "iot",
-    label: "Internet of Things (IoT)",
-  },
-  {
-    value: "ed-tech",
-    label: "EdTech",
-  },
-  {
-    value: "clean-tech",
-    label: "CleanTech",
-  },
-  {
-    value: "biotech",
-    label: "Biotech",
-  },
-  {
-    value: "ar-vr",
-    label: "Augmented Reality (AR) / Virtual Reality (VR)",
-  },
-  {
-    value: "agri-tech",
-    label: "AgriTech",
-  },
-  {
-    value: "robotics",
-    label: "Robotics",
-  },
-  {
-    value: "gaming",
-    label: "Gaming",
-  },
-  {
-    value: "others",
-    label: "others",
-  },
-];
-
-const companyDescriptionRules = {
+const descriptionRules = {
   required: true,
   minLength: {
     value: 50,
@@ -108,9 +41,9 @@ function CompanyProfile() {
     <FormProvider {...formValues}>
       <Input
         dataStore={profileData}
-        name="companyName"
-        rules={companyNameRules}
-        aria-label={keyLabels["companyName"]}
+        name="name"
+        rules={nameRules}
+        aria-label={keyLabels["name"]}
         placeholder="Registered name"
         autoComplete="additional-name"
       />
@@ -118,9 +51,9 @@ function CompanyProfile() {
         <Input
           dataStore={profileData}
           dataStoreSetter={setProfileData}
-          name="yearsOfInc"
-          rules={yearsOfIncRules}
-          aria-label={keyLabels["yearsOfInc"]}
+          name="yearOfInc"
+          rules={yearOfIncRules}
+          aria-label={keyLabels["yearOfInc"]}
           type="date"
           autoComplete="bday-day"
         />
@@ -145,9 +78,9 @@ function CompanyProfile() {
       />
       <TextArea
         dataStore={profileData}
-        name="companyDescription"
-        rules={companyDescriptionRules}
-        aria-label={keyLabels["companyDescription"]}
+        name="description"
+        rules={descriptionRules}
+        aria-label={keyLabels["description"]}
         placeholder="Your solution in one sentence"
       />
       <Input

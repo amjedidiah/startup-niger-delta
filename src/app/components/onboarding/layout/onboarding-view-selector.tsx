@@ -1,19 +1,20 @@
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";
-import { UserTypes } from "@/lib/types";
+import { CompanyTypes } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { memo, useCallback, useMemo } from "react";
 
 type OnboardingFormSelectorProps = {
-  value: UserTypes;
+  value: CompanyTypes;
 };
 
 function OnboardingFormSelector({ value }: OnboardingFormSelectorProps) {
-  const { userType, setUserType, activeStepIndex } = useOnboardingContext();
+  const { companyType, setCompanyType, activeStepIndex } =
+    useOnboardingContext();
 
   const handleChange = useCallback(
-    () => setUserType(value),
-    [setUserType, value]
+    () => setCompanyType(value),
+    [setCompanyType, value]
   );
 
   const isDisabled = useMemo(
@@ -21,7 +22,7 @@ function OnboardingFormSelector({ value }: OnboardingFormSelectorProps) {
     [activeStepIndex]
   );
 
-  const isActive = useMemo(() => userType === value, [userType, value]);
+  const isActive = useMemo(() => companyType === value, [companyType, value]);
 
   return (
     <div className="max-w-56 inline-flex gap-1 items-center">

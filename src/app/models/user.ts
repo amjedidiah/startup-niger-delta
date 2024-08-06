@@ -1,22 +1,27 @@
 import { model, models, Schema, UserDocument, Document, Model } from "mongoose";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import { mailEmailConfirmationToken } from "@/lib/actions/mail";
 
 const UserSchema = new Schema(
   {
+    email: { type: String, required: true, unique: true, index: true },
+    password: { type: String, select: false },
+
     name: {
       type: String,
       required: true,
     },
-    email: { type: String, required: true, index: true },
-
-    password: { type: String, select: false },
     image: String,
 
     emailVerified: { type: Boolean, default: false },
     isOnboarded: { type: Boolean, default: false },
+
+    emailVerificationToken: String,
+    emailVerificationExpires: Number,
+
     resetPasswordToken: String,
-    resetPasswordExpires: Date,
+    resetPasswordExpires: Number,
   },
   {
     timestamps: true,
@@ -24,10 +29,16 @@ const UserSchema = new Schema(
 );
 
 UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password") || !this.password) return next();
-
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  if (this.isModified("password") && this.password) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
+  if (
+    this.isModified("emailVerificationToken") &&
+    this.emailVerificationToken
+  ) {
+    await mailEmailConfirmationToken(this.email, this.emailVerificationToken);
+  }
 
   next();
 });
@@ -39,6 +50,13 @@ UserSchema.methods.comparePassword = async function (
   const user = this; // Access the current user document
   const populatedUser = await User.findById(user._id).select("password"); // Explicitly select password
   return await bcrypt.compare(candidatePassword, populatedUser?.password || "");
+};
+
+// Generate email verification token
+UserSchema.methods.generateEmailVerification = function () {
+  this.emailVerificationToken = crypto.randomBytes(32).toString("hex");
+  this.emailVerificationExpires = Date.now() + 3600000; // 1 hour
+  return this.emailVerificationToken;
 };
 
 // Generate password reset token

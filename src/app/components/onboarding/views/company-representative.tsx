@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
 import ShouldRender from "@/components/shared/should-render";
-import usePersonProfile from "@/hooks/use-person-profile";
+import useCompanyRepresentative from "@/hooks/use-company-representative";
 import Input from "@/components/shared/form-fields/input";
 import { defaultInputRules, emailRules } from "@/lib/constants";
 import TextArea from "@/components/shared/form-fields/text-area";
@@ -11,7 +11,7 @@ import Select from "@/components/shared/form-fields/select";
 const noOfFoundersOptions = Array(10)
   .fill(0)
   .map((_item, i) => ({ label: i + 1 + "", value: i + 1 + "" }));
-const personNameRules = (label: string) => ({
+const representativeNameRules = (label: string) => ({
   ...defaultInputRules,
   minLength: {
     message: `Invalid ${label.toLowerCase()}`,
@@ -36,24 +36,29 @@ const founderPhoneRules = {
     isPossiblePhoneNumber(value) || "Invalid phone number",
 };
 
-function PersonProfile() {
-  const { formValues, personData, setPersonData, isStartup, keyLabels } =
-    usePersonProfile();
+function CompanyRepresentative() {
+  const {
+    formValues,
+    representativeData,
+    setRepresentativeData,
+    isStartup,
+    keyLabels,
+  } = useCompanyRepresentative();
 
   return (
     <FormProvider {...formValues}>
       <Input
-        dataStore={personData}
-        name="personName"
-        rules={personNameRules(keyLabels["personName"])}
-        aria-label={keyLabels["personName"]}
+        dataStore={representativeData}
+        name="representativeName"
+        rules={representativeNameRules(keyLabels["representativeName"])}
+        aria-label={keyLabels["representativeName"]}
         autoComplete="billing name"
         placeholder="Full name"
       />
       <ShouldRender condition={isStartup}>
         <Input
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="founderEmail"
           type="email"
           placeholder="username@domain.com"
@@ -62,16 +67,16 @@ function PersonProfile() {
           rules={emailRules}
         />
         <TextArea
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="founderAddress"
           rules={defaultInputRules}
           placeholder="Address Information"
           aria-label={keyLabels["founderAddress"]}
         />
         <Input
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="founderPhoneNumber"
           type="tel"
           aria-label={keyLabels["founderPhoneNumber"]}
@@ -80,20 +85,20 @@ function PersonProfile() {
           international
         />
         <Select
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="noOfFounders"
           rules={defaultInputRules}
           aria-label={keyLabels["noOfFounders"]}
-          placeholder="Choose Number of CoFounders"
+          placeholder="Choose Number of Founders"
           options={noOfFoundersOptions}
         />
       </ShouldRender>
 
       <ShouldRender condition={!isStartup}>
         <Select
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="investmentExperience"
           rules={defaultInputRules}
           aria-label={keyLabels["investmentExperience"]}
@@ -101,8 +106,8 @@ function PersonProfile() {
           options={investmentExperienceOptions}
         />
         <Input
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="investmentProof"
           type="url"
           aria-label={keyLabels["investmentProof"]}
@@ -110,8 +115,8 @@ function PersonProfile() {
           rules={defaultInputRules}
         />
         <Select
-          dataStore={personData}
-          dataStoreSetter={setPersonData}
+          dataStore={representativeData}
+          dataStoreSetter={setRepresentativeData}
           name="investmentSize"
           rules={defaultInputRules}
           aria-label={keyLabels["investmentSize"]}
@@ -123,4 +128,4 @@ function PersonProfile() {
   );
 }
 
-export default memo(PersonProfile);
+export default memo(CompanyRepresentative);

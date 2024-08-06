@@ -1,32 +1,32 @@
-import { UserTypes } from "@/lib/types";
+import { CompanyTypes } from "@/lib/types";
 
 export const currentYear = new Date().getFullYear();
 
 export const eventNavItems = ["upcoming", "past"];
 
 export const userSteps = {
-  [UserTypes.StartUp]: [
+  [CompanyTypes.StartUp]: [
     "Company Profile",
     "Contact Info",
     "Founder/Co-founder Profile",
     "Founder's Identification",
     "Review",
   ],
-  [UserTypes.AngelInvestor]: [
+  [CompanyTypes.AngelInvestor]: [
     "Company Profile",
     "Contact Info",
     "Investment Info",
     "Identification",
     "Review",
   ],
-  [UserTypes.VentureCapitalist]: [
+  [CompanyTypes.VentureCapitalist]: [
     "Company Profile",
     "Contact Info",
     "Investment Info",
     "Identification",
     "Review",
   ],
-  [UserTypes.Others]: [
+  [CompanyTypes.Others]: [
     "Company Profile",
     "Contact Info",
     "Incubator's Info",
@@ -91,3 +91,74 @@ export const maxFileSize = 1024 * 1024 * 1;
 const isProd = process.env.NODE_ENV === "production";
 
 export const isDev = !isProd;
+
+export const baseUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : process.env.NEXTAUTH_URL;
+
+export const industryOptions = [
+  {
+    value: "fintech",
+    label: "Fintech",
+  },
+  {
+    value: "ai",
+    label: "Artificial Intelligence (AI)",
+  },
+  {
+    value: "saas",
+    label: "Software as a Service (SaaS)",
+  },
+  {
+    value: "health-tech",
+    label: "Health Tech",
+  },
+  {
+    value: "e-commerce",
+    label: "E-commerce",
+  },
+  {
+    value: "cybersecurity",
+    label: "Cybersecurity",
+  },
+  {
+    value: "blockchain",
+    label: "Blockchain",
+  },
+  {
+    value: "iot",
+    label: "Internet of Things (IoT)",
+  },
+  {
+    value: "ed-tech",
+    label: "EdTech",
+  },
+  {
+    value: "clean-tech",
+    label: "CleanTech",
+  },
+  {
+    value: "biotech",
+    label: "Biotech",
+  },
+  {
+    value: "ar-vr",
+    label: "Augmented Reality (AR) / Virtual Reality (VR)",
+  },
+  {
+    value: "agri-tech",
+    label: "AgriTech",
+  },
+  {
+    value: "robotics",
+    label: "Robotics",
+  },
+  {
+    value: "gaming",
+    label: "Gaming",
+  },
+  {
+    value: "others",
+    label: "Others",
+  },
+];

@@ -1,9 +1,9 @@
-import { Document, Schema } from "mongoose";
+import { AccountTypes, Providers } from "@/lib/types";
 
 declare module "mongoose" {
   interface AccountDocument extends Document {
-    provider: string;
-    type: string;
+    provider: Providers;
+    type: AccountTypes;
     providerAccountId: string;
     userId: Schema.ObjectId;
 

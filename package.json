@@ -21,6 +21,7 @@
     "next": "14.1.3",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.6.2",
+    "nodemailer": "^6.9.14",
     "react": "^18",
     "react-dom": "^18",
     "react-fast-marquee": "^1.6.4",
@@ -32,6 +33,7 @@
     "react-select-country-list": "^2.2.3",
     "sonner": "^1.5.0",
     "swiper": "^11.1.0",
+    "swr": "^2.2.5",
     "tailwind-merge": "^2.2.1",
     "truncate-html": "^1.1.1",
     "use-debounce": "^10.0.0"
@@ -40,6 +42,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-scroll": "^1.8.10",

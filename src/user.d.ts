@@ -1,17 +1,19 @@
-import { Document } from "mongoose";
-
 declare module "mongoose" {
   interface UserDocument extends Document {
-    name: string;
     email: string;
-
     password?: string;
-    image?: string;
 
+    name: string;
+    image?: string;
     emailVerified: Boolean | null;
     isOnboarded: Boolean;
+
+    emailVerificationToken?: string;
+    emailVerificationExpires?: number;
+    generateEmailVerification(): string; // Declare the custom method
+
     resetPasswordToken?: string;
-    resetPasswordExpires?: Date;
+    resetPasswordExpires?: number;
     generatePasswordReset(): string; // Declare the custom method
     comparePassword(password: string): Promise<boolean>;
   }
