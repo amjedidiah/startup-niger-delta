@@ -1,20 +1,13 @@
 "use client";
 import AuthFormPassword from "@/components/shared/auth/auth-form-password";
 import { SNDAppleIcon, SNDGoogleIcon } from "@/lib/icons";
-import { memo, MouseEventHandler, useCallback, useMemo } from "react";
+import { memo } from "react";
 import { signIn } from "next-auth/react";
-import {
-  FormProvider,
-  RegisterOptions,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { FormProvider, RegisterOptions } from "react-hook-form";
 import { cn } from "@/lib/utils";
-import { defaultInputRules, emailRules } from "@/lib/constants";
+import { defaultInputRules } from "@/lib/constants";
 import { AuthFormValues, Providers } from "@/lib/types";
-import { dbGetUserExists } from "@/lib/actions/db";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import useAuthForm, { UseAuthFormProps } from "@/hooks/use-auth-form";
 
 type Props = {
   isSignupForm?: boolean;
@@ -28,81 +21,23 @@ const nameInputRules: RegisterOptions<AuthFormValues, "name"> = {
   },
 };
 
-const AuthForm = ({ isSignupForm = false }: Props) => {
-  const router = useRouter();
-  const buttonText = !isSignupForm ? "Sign in" : "Sign up with email";
-
-  const useFormValues = useForm<AuthFormValues>({
-    mode: "onChange",
-    shouldFocusError: true,
-    shouldUnregister: true,
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-    },
+const oauthSignIn = (provider: Providers) =>
+  signIn(provider, {
+    redirect: true,
+    callbackUrl: "/onboarding",
   });
+
+const signInWithGoogle = () => oauthSignIn(Providers.Google);
+const signInWithApple = () => oauthSignIn(Providers.Apple);
+
+const AuthForm = (props: UseAuthFormProps) => {
+  const { useFormValues, onSubmit, authEmailRules, buttonText } =
+    useAuthForm(props);
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitting },
   } = useFormValues;
-
-  const isDisabled = !isValid || isSubmitting;
-
-  const authEmailRules: RegisterOptions<AuthFormValues, "email"> =
-    useMemo(() => {
-      if (!isSignupForm) return emailRules;
-
-      return {
-        ...defaultInputRules,
-        validate: async (value) => {
-          if (
-            !String(value)
-              .toLowerCase()
-              .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-              )
-          )
-            return "Invalid email address";
-
-          const existingUser = await dbGetUserExists(value);
-          return existingUser
-            ? "A user with this email address already exists"
-            : true;
-        },
-      };
-    }, [isSignupForm]);
-
-  const onSubmit: SubmitHandler<AuthFormValues> = useCallback(
-    async (formData) => {
-      try {
-        const response = await signIn(Providers.Credentials, {
-          ...formData,
-          redirect: false,
-        });
-        if (!response?.ok)
-          throw new Error(response?.error || "An error occurred");
-
-        router.push("/verify-email");
-      } catch (error) {
-        if (error instanceof Error) toast.error(error.message);
-        console.error({ error });
-      }
-    },
-    [router]
-  );
-
-  const signInWithGoogle: MouseEventHandler<HTMLButtonElement> = useCallback(
-    (e) => {
-      e.preventDefault();
-      signIn(Providers.Google, {
-        redirect: true,
-        callbackUrl: "/onboarding",
-      });
-    },
-    []
-  );
 
   return (
     <FormProvider {...useFormValues}>
@@ -111,7 +46,7 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
           className="flex flex-col gap-[18px]"
           onSubmit={handleSubmit(onSubmit)}
         >
-          {isSignupForm && (
+          {props.isSignupForm && (
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="name"
@@ -178,11 +113,10 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
           </div>
 
           <button
-            disabled={isDisabled}
+            disabled={!isValid || isSubmitting}
             className={cn(
-              "mt-1 py-2 text-white rounded-[5px] disabled:bg-gray-100",
+              "mt-1 py-2 text-white rounded-[5px] disabled:bg-gray-100 disabled:border disabled:border-tiber-200 disabled:bg-gradient-4",
               {
-                "border border-tiber-200 bg-gradient-4": !isDisabled,
                 "animate-pulse": isSubmitting,
               }
             )}
@@ -195,7 +129,10 @@ const AuthForm = ({ isSignupForm = false }: Props) => {
         </p>
 
         <div className="flex flex-col gap-[10px]">
-          <button className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300 ">
+          <button
+            className="flex items-center py-2 justify-center gap-[7px] rounded-[5px] border border-tiber-300 "
+            onClick={signInWithApple}
+          >
             <span>
               <SNDAppleIcon />
             </span>
