@@ -1,25 +1,13 @@
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import { defaultInputRules, emailRules } from "@/lib/constants";
 import useCompanyContact from "@/hooks/use-company-contact";
 import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 
-const companyEmailRules = {
-  ...defaultOnboardingInputRules,
-  validate: (value: string) =>
-    Boolean(
-      String(value)
-        .toLowerCase()
-        .match(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        )
-    ) || "Invalid email address",
-};
-
-const companyWebsiteRules = {
-  ...defaultOnboardingInputRules,
+const websiteRules = {
+  ...defaultInputRules,
   validate: (value: string) =>
     Boolean(
       String(value)
@@ -29,7 +17,7 @@ const companyWebsiteRules = {
 };
 
 const companyPhoneRules = {
-  ...defaultOnboardingInputRules,
+  ...defaultInputRules,
   validate: (value: string) =>
     isPossiblePhoneNumber(value) || "Invalid phone number",
 };
@@ -41,34 +29,34 @@ function CompanyContact() {
     <FormProvider {...formValues}>
       <Input
         dataStore={contactData}
-        name="companyEmail"
-        rules={companyEmailRules}
-        aria-label={keyLabels["companyEmail"]}
+        name="email"
+        rules={emailRules}
+        aria-label={keyLabels["email"]}
         type="email"
         autoComplete="work email"
         placeholder="username@domain.com"
       />
       <Input
         dataStore={contactData}
-        aria-label={keyLabels["companyPhoneNumber"]}
+        aria-label={keyLabels["phoneNumber"]}
         type="tel"
-        name="companyPhoneNumber"
+        name="phoneNumber"
         rules={companyPhoneRules}
         defaultCountry="NG"
         international
       />
       <TextArea
         dataStore={contactData}
-        name="companyAddress"
-        rules={defaultOnboardingInputRules}
-        aria-label={keyLabels["companyAddress"]}
+        name="address"
+        rules={defaultInputRules}
+        aria-label={keyLabels["address"]}
         placeholder="Address Information"
       />
       <Input
         dataStore={contactData}
-        name="companyWebsite"
-        rules={companyWebsiteRules}
-        aria-label={keyLabels["companyWebsite"]}
+        name="website"
+        rules={websiteRules}
+        aria-label={keyLabels["website"]}
         type="url"
         placeholder="www.website.com"
       />

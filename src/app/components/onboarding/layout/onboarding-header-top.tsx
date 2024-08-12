@@ -1,4 +1,5 @@
-import { SNDQuestionMarkCircle } from "@/lib/icons";
+"use client";
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { memo } from "react";
@@ -7,7 +8,7 @@ function OnboardingHeaderTop() {
   return (
     <div className="bg-green-pattern-2 py-3">
       <div className="container flex items-center justify-between">
-        <Link href="" className="w-fit">
+        <Link href="/" className="w-fit">
           <Image
             src="/images/logo-white.png"
             alt="Startup Niger Delta"
@@ -17,12 +18,15 @@ function OnboardingHeaderTop() {
           />
         </Link>
 
-        <a href="/" className="text-black inline-flex items-center gap-[10px]">
-          <span className="text-black font-semibold">Need help</span>
-          <span>
+        <button
+          onClick={() => signOut()}
+          className="text-black inline-flex items-center gap-[10px]"
+        >
+          <span className="text-black font-semibold">Signout</span>
+          {/* <span>
             <SNDQuestionMarkCircle />
-          </span>
-        </a>
+          </span> */}
+        </button>
       </div>
     </div>
   );

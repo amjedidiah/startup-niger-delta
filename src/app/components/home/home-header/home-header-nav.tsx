@@ -1,4 +1,6 @@
+import ShouldRender from "@/components/shared/should-render";
 import { cn } from "@/lib/utils";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -17,6 +19,8 @@ type Props = {
 };
 
 export default function HomeHeaderNav({ isOpen }: Props) {
+  const { data: session } = useSession();
+
   return (
     <div
       className={cn(
@@ -52,18 +56,34 @@ export default function HomeHeaderNav({ isOpen }: Props) {
         ))}
       </ul>
       <div className="flex max-lg:flex-col lg:items-center gap-4 text-sm">
-        <Link
-          href="/signin"
-          className="text-gable-green underline w-fit max-lg:ml-auto p-1"
-        >
-          Sign in
-        </Link>
-        <Link
-          href="/signup"
-          className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white hover:bg-unknown-100"
-        >
-          Get Started
-        </Link>
+        <ShouldRender condition={!session}>
+          <Link
+            href="/signin"
+            className="text-gable-green underline w-fit max-lg:ml-auto p-1"
+          >
+            Sign in
+          </Link>
+          <Link
+            href="/signup"
+            className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white hover:bg-unknown-100"
+          >
+            Get Started
+          </Link>
+        </ShouldRender>
+        <ShouldRender condition={!!session}>
+          <Link
+            href="/dashboard"
+            className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white hover:bg-unknown-100"
+          >
+            Dashboard
+          </Link>
+          <button
+            onClick={() => signOut()}
+            className="rounded-[5px] bg-red-600 py-[0.625rem] px-5 text-white"
+          >
+            Signout
+          </button>
+        </ShouldRender>
       </div>
     </div>
   );

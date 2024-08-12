@@ -1,17 +1,20 @@
 import { useEffect, useMemo } from "react";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { ProfileData, UserTypes } from "@/lib/types";
+import { ProfileData, CompanyTypes } from "@/lib/types";
 import { useForm } from "react-hook-form";
 
 export default function useCompanyProfile() {
   const {
-    profileData,
-    setProfileData,
-    setCanGoToCompanyContact,
-    userType,
+    onboardingData: { profileData },
+    onboardingDataSetters: { setProfileData },
+    setCanGoToContactData,
+    companyType,
     keyLabels,
   } = useOnboardingContext();
-  const isStartup = useMemo(() => userType === UserTypes.StartUp, [userType]);
+  const isStartup = useMemo(
+    () => companyType === CompanyTypes.StartUp,
+    [companyType]
+  );
   const formValues = useForm<ProfileData>({
     mode: "onChange",
     shouldFocusError: true,
@@ -29,8 +32,8 @@ export default function useCompanyProfile() {
   }, [getValues, setProfileData]);
 
   useEffect(
-    () => setCanGoToCompanyContact(!isDisabled),
-    [isDisabled, setCanGoToCompanyContact]
+    () => setCanGoToContactData(!isDisabled),
+    [isDisabled, setCanGoToContactData]
   );
 
   return {

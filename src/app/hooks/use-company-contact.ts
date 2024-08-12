@@ -4,8 +4,12 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function useCompanyContact() {
-  const { contactData, setContactData, setCanGoToPersonProfile, keyLabels } =
-    useOnboardingContext();
+  const {
+    onboardingData: { contactData },
+    onboardingDataSetters: { setContactData },
+    setCanGoToRepresentativeData,
+    keyLabels,
+  } = useOnboardingContext();
 
   const formValues = useForm<ContactData>({
     mode: "onChange",
@@ -24,8 +28,8 @@ export default function useCompanyContact() {
   }, [getValues, setContactData]);
 
   useEffect(
-    () => setCanGoToPersonProfile(!isDisabled),
-    [isDisabled, setCanGoToPersonProfile]
+    () => setCanGoToRepresentativeData(!isDisabled),
+    [isDisabled, setCanGoToRepresentativeData]
   );
 
   return { formValues, contactData, setContactData, keyLabels };

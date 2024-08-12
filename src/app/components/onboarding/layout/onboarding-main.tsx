@@ -7,7 +7,7 @@ import OnboardingForm from "@/components/onboarding/layout/onboarding-form";
 import { cn } from "@/lib/utils";
 
 function OnboardingMain() {
-  const { activeStepIndex, userType, stepTitles } = useOnboardingContext();
+  const { activeStepIndex, companyType, stepTitles } = useOnboardingContext();
 
   return (
     <main
@@ -25,7 +25,7 @@ function OnboardingMain() {
       <OnboardingWrapper>
         <div className="lg:relative">
           <h2 className="capitalize text-tiber font-semibold sm:mb-2">
-            {userType} Registration
+            {companyType} Registration
           </h2>
 
           <StepNavigation />

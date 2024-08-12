@@ -2,8 +2,8 @@ import Input from "@/components/shared/form-fields/input";
 import Select from "@/components/shared/form-fields/select";
 import TextArea from "@/components/shared/form-fields/text-area";
 import ShouldRender from "@/components/shared/should-render";
-import useOnboardingIdentification from "@/hooks/use-onboarding-identification";
-import { defaultOnboardingInputRules } from "@/lib/constants";
+import useCompanyIdentification from "@/hooks/use-company-identification";
+import { defaultInputRules } from "@/lib/constants";
 import { memo } from "react";
 import { FormProvider } from "react-hook-form";
 import countryList from "react-select-country-list";
@@ -22,14 +22,14 @@ const fileOptions = {
   clientAllowedFormats: ["png"],
 };
 
-function OnboardingIdentification() {
+function CompanyIdentification() {
   const {
     formValues,
     identificationData,
     setIdentificationData,
     isStartup,
     keyLabels,
-  } = useOnboardingIdentification();
+  } = useCompanyIdentification();
 
   return (
     <FormProvider {...formValues}>
@@ -37,18 +37,18 @@ function OnboardingIdentification() {
         <Input
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
-          name="cacCertificate"
-          rules={defaultOnboardingInputRules}
-          aria-label={keyLabels["cacCertificate"]}
+          name="cacCertificateUrl"
+          rules={defaultInputRules}
+          aria-label={keyLabels["cacCertificateUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
         <Input
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
-          name="companyLogo"
-          rules={defaultOnboardingInputRules}
-          aria-label={keyLabels["companyLogo"]}
+          name="companyLogoUrl"
+          rules={defaultInputRules}
+          aria-label={keyLabels["companyLogoUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
@@ -58,7 +58,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="identificationMeans"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["identificationMeans"]}
           placeholder="Choose verification method"
           options={identificationMeansOptions}
@@ -67,7 +67,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="nationality"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["nationality"]}
           placeholder="Country"
           options={nationalityOptions}
@@ -76,7 +76,7 @@ function OnboardingIdentification() {
           dataStore={identificationData}
           dataStoreSetter={setIdentificationData}
           name="identificationMessage"
-          rules={defaultOnboardingInputRules}
+          rules={defaultInputRules}
           aria-label={keyLabels["identificationMessage"]}
           placeholder="Body"
         />
@@ -85,4 +85,4 @@ function OnboardingIdentification() {
   );
 }
 
-export default memo(OnboardingIdentification);
+export default memo(CompanyIdentification);

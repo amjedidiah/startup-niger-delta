@@ -2,8 +2,8 @@ import { Fragment, memo } from "react";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
 import CompanyProfile from "@/components/onboarding/views/company-profile";
 import CompanyContact from "@/components/onboarding/views/company-contact";
-import PersonProfile from "@/components/onboarding/views/person-profile";
-import OnboardingIdentification from "@/components/onboarding/views/onboarding-identification";
+import CompanyRepresentative from "@/components/onboarding/views/company-representative";
+import CompanyIdentification from "@/components/onboarding/views/company-identification";
 import OnboardingReview from "@/components/onboarding/views/onboarding-review";
 import ShouldRender from "@/components/shared/should-render";
 
@@ -19,10 +19,10 @@ function OnboardingActiveComponent() {
         <CompanyContact />
       </ShouldRender>
       <ShouldRender condition={activeStepIndex === 3}>
-        <PersonProfile />
+        <CompanyRepresentative />
       </ShouldRender>
       <ShouldRender condition={activeStepIndex === 4}>
-        <OnboardingIdentification />
+        <CompanyIdentification />
       </ShouldRender>
       <ShouldRender condition={activeStepIndex === 5}>
         <OnboardingReview />

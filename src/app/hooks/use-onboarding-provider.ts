@@ -1,33 +1,34 @@
 import { INIT_ONBOARDING_STEP_INDEX, userSteps } from "@/lib/constants";
-import { OnboardingContextType, UserTypes } from "@/lib/types";
+import { OnboardingContextType, CompanyTypes } from "@/lib/types";
 import { useMemo, useState } from "react";
+import useOnboardingData from "@/hooks/use-onboarding-data";
 
-const getPersonNameLabel = (userType: UserTypes) =>
+const getRepresentativeNameLabel = (companyType: CompanyTypes) =>
   ({
-    [UserTypes.AngelInvestor]: "Angel",
-    [UserTypes.Others]: "Principal Promoter",
-    [UserTypes.StartUp]: "Founder's Name",
-    [UserTypes.VentureCapitalist]: "General Partner",
-  }[userType] || "Full Name");
+    [CompanyTypes.AngelInvestor]: "Angel",
+    [CompanyTypes.Others]: "Principal Promoter",
+    [CompanyTypes.StartUp]: "Founder's Name",
+    [CompanyTypes.VentureCapitalist]: "General Partner",
+  }[companyType] || "Full Name");
 
-const getOnboardingKeyLabels = (userType: UserTypes) => ({
-  companyName: `Company ${
-    userType === UserTypes.AngelInvestor ? "/ Individual" : ""
+const getOnboardingKeyLabels = (companyType: CompanyTypes) => ({
+  name: `Company ${
+    companyType === CompanyTypes.AngelInvestor ? "/ Individual" : ""
   } Name`,
-  yearsOfInc: "Years of Incorporation",
+  yearOfInc: "Years of Incorporation",
   rcNumber: "RC Number",
   industry: "Industry",
-  companyDescription: `${
-    userType === UserTypes.StartUp ? "Startup" : "Business"
+  description: `${
+    companyType === CompanyTypes.StartUp ? "Startup" : "Business"
   } Description`,
   fundingInterest: "Funding Interest",
 
-  companyEmail: "Company Email",
-  companyPhoneNumber: "Company Phone Number",
-  companyAddress: "Company Address",
-  companyWebsite: "Company Website",
+  email: "Company Email",
+  phoneNumber: "Company Phone Number",
+  address: "Company Address",
+  website: "Company Website",
 
-  personName: getPersonNameLabel(userType),
+  representativeName: getRepresentativeNameLabel(companyType),
   founderEmail: "Founder's Email",
   founderAddress: "Founder's Address",
   founderPhoneNumber: "Founder's Phone",
@@ -36,8 +37,8 @@ const getOnboardingKeyLabels = (userType: UserTypes) => ({
   investmentProof: "Investment Proof",
   investmentSize: "Investment Size",
 
-  cacCertificate: "CAC Certificate",
-  companyLogo: "Company Logo",
+  cacCertificateUrl: "CAC Certificate",
+  companyLogoUrl: "Company Logo",
   identificationMeans: "Means of Identification",
   nationality: "Nationality",
   identificationMessage: "Message",
@@ -45,26 +46,26 @@ const getOnboardingKeyLabels = (userType: UserTypes) => ({
 
 const getCanGoNext = ({
   activeStepIndex,
-  canGoToCompanyContact,
-  canGoToPersonProfile,
-  canGoToIdentification,
+  canGoToContactData,
+  canGoToRepresentativeData,
+  canGoToIdentificationData,
   canGoToReview,
   hasAgreed,
 }: {
   activeStepIndex: number;
-  canGoToCompanyContact: boolean;
-  canGoToPersonProfile: boolean;
-  canGoToIdentification: boolean;
+  canGoToContactData: boolean;
+  canGoToRepresentativeData: boolean;
+  canGoToIdentificationData: boolean;
   canGoToReview: boolean;
   hasAgreed: boolean;
 }) => {
   switch (activeStepIndex) {
     case INIT_ONBOARDING_STEP_INDEX:
-      return canGoToCompanyContact;
+      return canGoToContactData;
     case INIT_ONBOARDING_STEP_INDEX + 1:
-      return canGoToPersonProfile;
+      return canGoToRepresentativeData;
     case INIT_ONBOARDING_STEP_INDEX + 2:
-      return canGoToIdentification;
+      return canGoToIdentificationData;
     case INIT_ONBOARDING_STEP_INDEX + 3:
       return canGoToReview;
     case INIT_ONBOARDING_STEP_INDEX + 4:
@@ -75,77 +76,66 @@ const getCanGoNext = ({
 };
 
 export default function useOnboardingProvider(): OnboardingContextType {
-  const [userType, setUserType] = useState(UserTypes.StartUp);
+  const [companyType, setCompanyType] = useState(CompanyTypes.StartUp);
   const [activeStepIndex, setActiveStepIndex] = useState(
     INIT_ONBOARDING_STEP_INDEX
   );
-  const [profileData, setProfileData] =
-    useState<OnboardingContextType["profileData"]>();
-  const [contactData, setContactData] =
-    useState<OnboardingContextType["contactData"]>();
-  const [personData, setPersonData] =
-    useState<OnboardingContextType["personData"]>();
-  const [identificationData, setIdentificationData] =
-    useState<OnboardingContextType["identificationData"]>();
-  const [canGoToCompanyContact, setCanGoToCompanyContact] = useState(false);
-  const [canGoToPersonProfile, setCanGoToPersonProfile] = useState(false);
-  const [canGoToIdentification, setCanGoToIdentification] = useState(false);
+  const { onboardingData, onboardingDataSetters } = useOnboardingData();
+  const [canGoToContactData, setCanGoToContactData] = useState(false);
+  const [canGoToRepresentativeData, setCanGoToRepresentativeData] =
+    useState(false);
+  const [canGoToIdentificationData, setCanGoToIdentificationData] =
+    useState(false);
   const [canGoToReview, setCanGoToReview] = useState(false);
   const [hasAgreed, setHasAgreed] = useState(false);
 
   const stepTitles = useMemo(
-    () => userSteps[userType as keyof typeof userSteps],
-    [userType]
+    () => userSteps[companyType as keyof typeof userSteps],
+    [companyType]
   );
 
   const canGoNext = useMemo(
     () =>
       getCanGoNext({
         activeStepIndex,
-        canGoToCompanyContact,
-        canGoToPersonProfile,
-        canGoToIdentification,
+        canGoToContactData,
+        canGoToRepresentativeData,
+        canGoToIdentificationData,
         canGoToReview,
         hasAgreed,
       }),
     [
       activeStepIndex,
-      canGoToCompanyContact,
-      canGoToIdentification,
-      canGoToPersonProfile,
+      canGoToContactData,
+      canGoToIdentificationData,
+      canGoToRepresentativeData,
       canGoToReview,
       hasAgreed,
     ]
   );
 
-  const keyLabels = useMemo(() => getOnboardingKeyLabels(userType), [userType]);
+  const keyLabels = useMemo(
+    () => getOnboardingKeyLabels(companyType),
+    [companyType]
+  );
 
   return {
-    userType,
-    setUserType,
+    companyType,
+    setCompanyType,
 
     activeStepIndex,
     setActiveStepIndex,
     stepTitles,
 
-    profileData,
-    setProfileData,
-
-    contactData,
-    setContactData,
-
-    personData,
-    setPersonData,
-
-    identificationData,
-    setIdentificationData,
+    onboardingData,
+    onboardingDataSetters,
 
     keyLabels,
 
     canGoNext,
-    setCanGoToCompanyContact,
-    setCanGoToPersonProfile,
-    setCanGoToIdentification,
+    setCanGoToContactData,
+    setCanGoToRepresentativeData,
+    setCanGoToIdentificationData,
     setCanGoToReview,
 
     hasAgreed,

@@ -13,7 +13,7 @@ const config: Config = {
       },
       colors: {
         gray: {
-          66: "A8A8A8",
+          66: "#A8A8A8",
           85: "#d9d9d9",
           100: "#9595A0",
           200: "rgba(195, 195, 215, 0.50)",

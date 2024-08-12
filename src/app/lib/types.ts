@@ -1,110 +1,146 @@
 import { Dispatch, SetStateAction } from "react";
 
+export type StartUpOnboardingData = CommonProfileData &
+  StartUpSpecificProfileData &
+  ContactData &
+  StartUpRepresentativeData &
+  StartUpIdentificationData & {
+    linkedUser: any;
+  };
+
+export type OtherOnboardingData = CommonProfileData &
+  ContactData &
+  OtherRepresentativeData &
+  OtherIdentificationData & {
+    linkedUser: any;
+  };
+
+export type OnboardingData = {
+  profileData?: ProfileData;
+  contactData?: ContactData;
+  representativeData?: RepresentativeData;
+  identificationData?: IdentificationData;
+};
+
+export type OnboardingDataSetters = {
+  setProfileData: Dispatch<SetStateAction<ProfileData | undefined>>;
+  setContactData: Dispatch<SetStateAction<ContactData>>;
+  setRepresentativeData: Dispatch<SetStateAction<RepresentativeData>>;
+  setIdentificationData: Dispatch<
+    SetStateAction<IdentificationData | undefined>
+  >;
+};
+
 export type OnboardingContextType = {
-  userType: UserTypes;
-  setUserType: Dispatch<SetStateAction<UserTypes>>;
+  companyType: CompanyTypes;
+  setCompanyType: Dispatch<SetStateAction<CompanyTypes>>;
 
   activeStepIndex: number;
   setActiveStepIndex: Dispatch<SetStateAction<number>>;
   stepTitles: string[];
 
-  profileData?: ProfileData;
-  setProfileData: Dispatch<SetStateAction<ProfileData | undefined>>;
-
-  contactData?: ContactData;
-  setContactData: Dispatch<SetStateAction<ContactData | undefined>>;
-
-  personData?: PersonData;
-  setPersonData: Dispatch<SetStateAction<PersonData | undefined>>;
-
-  identificationData?: IdentificationData;
-  setIdentificationData: Dispatch<
-    SetStateAction<IdentificationData | undefined>
-  >;
-
   keyLabels: Record<string, string>;
 
+  onboardingData: OnboardingData;
+  onboardingDataSetters: OnboardingDataSetters;
+
   canGoNext: boolean;
-  setCanGoToCompanyContact: Dispatch<SetStateAction<boolean>>;
-  setCanGoToPersonProfile: Dispatch<SetStateAction<boolean>>;
-  setCanGoToIdentification: Dispatch<SetStateAction<boolean>>;
+  setCanGoToContactData: Dispatch<SetStateAction<boolean>>;
+  setCanGoToRepresentativeData: Dispatch<SetStateAction<boolean>>;
+  setCanGoToIdentificationData: Dispatch<SetStateAction<boolean>>;
   setCanGoToReview: Dispatch<SetStateAction<boolean>>;
 
   hasAgreed: boolean;
   setHasAgreed: Dispatch<SetStateAction<boolean>>;
 };
 
-export enum UserTypes {
+export enum CompanyTypes {
   StartUp = "startup",
   AngelInvestor = "angel investor",
   VentureCapitalist = "venture capitalist",
   Others = "accelerators, innovation hubs & incubators",
 }
 
-type CountryData = {
+export type SelectData = {
   value: string;
   label: string;
 };
 
 type CommonProfileData = {
-  companyDescription: string; // textArea
-  industry: string;
+  description: string; // textArea
+  industry: SelectData;
   fundingInterest: string;
+  name: string;
 };
 
-export type StartUpProfileData = {
-  companyName: string;
-  yearsOfInc: string; // date
+export type StartUpSpecificProfileData = {
+  yearOfInc: string; // date
   rcNumber: string;
 };
 
 export type ProfileData = CommonProfileData &
-  (
-    | StartUpProfileData
-    | {
-        companyName: string;
-      }
-  );
+  Partial<StartUpSpecificProfileData>;
 
 export type ContactData = {
-  companyEmail: string; // email
-  companyWebsite: string; // url
-  companyAddress: string; // address
-  companyPhoneNumber: string; // tel
+  email: string; // email
+  website: string; // url
+  address: string; // address
+  phoneNumber: string; // tel
 };
 
-export type StartUpPersonData = {
-  personName: string;
+type CommonRepresentativeData = {
+  representativeName: string;
+};
+
+export type StartUpRepresentativeData = CommonRepresentativeData & {
   founderEmail: string; // email
   founderAddress: string; // text
   founderPhoneNumber: string; // tel
-  noOfFounders: number; // select
+  noOfFounders: SelectData; // select
 };
 
-export type OtherPersonData = {
-  personName: string;
-  investmentExperience: string; // select
+export type OtherRepresentativeData = CommonRepresentativeData & {
+  investmentExperience: SelectData; // select
   investmentProof: string; // url
-  investmentSize: string; // select
+  investmentSize: SelectData; // select
 };
 
-export type PersonData = StartUpPersonData | OtherPersonData;
+export type RepresentativeData =
+  | StartUpRepresentativeData
+  | OtherRepresentativeData;
 
-export type CompanyIdentificationData = {
-  cacCertificate: string; // cldupload
-  companyLogo: string; // cldupload
+export type StartUpIdentificationData = {
+  cacCertificateUrl: string; // cldUpload
+  companyLogoUrl: string; // cldUpload
 };
 
 export type OtherIdentificationData = {
-  identificationMeans: string; // select
-  nationality: CountryData;
+  identificationMeans: SelectData; // select
+  nationality: SelectData;
   identificationMessage: string; // textArea
 };
 
 export type IdentificationData =
-  | CompanyIdentificationData
+  | StartUpIdentificationData
   | OtherIdentificationData;
 
 export enum ErrorProcess {
   Cloudinary = "cloudinary",
+}
+
+export type AuthFormValues = {
+  name?: string;
+  email: string;
+  password: string;
+};
+
+export enum Providers {
+  Google = "google",
+  Apple = "apple",
+  Credentials = "credentials",
+}
+
+export enum AccountTypes {
+  OAuth = "oauth",
+  Credentials = "credentials",
 }

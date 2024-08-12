@@ -1,17 +1,20 @@
 import { useEffect, useMemo } from "react";
 import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { IdentificationData, UserTypes } from "@/lib/types";
+import { IdentificationData, CompanyTypes } from "@/lib/types";
 import { useForm } from "react-hook-form";
 
-export default function useOnboardingIdentification() {
+export default function useCompanyIdentification() {
   const {
-    userType,
-    identificationData,
-    setIdentificationData,
+    companyType,
+    onboardingData: { identificationData },
+    onboardingDataSetters: { setIdentificationData },
     setCanGoToReview,
     keyLabels,
   } = useOnboardingContext();
-  const isStartup = useMemo(() => userType === UserTypes.StartUp, [userType]);
+  const isStartup = useMemo(
+    () => companyType === CompanyTypes.StartUp,
+    [companyType]
+  );
   const formValues = useForm<IdentificationData>({
     mode: "onChange",
     shouldFocusError: true,

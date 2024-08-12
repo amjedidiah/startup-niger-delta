@@ -1,27 +1,30 @@
 "use client";
 import { INIT_ONBOARDING_STEP_INDEX } from "@/lib/constants";
-import { OnboardingContextType, UserTypes } from "@/lib/types";
+import {
+  OnboardingContextType,
+  CompanyTypes,
+  OnboardingData,
+  OnboardingDataSetters,
+} from "@/lib/types";
 import { createContext } from "react";
 
 export default createContext({
-  userType: UserTypes.StartUp,
-  setUserType: () => {},
+  companyType: CompanyTypes.StartUp,
+  setCompanyType: () => {},
 
   activeStepIndex: INIT_ONBOARDING_STEP_INDEX,
   setActiveStepIndex: () => {},
   stepTitles: [],
 
-  setProfileData: () => {},
-  setContactData: () => {},
-  setPersonData: () => {},
-  setIdentificationData: () => {},
+  onboardingData: {} as OnboardingData,
+  onboardingDataSetters: {} as OnboardingDataSetters,
 
   keyLabels: {},
 
   canGoNext: false,
-  setCanGoToCompanyContact: () => {},
-  setCanGoToPersonProfile: () => {},
-  setCanGoToIdentification: () => {},
+  setCanGoToContactData: () => {},
+  setCanGoToRepresentativeData: () => {},
+  setCanGoToIdentificationData: () => {},
   setCanGoToReview: () => {},
 
   hasAgreed: false,

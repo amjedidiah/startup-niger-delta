@@ -1,8 +1,11 @@
+import ShouldRender from "@/components/shared/should-render";
 import { SNDDoubleCaretRight, SNDSocials } from "@/lib/icons";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function FooterTop() {
+export default async function FooterTop() {
+  const session = await getServerSession();
   return (
     <section className="bg-green-pattern py-12 xl:pt-14">
       <article className="container grid lg:grid-cols-[5fr,7fr] gap-14 lg:gap-10">
@@ -22,20 +25,22 @@ export default function FooterTop() {
             heritage, and promoting environmental sustainability in the Niger
             Delta Region.
           </p>
-          <Link
-            href="/signup"
-            className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white w-fit hover:bg-unknown-100"
-          >
-            Get Started
-          </Link>
 
-          <Image
-            src="/images/footer-arrow.png"
-            width={61}
-            height={25}
-            alt="footer-arrow"
-            className="absolute -left-8 -bottom-9 xl:-bottom-5"
-          />
+          <ShouldRender condition={!session}>
+            <Link
+              href="/signup"
+              className="rounded-[5px] bg-gradient-1 py-[0.625rem] px-5 text-white w-fit hover:bg-unknown-100"
+            >
+              Get Started
+            </Link>
+            <Image
+              src="/images/footer-arrow.png"
+              width={61}
+              height={25}
+              alt="footer-arrow"
+              className="absolute -left-8 -bottom-9 xl:-bottom-5"
+            />
+          </ShouldRender>
         </div>
         <div className="flex max-sm:flex-col max-sm:gap-10 items-start justify-between">
           <div>
