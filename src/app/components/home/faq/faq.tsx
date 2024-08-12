@@ -29,7 +29,7 @@ export default function FAQ() {
                 {faqActions.map(({ icon: Icon, text }) => (
                   <div
                     key={text}
-                    className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[200px] aspect-square flex flex-col justify-center items-center lg:gap-4 rounded-[5px] bg-white-smoke-100 shadow-faq-action-card hover:bg-unknown-700 active:bg-unknown-800"
+                    className="w-[100px] sm:w-[120px] md:w-[150px] lg:w-[180px] xl:w-[200px] aspect-square flex flex-col justify-center items-center lg:gap-4 rounded-[5px] bg-white-smoke-100 shadow-faq-action-card hover:bg-laurel-green-300 active:bg-unknown-800"
                   >
                     <span className="[&_svg]:scale-50 md:[&_svg]:scale-75 lg:[&_svg]:scale-90 xl:[&_svg]:scale-100">
                       <Icon />

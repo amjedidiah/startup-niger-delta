@@ -154,7 +154,7 @@ function EventSlider() {
   }, [setFirstPastEventIndex]);
 
   return (
-    <div className="[&>.swiper]:overflow-visible overflow-y-hidden px-10 sm:px-6">
+    <div className="[&>.swiper]:overflow-visible overflow-y-hidden px-10 sm:px-6 py-3">
       <Swiper
         onSwiper={setSwiperInstance}
         modules={[Pagination, Autoplay]}
@@ -174,11 +174,14 @@ function EventSlider() {
         style={{
           maxHeight: swiperMaxHeight,
         }}
-        className=" [&>.swiper-pagination-vertical.swiper-pagination-bullets]:-right-5 [&_.swiper-pagination-bullets-dynamic]:overflow-visible [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet]:bg-white [&_.swiper-pagination-bullet]:h-3 [&_.swiper-pagination-bullet]:w-3 [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:bg-shade-of-amber"
+        className="[&>.swiper-pagination-vertical.swiper-pagination-bullets]:-right-5 [&_.swiper-pagination-bullets-dynamic]:overflow-visible [&_.swiper-pagination-bullet]:opacity-100 [&_.swiper-pagination-bullet]:bg-white [&_.swiper-pagination-bullet]:h-3 [&_.swiper-pagination-bullet]:w-3 [&_.swiper-pagination-bullet.swiper-pagination-bullet-active-main]:bg-shade-of-amber"
         onRealIndexChange={changeEventActiveNavItem}
       >
         {mainEvents.map((item, i) => (
-          <SwiperSlide className="event-slide-height" key={`${item.slug}-${i}`}>
+          <SwiperSlide
+            className="event-slide-height py-2"
+            key={`${item.slug}-${i}`}
+          >
             <EventCard event={item} />
           </SwiperSlide>
         ))}

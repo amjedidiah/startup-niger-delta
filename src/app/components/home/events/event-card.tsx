@@ -19,19 +19,25 @@ export default function EventCard({
     date,
   },
 }: Props) {
-  const processedExcerpt = truncateText(excerpt);
+  const processedExcerpt = truncateText(excerpt, 18);
 
   return (
-    <div className="grid min-[567px]:max-lg:grid-cols-[150px,1fr] min-[567px]:max-lg:grid-rows-[auto,auto,auto] lg:grid-rows-1 lg:grid-cols-[82px,118px,1fr,auto] lg:items-center gap-4 lg:gap-10 rounded-[4px] bg-[rgba(255,255,255,0.50)] shadow-event-card py-4 px-8 lg:py-6 lg:px-[62px]">
-      <div className="flex flex-wrap gap-x-4 sm:gap-y-2 text-black lg:text-lg font-bold lg:flex lg:flex-col gap-0 min-[567px]:max-lg:row-start-2 min-[567px]:max-lg:col-start-2">
-        <p>{new Date(date).toDateString()}</p>
-        <p>
+    <div className="grid min-[567px]:max-lg:grid-cols-[150px,1fr] min-[567px]:max-lg:grid-rows-[auto,auto,auto] lg:grid-rows-[auto] lg:grid-cols-[auto,118px,1fr,auto] lg:items-center gap-4 lg:gap-6 rounded-[4px] bg-[rgba(255,255,255,0.50)] shadow-event-card py-4 px-8 lg:px-[62px]">
+      <div className="flex flex-wrap gap-x-4 sm:gap-y-2 text-black lg:text-lg lg:flex lg:flex-col gap-0 min-[567px]:max-lg:row-start-2 min-[567px]:max-lg:col-start-2">
+        <p className="font-bold">
+          {new Intl.DateTimeFormat("en-US", {
+            month: "short",
+            day: "2-digit",
+            year: "numeric",
+          }).format(new Date(date))}
+        </p>
+        <p className="flex flex-col -gap-1">
           <span>{startTime}</span>
           <span>-</span>
           <span>{endTime}</span>
         </p>
       </div>
-      <div className="relative max-[567px]:h-[150px]  h-full rounded-[4px] overflow-hidden min-[567px]:max-lg:col-start-1 min-[567px]:max-lg:row-span-full">
+      <div className="relative aspect-square rounded-[4px] overflow-hidden min-[567px]:max-lg:col-start-1 min-[567px]:max-lg:row-span-full">
         <Image
           src={src}
           alt={slug}

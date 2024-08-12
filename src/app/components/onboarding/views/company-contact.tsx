@@ -1,42 +1,77 @@
-import useOnboardingContext from "@/hooks/use-onboarding-context";
-import { ContactData } from "@/lib/types";
-import { memo, useEffect } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import CompanyEmailInput from "@/components/onboarding/inputs/company-contact/company-email-input";
-import CompanyWebsiteInput from "@/components/onboarding/inputs/company-contact/company-website-input";
-import CompanyAddressInput from "@/components/onboarding/inputs/company-contact/company-address-input";
-import CompanyPhoneInput from "@/components/onboarding/inputs/company-contact/company-phone-input";
+import { memo } from "react";
+import { FormProvider } from "react-hook-form";
+import { defaultOnboardingInputRules } from "@/lib/constants";
+import useCompanyContact from "@/hooks/use-company-contact";
+import Input from "@/components/shared/form-fields/input";
+import TextArea from "@/components/shared/form-fields/text-area";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
+
+const companyEmailRules = {
+  ...defaultOnboardingInputRules,
+  validate: (value: string) =>
+    Boolean(
+      String(value)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) || "Invalid email address",
+};
+
+const companyWebsiteRules = {
+  ...defaultOnboardingInputRules,
+  validate: (value: string) =>
+    Boolean(
+      String(value)
+        .toLowerCase()
+        .match(/^www\.[a-zA-Z0-9-]+\.[a-zA-Z0-9-]{2,}$/)
+    ) || "Invalid website",
+};
+
+const companyPhoneRules = {
+  ...defaultOnboardingInputRules,
+  validate: (value: string) =>
+    isPossiblePhoneNumber(value) || "Invalid phone number",
+};
 
 function CompanyContact() {
-  const { contactData, setContactData, setCanGoToPersonProfile } =
-    useOnboardingContext();
-
-  const formValues = useForm<ContactData>({
-    mode: "onChange",
-    shouldFocusError: true,
-    defaultValues: contactData,
-  });
-  const {
-    formState: { isValid, isDirty },
-    getValues,
-  } = formValues;
-  const isDisabled = !isValid || (!isDirty && !contactData);
-
-  useEffect(() => {
-    return () => setContactData(getValues());
-  }, [getValues, setContactData]);
-
-  useEffect(
-    () => setCanGoToPersonProfile(!isDisabled),
-    [isDisabled, setCanGoToPersonProfile]
-  );
+  const { formValues, contactData, keyLabels } = useCompanyContact();
 
   return (
     <FormProvider {...formValues}>
-      <CompanyEmailInput />
-      <CompanyWebsiteInput />
-      <CompanyAddressInput />
-      <CompanyPhoneInput />
+      <Input
+        dataStore={contactData}
+        name="companyEmail"
+        rules={companyEmailRules}
+        aria-label={keyLabels["companyEmail"]}
+        type="email"
+        autoComplete="work email"
+        placeholder="username@domain.com"
+      />
+      <Input
+        dataStore={contactData}
+        aria-label={keyLabels["companyPhoneNumber"]}
+        type="tel"
+        name="companyPhoneNumber"
+        rules={companyPhoneRules}
+        defaultCountry="NG"
+        international
+      />
+      <TextArea
+        dataStore={contactData}
+        name="companyAddress"
+        rules={defaultOnboardingInputRules}
+        aria-label={keyLabels["companyAddress"]}
+        placeholder="Address Information"
+      />
+      <Input
+        dataStore={contactData}
+        name="companyWebsite"
+        rules={companyWebsiteRules}
+        aria-label={keyLabels["companyWebsite"]}
+        type="url"
+        placeholder="www.website.com"
+      />
     </FormProvider>
   );
 }
