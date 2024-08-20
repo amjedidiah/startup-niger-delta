@@ -92,9 +92,8 @@ const isProd = process.env.NODE_ENV === "production";
 
 export const isDev = !isProd;
 
-export const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_BRANCH_URL}`
-  : process.env.NEXTAUTH_URL;
+export const baseUrl =
+  process.env.NEXTAUTH_URL || "https://" + process.env.VERCEL_BRANCH_URL;
 
 export const industryOptions = [
   {
