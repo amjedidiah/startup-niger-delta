@@ -182,9 +182,9 @@ export const handleOnboardingData = async (
             yearOfInc: new Date(processedData["yearOfInc"]).getTime(),
             industry: processedData["industry"].value,
             noOfFounders: processedData["noOfFounders"].value,
-            fundingInterests: processedData["fundingInterests"].map(
-              (item: SelectData) => item.value
-            ),
+            fundingInterests: processedData["fundingInterests"]
+              .map((item: SelectData) => item.value)
+              .join(", "),
           },
           {
             upsert: true,
@@ -194,12 +194,12 @@ export const handleOnboardingData = async (
           { email },
           {
             ...processedData,
-            industryInterests: processedData["industryInterests"].map(
-              (item: SelectData) => item.value
-            ),
-            fundingInterests: processedData["fundingInterests"].map(
-              (item: SelectData) => item.value
-            ),
+            industryInterests: processedData["industryInterests"]
+              .map((item: SelectData) => item.value)
+              .join(", "),
+            fundingInterests: processedData["fundingInterests"]
+              .map((item: SelectData) => item.value)
+              .join(", "),
             identificationMeans: processedData["identificationMeans"].value,
             nationality: processedData["nationality"].value,
             investmentExperience: processedData["investmentExperience"].value,
