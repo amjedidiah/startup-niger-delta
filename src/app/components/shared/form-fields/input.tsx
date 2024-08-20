@@ -7,6 +7,7 @@ import {
   memo,
   useEffect,
   useImperativeHandle,
+  useMemo,
 } from "react";
 import {
   FieldValues,
@@ -23,8 +24,9 @@ import { SNDUpload } from "@/lib/icons";
 import useFileComponent from "@/hooks/use-file-component";
 import ShouldRender from "@/components/shared/should-render";
 import { maxFileSize } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn, getOnboardingKeyLabels } from "@/lib/utils";
 import ImagePreview from "@/components/shared/image-preview";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 
 type Props = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -34,8 +36,8 @@ type Props = Omit<
     UseControllerProps<FieldValues, string>,
     "name" | "defaultValue" | "disabled"
   > & {
-    name: string;
-    ["aria-label"]: string;
+    name: keyof ReturnType<typeof getOnboardingKeyLabels>;
+    ["aria-label"]?: string;
 
     dataStore?: Record<string, any>;
     dataStoreSetter?: Dispatch<SetStateAction<any | undefined>>;
@@ -71,7 +73,9 @@ const FileComponent = memo(
           onUploadAdded={handleUploadAdded}
           options={{ maxFileSize, ...options }}
         >
-          {({ open }) => {
+          {function ({ open }) {
+            if (!open) return <p>Please refresh</p>;
+
             return (
               <div
                 className="pb-6 pt-4 flex items-center flex-wrap justify-center gap-3 cursor-pointer"
@@ -153,6 +157,7 @@ export default memo(
 
       type = "text",
       control,
+      "aria-label": aria,
 
       ...rest
     },
@@ -167,6 +172,11 @@ export default memo(
       rules,
       shouldUnregister,
     });
+    const { keyLabels } = useOnboardingContext();
+    const label = useMemo(
+      () => aria || keyLabels[name],
+      [aria, keyLabels, name]
+    );
 
     useImperativeHandle(fieldRef, () => ref);
     useEffect(() => {
@@ -178,7 +188,7 @@ export default memo(
     }, [dataStoreSetter, fieldRest.value, name]);
 
     return (
-      <OnboardingInputContainer label={rest["aria-label"]} name={name}>
+      <OnboardingInputContainer label={label} name={name}>
         <Component
           name={name}
           type={type}

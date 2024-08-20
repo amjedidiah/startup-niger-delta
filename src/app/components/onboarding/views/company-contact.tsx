@@ -23,7 +23,7 @@ const companyPhoneRules = {
 };
 
 function CompanyContact() {
-  const { formValues, contactData, keyLabels } = useCompanyContact();
+  const { formValues, contactData } = useCompanyContact();
 
   return (
     <FormProvider {...formValues}>
@@ -31,14 +31,12 @@ function CompanyContact() {
         dataStore={contactData}
         name="email"
         rules={emailRules}
-        aria-label={keyLabels["email"]}
         type="email"
         autoComplete="work email"
         placeholder="username@domain.com"
       />
       <Input
         dataStore={contactData}
-        aria-label={keyLabels["phoneNumber"]}
         type="tel"
         name="phoneNumber"
         rules={companyPhoneRules}
@@ -49,14 +47,12 @@ function CompanyContact() {
         dataStore={contactData}
         name="address"
         rules={defaultInputRules}
-        aria-label={keyLabels["address"]}
         placeholder="Address Information"
       />
       <Input
         dataStore={contactData}
         name="website"
         rules={websiteRules}
-        aria-label={keyLabels["website"]}
         type="url"
         placeholder="www.website.com"
       />

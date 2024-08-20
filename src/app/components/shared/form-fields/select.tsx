@@ -1,5 +1,12 @@
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
-import { Dispatch, SetStateAction, forwardRef, memo, useEffect } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  forwardRef,
+  memo,
+  useEffect,
+  useMemo,
+} from "react";
 import {
   Controller,
   FieldValues,
@@ -8,6 +15,8 @@ import {
 } from "react-hook-form";
 import ReactSelect, { Props as SelectProps } from "react-select";
 import SelectInput from "@/components/shared/form-fields/select-input";
+import { getOnboardingKeyLabels } from "@/lib/utils";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
 
 type Props = Omit<SelectProps, "onChange" | "onBlur" | "value" | "isDisabled"> &
   Omit<
@@ -17,8 +26,8 @@ type Props = Omit<SelectProps, "onChange" | "onBlur" | "value" | "isDisabled"> &
     dataStore?: Record<string, any>;
     dataStoreSetter?: Dispatch<SetStateAction<any | undefined>>;
 
-    name: string;
-    ["aria-label"]: string;
+    name: keyof ReturnType<typeof getOnboardingKeyLabels>;
+    ["aria-label"]?: string;
   };
 
 export default memo(
@@ -33,6 +42,7 @@ export default memo(
 
       rules,
       shouldUnregister,
+      "aria-label": aria,
 
       ...rest
     },
@@ -49,9 +59,14 @@ export default memo(
         }));
       };
     }, [dataStoreSetter, getValues, name]);
+    const { keyLabels } = useOnboardingContext();
+    const label = useMemo(
+      () => aria || keyLabels[name],
+      [aria, keyLabels, name]
+    );
 
     return (
-      <OnboardingInputContainer label={rest["aria-label"]} name={name}>
+      <OnboardingInputContainer label={label} name={name}>
         <Controller
           name={name}
           control={control}

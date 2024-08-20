@@ -4,7 +4,12 @@ import dbConnect from "@/lib/mongoose";
 import User from "@/models/user";
 import { getServerSession, Session } from "next-auth";
 import { cache } from "react";
-import { AuthFormValues, OnboardingData, Providers } from "@/lib/types";
+import {
+  AuthFormValues,
+  OnboardingData,
+  Providers,
+  SelectData,
+} from "@/lib/types";
 import Account from "@/models/account";
 import { UserDocument } from "mongoose";
 import { mailEmailConfirmationToken } from "@/lib/actions/mail";
@@ -177,6 +182,9 @@ export const handleOnboardingData = async (
             yearOfInc: new Date(processedData["yearOfInc"]).getTime(),
             industry: processedData["industry"].value,
             noOfFounders: processedData["noOfFounders"].value,
+            fundingInterests: processedData["fundingInterests"].map(
+              (item: SelectData) => item.value
+            ),
           },
           {
             upsert: true,
@@ -186,7 +194,12 @@ export const handleOnboardingData = async (
           { email },
           {
             ...processedData,
-            industry: processedData["industry"].value,
+            industryInterests: processedData["industryInterests"].map(
+              (item: SelectData) => item.value
+            ),
+            fundingInterests: processedData["fundingInterests"].map(
+              (item: SelectData) => item.value
+            ),
             identificationMeans: processedData["identificationMeans"].value,
             nationality: processedData["nationality"].value,
             investmentExperience: processedData["investmentExperience"].value,

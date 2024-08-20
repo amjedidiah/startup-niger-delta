@@ -2,47 +2,7 @@ import { INIT_ONBOARDING_STEP_INDEX, userSteps } from "@/lib/constants";
 import { OnboardingContextType, CompanyTypes } from "@/lib/types";
 import { useMemo, useState } from "react";
 import useOnboardingData from "@/hooks/use-onboarding-data";
-
-const getRepresentativeNameLabel = (companyType: CompanyTypes) =>
-  ({
-    [CompanyTypes.AngelInvestor]: "Angel",
-    [CompanyTypes.Others]: "Principal Promoter",
-    [CompanyTypes.StartUp]: "Founder's Name",
-    [CompanyTypes.VentureCapitalist]: "General Partner",
-  }[companyType] || "Full Name");
-
-const getOnboardingKeyLabels = (companyType: CompanyTypes) => ({
-  name: `Company ${
-    companyType === CompanyTypes.AngelInvestor ? "/ Individual" : ""
-  } Name`,
-  yearOfInc: "Years of Incorporation",
-  rcNumber: "RC Number",
-  industry: "Industry",
-  description: `${
-    companyType === CompanyTypes.StartUp ? "Startup" : "Business"
-  } Description`,
-  fundingInterest: "Funding Interest",
-
-  email: "Company Email",
-  phoneNumber: "Company Phone Number",
-  address: "Company Address",
-  website: "Company Website",
-
-  representativeName: getRepresentativeNameLabel(companyType),
-  founderEmail: "Founder's Email",
-  founderAddress: "Founder's Address",
-  founderPhoneNumber: "Founder's Phone",
-  noOfFounders: "No of Founders",
-  investmentExperience: "Investment Experience",
-  investmentProof: "Investment Proof",
-  investmentSize: "Investment Size",
-
-  cacCertificateUrl: "CAC Certificate",
-  companyLogoUrl: "Company Logo",
-  identificationMeans: "Means of Identification",
-  nationality: "Nationality",
-  identificationMessage: "Message",
-});
+import { getOnboardingKeyLabels } from "@/lib/utils";
 
 const getCanGoNext = ({
   activeStepIndex,

@@ -9,10 +9,6 @@ import { defaultInputRules } from "@/lib/constants";
 import { AuthFormValues, Providers } from "@/lib/types";
 import useAuthForm, { UseAuthFormProps } from "@/hooks/use-auth-form";
 
-type Props = {
-  isSignupForm?: boolean;
-};
-
 const nameInputRules: RegisterOptions<AuthFormValues, "name"> = {
   ...defaultInputRules,
   minLength: {
@@ -115,7 +111,7 @@ const AuthForm = (props: UseAuthFormProps) => {
           <button
             disabled={!isValid || isSubmitting}
             className={cn(
-              "mt-1 py-2 text-white rounded-[5px] disabled:bg-gray-100 disabled:border disabled:border-tiber-200 disabled:bg-gradient-4",
+              "mt-1 py-2 text-white rounded-[5px] [&:not(:disabled)]:border [&:not(:disabled)]:border-tiber-200 [&:not(:disabled)]:bg-gradient-4 disabled:bg-gray-300",
               {
                 "animate-pulse": isSubmitting,
               }

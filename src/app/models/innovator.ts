@@ -18,7 +18,7 @@ const InnovatorSchema = new Schema(
       required: true,
       index: true,
     },
-    fundingInterest: {
+    fundingInterests: {
       type: String,
       required: true,
     },

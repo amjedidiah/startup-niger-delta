@@ -162,3 +162,21 @@ export const industryOptions = [
     label: "Others",
   },
 ];
+
+export const fundingInterestOptions = [
+  { value: "seed-funding", label: "Seed Funding" },
+  { value: "venture-capital", label: "Venture Capital (VC)" },
+  { value: "angel-investors", label: "Angel Investors" },
+  { value: "series-funding", label: "Series A, B, C Funding" },
+  { value: "crowd-funding", label: "Crowdfunding" },
+  {
+    value: "accelerators-incubators",
+    label: "Accelerators and Incubators",
+  },
+  {
+    value: "corporate-venture-capital",
+    label: "Corporate Venture Capital (CVC)",
+  },
+  { value: "debt-financing", label: "Debt Financing" },
+  { value: "government", label: "Government Grants and Subsidies" },
+];

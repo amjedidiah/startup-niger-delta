@@ -8,7 +8,6 @@ export default function useCompanyContact() {
     onboardingData: { contactData },
     onboardingDataSetters: { setContactData },
     setCanGoToRepresentativeData,
-    keyLabels,
   } = useOnboardingContext();
 
   const formValues = useForm<ContactData>({
@@ -32,5 +31,5 @@ export default function useCompanyContact() {
     [isDisabled, setCanGoToRepresentativeData]
   );
 
-  return { formValues, contactData, setContactData, keyLabels };
+  return { formValues, contactData, setContactData };
 }

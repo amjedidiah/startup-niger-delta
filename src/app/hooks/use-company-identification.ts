@@ -9,7 +9,6 @@ export default function useCompanyIdentification() {
     onboardingData: { identificationData },
     onboardingDataSetters: { setIdentificationData },
     setCanGoToReview,
-    keyLabels,
   } = useOnboardingContext();
   const isStartup = useMemo(
     () => companyType === CompanyTypes.StartUp,
@@ -41,6 +40,5 @@ export default function useCompanyIdentification() {
     identificationData,
     setIdentificationData,
     isStartup,
-    keyLabels,
   };
 }

@@ -67,19 +67,24 @@ export type SelectData = {
 };
 
 type CommonProfileData = {
-  description: string; // textArea
-  industry: SelectData;
-  fundingInterest: string;
   name: string;
+  description: string; // textArea
+  fundingInterests: SelectData[];
 };
 
 export type StartUpSpecificProfileData = {
   yearOfInc: string; // date
   rcNumber: string;
+  industry: SelectData;
 };
 
 export type ProfileData = CommonProfileData &
-  Partial<StartUpSpecificProfileData>;
+  (
+    | StartUpSpecificProfileData
+    | {
+        industryInterests: SelectData[];
+      }
+  );
 
 export type ContactData = {
   email: string; // email
@@ -116,7 +121,7 @@ export type StartUpIdentificationData = {
 
 export type OtherIdentificationData = {
   identificationMeans: SelectData; // select
-  nationality: SelectData;
+  nationality: SelectData; // select
   identificationMessage: string; // textArea
 };
 

@@ -23,13 +23,8 @@ const fileOptions = {
 };
 
 function CompanyIdentification() {
-  const {
-    formValues,
-    identificationData,
-    setIdentificationData,
-    isStartup,
-    keyLabels,
-  } = useCompanyIdentification();
+  const { formValues, identificationData, setIdentificationData, isStartup } =
+    useCompanyIdentification();
 
   return (
     <FormProvider {...formValues}>
@@ -39,7 +34,6 @@ function CompanyIdentification() {
           dataStoreSetter={setIdentificationData}
           name="cacCertificateUrl"
           rules={defaultInputRules}
-          aria-label={keyLabels["cacCertificateUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
@@ -48,7 +42,6 @@ function CompanyIdentification() {
           dataStoreSetter={setIdentificationData}
           name="companyLogoUrl"
           rules={defaultInputRules}
-          aria-label={keyLabels["companyLogoUrl"]}
           type="file"
           fileOptions={fileOptions}
         />
@@ -59,7 +52,6 @@ function CompanyIdentification() {
           dataStoreSetter={setIdentificationData}
           name="identificationMeans"
           rules={defaultInputRules}
-          aria-label={keyLabels["identificationMeans"]}
           placeholder="Choose verification method"
           options={identificationMeansOptions}
         />
@@ -68,7 +60,6 @@ function CompanyIdentification() {
           dataStoreSetter={setIdentificationData}
           name="nationality"
           rules={defaultInputRules}
-          aria-label={keyLabels["nationality"]}
           placeholder="Country"
           options={nationalityOptions}
         />
@@ -77,7 +68,6 @@ function CompanyIdentification() {
           dataStoreSetter={setIdentificationData}
           name="identificationMessage"
           rules={defaultInputRules}
-          aria-label={keyLabels["identificationMessage"]}
           placeholder="Body"
         />
       </ShouldRender>

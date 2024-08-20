@@ -1,11 +1,22 @@
 import ImagePreview from "@/components/shared/image-preview";
 import ShouldRender from "@/components/shared/should-render";
 import useOnboardingReview from "@/hooks/use-onboarding-review";
-import { SelectData } from "@/lib/types";
-import { memo } from "react";
+import { memo, useCallback } from "react";
+
+function validateImageExtension(fileName: string) {
+  const allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+  const extension = fileName.split(".").pop();
+
+  if (!extension) return false;
+  return allowedExtensions.indexOf(extension.toLowerCase()) !== -1;
+}
 
 function OnboardingReview() {
   const { reviewData, keyLabels } = useOnboardingReview();
+  const getIsImage = useCallback(
+    (value: string) => validateImageExtension(value) && value.includes("https"),
+    []
+  );
 
   return (
     <div className="h-[265px] overflow-y-auto max-w-full rounded-[5px] sm:col-span-2 break-words">
@@ -16,7 +27,7 @@ function OnboardingReview() {
             <h4 className="bg-[#9E9E9E] border border-[#f5f5f5] py-2 px-[14px] text-gable-green text-[15px] font-semibold">
               {title}
             </h4>
-            {Object.entries(content).map(([key, value], i) => (
+            {content.map(([key, value], i) => (
               <div
                 className="grid grid-cols-2 items-center py-2 px-[14px] even:bg-[#f5f5f5]"
                 key={i}
@@ -24,25 +35,14 @@ function OnboardingReview() {
                 <p className="text-black text-xs font-light">
                   {keyLabels[key as keyof typeof keyLabels]}
                 </p>
-                <p className="text-black text-xs font-light">
-                  <ShouldRender condition={typeof value !== "string"}>
-                    {(value as SelectData)?.label}
-                  </ShouldRender>
-                  <ShouldRender
-                    condition={
-                      typeof value === "string" && value.includes("https")
-                    }
-                  >
+                <div className="text-black text-xs font-light">
+                  <ShouldRender condition={getIsImage(value as string)}>
                     <ImagePreview src={value as string} />
                   </ShouldRender>
-                  <ShouldRender
-                    condition={
-                      typeof value === "string" && !value.includes("https")
-                    }
-                  >
+                  <ShouldRender condition={!getIsImage(value as string)}>
                     {value as string}
                   </ShouldRender>
-                </p>
+                </div>
               </div>
             ))}
           </div>

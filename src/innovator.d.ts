@@ -2,7 +2,7 @@ declare module "mongoose" {
   interface InnovatorDocument extends Document {
     description: string; // textArea
     industry: string;
-    fundingInterest: string;
+    fundingInterests: string;
     name: string;
 
     yearOfInc: number; // date

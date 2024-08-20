@@ -1,8 +1,8 @@
 declare module "mongoose" {
   interface FacilitatorDocument extends Document {
     description: string; // textArea
-    industry: string;
-    fundingInterest: string;
+    industryInterests: string;
+    fundingInterests: string;
     name: string;
 
     email: string; // email

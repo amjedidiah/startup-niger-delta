@@ -18,7 +18,7 @@ function OnboardingHeaderNav() {
     <nav className="bg-green-pattern-3 py-3">
       <OnboardingWrapper className="md:grid-cols-[320px,1fr]">
         <div>
-          <p className="text-gable-green font-semibold">
+          <p className="text-gable-green font-semibold text-lg">
             Status of your application
           </p>
           <p className="text-gable-green font-normal">

@@ -5,7 +5,11 @@ import Input from "@/components/shared/form-fields/input";
 import TextArea from "@/components/shared/form-fields/text-area";
 import Select from "@/components/shared/form-fields/select";
 import useCompanyProfile from "@/hooks/use-company-profile";
-import { defaultInputRules, industryOptions } from "@/lib/constants";
+import {
+  defaultInputRules,
+  fundingInterestOptions,
+  industryOptions,
+} from "@/lib/constants";
 
 const nameRules = {
   ...defaultInputRules,
@@ -34,7 +38,7 @@ const descriptionRules = {
 };
 
 function CompanyProfile() {
-  const { formValues, profileData, isStartup, setProfileData, keyLabels } =
+  const { formValues, profileData, isStartup, setProfileData } =
     useCompanyProfile();
 
   return (
@@ -43,7 +47,6 @@ function CompanyProfile() {
         dataStore={profileData}
         name="name"
         rules={nameRules}
-        aria-label={keyLabels["name"]}
         placeholder="Registered name"
         autoComplete="additional-name"
       />
@@ -53,42 +56,49 @@ function CompanyProfile() {
           dataStoreSetter={setProfileData}
           name="yearOfInc"
           rules={yearOfIncRules}
-          aria-label={keyLabels["yearOfInc"]}
           type="date"
           autoComplete="bday-day"
         />
-      </ShouldRender>
-      <ShouldRender condition={isStartup}>
         <Input
           dataStore={profileData}
           dataStoreSetter={setProfileData}
           name="rcNumber"
           rules={defaultInputRules}
-          aria-label={keyLabels["rcNumber"]}
           placeholder="Registration number"
         />
+        <Select
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="industry"
+          rules={defaultInputRules}
+          placeholder="Select your Industry"
+          options={industryOptions}
+        />
       </ShouldRender>
-      <Select
-        dataStore={profileData}
-        name="industry"
-        rules={defaultInputRules}
-        aria-label={keyLabels["industry"]}
-        placeholder="Select your industry"
-        options={industryOptions}
-      />
+      <ShouldRender condition={!isStartup}>
+        <Select
+          dataStore={profileData}
+          dataStoreSetter={setProfileData}
+          name="industryInterests"
+          rules={defaultInputRules}
+          placeholder="Select your Industry interests"
+          options={industryOptions}
+          isMulti
+        />
+      </ShouldRender>
       <TextArea
         dataStore={profileData}
         name="description"
         rules={descriptionRules}
-        aria-label={keyLabels["description"]}
         placeholder="Your solution in one sentence"
       />
-      <Input
+      <Select
         dataStore={profileData}
-        name="fundingInterest"
+        name="fundingInterests"
         rules={defaultInputRules}
-        aria-label={keyLabels["fundingInterest"]}
-        placeholder="Investment Interest"
+        placeholder="Select your Funding Interests"
+        options={fundingInterestOptions}
+        isMulti
       />
     </FormProvider>
   );

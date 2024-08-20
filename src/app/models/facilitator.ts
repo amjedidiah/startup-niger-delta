@@ -1,4 +1,3 @@
-import { industryOptions } from "@/lib/constants";
 import {
   FacilitatorDocument,
   Document,
@@ -14,13 +13,11 @@ const FacilitatorSchema = new Schema(
       type: String,
       required: true,
     },
-    industry: {
+    industryInterests: {
       type: String,
       required: true,
-      index: true,
-      enum: Object.values(industryOptions).map((item) => item.value),
     },
-    fundingInterest: {
+    fundingInterests: {
       type: String,
       required: true,
     },

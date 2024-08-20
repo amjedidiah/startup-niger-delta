@@ -51,7 +51,6 @@ function CompanyRepresentative() {
         dataStore={representativeData}
         name="representativeName"
         rules={representativeNameRules(keyLabels["representativeName"])}
-        aria-label={keyLabels["representativeName"]}
         autoComplete="billing name"
         placeholder="Full name"
       />
@@ -62,7 +61,6 @@ function CompanyRepresentative() {
           name="founderEmail"
           type="email"
           placeholder="username@domain.com"
-          aria-label={keyLabels["founderEmail"]}
           autoComplete="home email"
           rules={emailRules}
         />
@@ -72,14 +70,12 @@ function CompanyRepresentative() {
           name="founderAddress"
           rules={defaultInputRules}
           placeholder="Address Information"
-          aria-label={keyLabels["founderAddress"]}
         />
         <Input
           dataStore={representativeData}
           dataStoreSetter={setRepresentativeData}
           name="founderPhoneNumber"
           type="tel"
-          aria-label={keyLabels["founderPhoneNumber"]}
           rules={founderPhoneRules}
           defaultCountry="NG"
           international
@@ -89,7 +85,6 @@ function CompanyRepresentative() {
           dataStoreSetter={setRepresentativeData}
           name="noOfFounders"
           rules={defaultInputRules}
-          aria-label={keyLabels["noOfFounders"]}
           placeholder="Choose Number of Founders"
           options={noOfFoundersOptions}
         />
@@ -101,7 +96,6 @@ function CompanyRepresentative() {
           dataStoreSetter={setRepresentativeData}
           name="investmentExperience"
           rules={defaultInputRules}
-          aria-label={keyLabels["investmentExperience"]}
           placeholder="Choose investment experience"
           options={investmentExperienceOptions}
         />
@@ -110,7 +104,6 @@ function CompanyRepresentative() {
           dataStoreSetter={setRepresentativeData}
           name="investmentProof"
           type="url"
-          aria-label={keyLabels["investmentProof"]}
           placeholder="Eg: https://docs.googl/lo8yz123"
           rules={defaultInputRules}
         />
@@ -119,7 +112,6 @@ function CompanyRepresentative() {
           dataStoreSetter={setRepresentativeData}
           name="investmentSize"
           rules={defaultInputRules}
-          aria-label={keyLabels["investmentSize"]}
           placeholder="Choose investment size"
           options={investmentSizeOptions}
         />

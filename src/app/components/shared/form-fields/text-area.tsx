@@ -1,4 +1,6 @@
 import OnboardingInputContainer from "@/components/onboarding/shared/onboarding-input-container";
+import useOnboardingContext from "@/hooks/use-onboarding-context";
+import { getOnboardingKeyLabels } from "@/lib/utils";
 import {
   Dispatch,
   SetStateAction,
@@ -7,6 +9,7 @@ import {
   memo,
   useEffect,
   useImperativeHandle,
+  useMemo,
 } from "react";
 import {
   FieldValues,
@@ -22,8 +25,8 @@ type Props = Omit<
     UseControllerProps<FieldValues, string>,
     "name" | "defaultValue" | "control" | "disabled"
   > & {
-    name: string;
-    ["aria-label"]: string;
+    name: keyof ReturnType<typeof getOnboardingKeyLabels>;
+    ["aria-label"]?: string;
 
     dataStore?: Record<string, any>;
     dataStoreSetter?: Dispatch<SetStateAction<any | undefined>>;
@@ -41,6 +44,7 @@ export default memo(
 
       rules,
       shouldUnregister,
+      "aria-label": aria,
 
       ...rest
     },
@@ -55,6 +59,11 @@ export default memo(
       rules,
       shouldUnregister,
     });
+    const { keyLabels } = useOnboardingContext();
+    const label = useMemo(
+      () => aria || keyLabels[name],
+      [aria, keyLabels, name]
+    );
 
     useImperativeHandle(fieldRef, () => ref);
     useEffect(() => {
@@ -66,7 +75,7 @@ export default memo(
     }, [dataStoreSetter, fieldRest.value, name]);
 
     return (
-      <OnboardingInputContainer label={rest["aria-label"]} name={name}>
+      <OnboardingInputContainer label={label} name={name}>
         <textarea id={name} ref={ref} {...rest} {...fieldRest} />
       </OnboardingInputContainer>
     );

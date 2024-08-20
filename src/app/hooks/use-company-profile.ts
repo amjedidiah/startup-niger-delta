@@ -9,7 +9,6 @@ export default function useCompanyProfile() {
     onboardingDataSetters: { setProfileData },
     setCanGoToContactData,
     companyType,
-    keyLabels,
   } = useOnboardingContext();
   const isStartup = useMemo(
     () => companyType === CompanyTypes.StartUp,
@@ -41,6 +40,5 @@ export default function useCompanyProfile() {
     profileData,
     isStartup,
     setProfileData,
-    keyLabels,
   };
 }
